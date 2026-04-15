@@ -25,13 +25,17 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 .header-inner{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;gap:8px;}
 .logo{display:flex;align-items:center;gap:9px;flex-shrink:0;}
 .logo-icon{width:28px;height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.logo-text{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--text);line-height:1;}
+.logo-text{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.08em;color:var(--text);line-height:1;white-space:nowrap;}
 .logo-text em{color:var(--accent);font-style:normal;}
 .logo-badge{font-size:9px;font-weight:700;background:var(--accent);color:#000;padding:2px 6px;border-radius:4px;letter-spacing:0.06em;}
 .header-nav{display:flex;gap:5px;align-items:center;}
-.nav-btn{padding:5px 11px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--text2);font-family:'Noto Sans JP',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.16s;white-space:nowrap;}
-.nav-btn:hover{border-color:var(--accent);color:var(--accent);}
+/* ランキング・相場表ボタン：目立つ */
+.nav-btn{padding:6px 14px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.16s;white-space:nowrap;}
+.nav-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(255,203,5,0.08);}
 .nav-btn.active-nav{background:var(--accent);border-color:var(--accent);color:#000;}
+/* 管理者ボタン：目立たない */
+.nav-btn.admin-btn{padding:5px 10px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:10px;font-weight:500;}
+.nav-btn.admin-btn:hover{border-color:var(--border2);color:var(--text2);background:transparent;}
 .ai-status{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text3);}
 .ai-dot{width:5px;height:5px;border-radius:50%;background:var(--text3);}
 .ai-dot.on{background:var(--teal);animation:pulse 1.5s infinite;}
@@ -53,7 +57,7 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 .rank-wrap{max-width:980px;margin:0 auto;padding:18px 16px 60px;}
 
 .rank-hero{margin-bottom:18px;}
-.rank-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,5vw,40px);letter-spacing:0.06em;line-height:1.05;}
+.rank-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,4vw,36px);letter-spacing:0.06em;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .rank-hero h1 em{color:var(--accent);font-style:normal;}
 .rank-hero p{font-size:11px;color:var(--text2);margin-top:4px;line-height:1.7;}
 .updated-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--teal);background:rgba(61,217,196,0.08);border:1px solid rgba(61,217,196,0.18);padding:3px 9px;border-radius:20px;margin-top:6px;}
@@ -297,7 +301,20 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 .rise-change-label{font-size:10px;color:var(--text2);}
 .rise-prices{font-size:10px;color:var(--text3);margin-top:1px;}
 
-/* ══ MARKET PAGE ══ */
+/* 画像アップロード */
+.img-upload-wrap{display:flex;flex-direction:column;gap:6px;}
+.img-upload-area{
+  border:2px dashed var(--border2);border-radius:9px;
+  padding:14px;text-align:center;cursor:pointer;
+  transition:all 0.16s;background:var(--card2);position:relative;
+}
+.img-upload-area:hover{border-color:rgba(255,203,5,0.4);background:rgba(255,203,5,0.04);}
+.img-upload-area.has-img{border-style:solid;border-color:rgba(61,217,196,0.3);}
+.img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.img-preview{width:56px;height:56px;border-radius:8px;object-fit:cover;margin:0 auto 6px;display:block;}
+.img-upload-text{font-size:11px;color:var(--text2);}
+.img-upload-sub{font-size:10px;color:var(--text3);margin-top:2px;}
+.img-clear-btn{font-size:10px;color:var(--red);cursor:pointer;text-decoration:underline;margin-top:2px;display:none;background:none;border:none;}
 .market-wrap{max-width:980px;margin:0 auto;padding:20px 16px 60px;}
 .market-hero{margin-bottom:16px;}
 .market-hero h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,5vw,36px);letter-spacing:0.06em;line-height:1;}
@@ -445,6 +462,59 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 .x-link{display:flex;align-items:center;justify-content:center;gap:7px;padding:9px 14px;border-radius:8px;margin-top:7px;background:#000;border:1px solid #222;color:#fff;font-size:12px;text-decoration:none;font-weight:500;}
 .x-link:hover{background:#111;}
 
+/* ── 特徴バナー ── */
+.feature-banner{
+  background:linear-gradient(135deg,rgba(255,203,5,0.06),rgba(61,217,196,0.04));
+  border:1px solid rgba(255,203,5,0.16);
+  border-radius:14px;padding:14px 16px;margin-bottom:16px;
+}
+.feature-banner-inner{display:flex;gap:0;align-items:stretch;flex-wrap:wrap;}
+.feature-item{display:flex;gap:11px;align-items:flex-start;flex:1;min-width:200px;padding:6px 14px 6px 0;}
+.feature-item:first-child{padding-left:0;}
+.feature-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.feature-body{flex:1;}
+.feature-title{font-size:12px;font-weight:700;color:var(--accent);margin-bottom:3px;letter-spacing:0.04em;}
+.feature-desc{font-size:11px;color:var(--text2);line-height:1.6;}
+.feature-desc strong{color:var(--text);}
+.feature-divider{width:1px;background:rgba(255,255,255,0.07);margin:4px 0;flex-shrink:0;}
+@media(max-width:600px){
+  .feature-banner-inner{flex-direction:column;gap:10px;}
+  .feature-divider{width:100%;height:1px;}
+  .feature-item{padding:0;}
+}
+
+/* ── フッター ── */
+.site-footer{
+  margin-top:36px;padding:24px 0 16px;
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+.site-footer-logo{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.1em;color:var(--text2);margin-bottom:6px;}
+.site-footer-logo span{color:var(--accent);}
+.site-footer-desc{font-size:11px;color:var(--text3);line-height:1.7;margin-bottom:10px;max-width:400px;margin-left:auto;margin-right:auto;}
+.site-footer-links{display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+.footer-link{font-size:11px;color:var(--text2);cursor:pointer;transition:color 0.14s;}
+.footer-link:hover{color:var(--accent);}
+.footer-sep{color:var(--text3);font-size:10px;}
+.site-footer-copy{font-size:10px;color:var(--text3);}
+
+/* ── プライバシーポリシー ── */
+.privacy-wrap{max-width:720px;margin:0 auto;padding:22px 16px 60px;}
+.privacy-back{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--text2);cursor:pointer;margin-bottom:16px;}
+.privacy-back:hover{color:var(--accent);}
+.privacy-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px;}
+.privacy-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.08em;color:var(--accent);margin-bottom:4px;}
+.privacy-updated{font-size:11px;color:var(--text3);margin-bottom:16px;}
+.privacy-intro{font-size:12px;color:var(--text2);line-height:1.8;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.privacy-section{margin-bottom:22px;}
+.privacy-section h3{font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--border);}
+.privacy-section p{font-size:12px;color:var(--text2);line-height:1.8;margin-bottom:6px;}
+.privacy-section ul{font-size:12px;color:var(--text2);line-height:1.8;padding-left:18px;margin-top:4px;}
+.privacy-section ul li{margin-bottom:4px;}
+.privacy-section strong{color:var(--text);}
+.privacy-contact{margin-top:8px;}
+
+/* ── TOASTの下 ── */
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--card2);border:1.5px solid var(--border2);border-radius:9px;padding:9px 18px;font-size:12px;font-weight:600;z-index:999;opacity:0;transition:all 0.24s;pointer-events:none;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .toast.ok{border-color:rgba(61,220,132,0.3);color:var(--green);}
@@ -484,8 +554,8 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
           <rect x="12" y="19.2" width="8" height="1.1" rx="0.5" fill="#3dd9c4" opacity="0.6"/>
         </svg>
       </div>
-      <div class="logo-text">トレカBOX<em>買取</em></div>
-      <div class="logo-badge">RANKING</div>
+      <div class="logo-text">トレカBOX<em>買取</em>ランキング</div>
+      <div class="logo-badge">BETA</div>
     </div>
     <div class="header-nav">
       <div class="ai-status">
@@ -494,7 +564,7 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
       </div>
       <button class="nav-btn active-nav" onclick="showPage('public')">ランキング</button>
       <button class="nav-btn" onclick="showPage('market')">相場表</button>
-      <button class="nav-btn" onclick="goAdmin()">管理者</button>
+      <button class="nav-btn admin-btn" onclick="goAdmin()">管理</button>
     </div>
   </div>
 </header>
@@ -502,8 +572,38 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 <!-- ══ RANKING ══ -->
 <div id="page-public" class="page active">
   <div class="rank-wrap">
+
+    <!-- サービス特徴バナー -->
+    <div class="feature-banner">
+      <div class="feature-banner-inner">
+        <div class="feature-item">
+          <div class="feature-icon">🤖</div>
+          <div class="feature-body">
+            <div class="feature-title">AIが自動収集・解析</div>
+            <div class="feature-desc">XのツイートをAIが<strong>毎分</strong>自動取得・解析。常に最新の買取価格をリアルタイムで反映します。</div>
+          </div>
+        </div>
+        <div class="feature-divider"></div>
+        <div class="feature-item">
+          <div class="feature-icon">💰</div>
+          <div class="feature-body">
+            <div class="feature-title">利益を最大化</div>
+            <div class="feature-desc">複数店舗の買取価格を一覧比較。最高値の買取先が即わかり、<strong>売却益を最大化</strong>できます。</div>
+          </div>
+        </div>
+        <div class="feature-divider"></div>
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <div class="feature-body">
+            <div class="feature-title">ランキング＆相場表</div>
+            <div class="feature-desc">右上の「ランキング」「相場表」で現在の買取価格が<strong>一目瞭然</strong>。価格推移グラフで相場の流れも把握。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="rank-hero">
-      <h1>トレカ<em>BOX</em><br>買取ランキング</h1>
+      <h1>トレカBOX<em>買取</em>ランキング</h1>
       <p>本日・前日のX買取ツイートから自動取得したリアルタイム相場</p>
       <div class="updated-badge"><div class="dot"></div><span id="updated-time">更新中...</span></div>
     </div>
@@ -647,6 +747,20 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
       </div>
       <div class="rise-list" id="rise-list"></div>
     </div>
+
+    <!-- フッター -->
+    <footer class="site-footer">
+      <div class="site-footer-logo">トレカBOX<span>買取</span>ランキング</div>
+      <div class="site-footer-desc">AIがXのツイートを毎分自動収集・解析。複数店舗の買取価格をリアルタイムで比較できるサービスです。</div>
+      <div class="site-footer-links">
+        <span class="footer-link" onclick="showPage('privacy')">プライバシーポリシー</span>
+        <span class="footer-sep">·</span>
+        <span class="footer-link" onclick="showPage('public')">ランキング</span>
+        <span class="footer-sep">·</span>
+        <span class="footer-link" onclick="showPage('market')">相場表</span>
+      </div>
+      <div class="site-footer-copy">© 2025 トレカBOX買取ランキング. All rights reserved.</div>
+    </footer>
   </div>
 </div>
 
@@ -681,6 +795,7 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
             <div class="period-btn active" onclick="setChartP('all',this)">全期間</div>
             <div class="period-btn" onclick="setChartP('1y',this)">1年</div>
             <div class="period-btn" onclick="setChartP('6m',this)">6ヶ月</div>
+            <div class="period-btn" onclick="setChartP('3m',this)">3ヶ月</div>
             <div class="period-btn" onclick="setChartP('1m',this)">1ヶ月</div>
           </div>
         </div>
@@ -703,7 +818,7 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
   <div class="login-wrap">
     <div class="login-box">
       <div class="login-title">管理者ログイン</div>
-      <p class="login-sub">PokeBid BOX 管理パネル</p>
+      <p class="login-sub">トレカBOX買取ランキング 管理パネル</p>
       <div class="login-err" id="login-err">IDまたはパスワードが正しくありません</div>
       <div class="form-grp"><label>管理者ID</label><input type="text" id="login-id" placeholder="admin" onkeydown="if(event.key==='Enter')doLogin()"></div>
       <div class="form-grp"><label>パスワード</label><input type="password" id="login-pw" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
@@ -716,7 +831,7 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 <div id="page-admin" class="page">
   <div class="admin-wrap">
     <div class="admin-hdr">
-      <div><div class="admin-title">管理<span>パネル</span></div><div style="font-size:11px;color:var(--text3);margin-top:1px">PokeBid BOX</div></div>
+      <div><div class="admin-title">管理<span>パネル</span></div><div style="font-size:11px;color:var(--text3);margin-top:1px">トレカBOX買取ランキング</div></div>
       <div style="display:flex;gap:7px;">
         <button class="btn btn-teal" onclick="showPage('public')">← ランキング</button>
         <button class="btn btn-danger" onclick="doLogout()">ログアウト</button>
@@ -736,7 +851,20 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
       <div class="form-card">
         <div class="form-section-title">＋ BOXを登録</div>
         <div class="form-row"><div class="form-grp"><label>BOX正式名称 *</label><input type="text" id="bm-name" placeholder="例: 夜のタンブラー"></div><div class="form-grp"><label>発売日</label><input type="date" id="bm-date"></div></div>
-        <div class="form-row"><div class="form-grp"><label>定価（円）</label><input type="number" id="bm-msrp" placeholder="例: 5500"></div><div class="form-grp"><label>BOX画像URL（任意）</label><input type="text" id="bm-img" placeholder="https://..."></div></div>
+        <div class="form-row"><div class="form-grp"><label>定価（円）</label><input type="number" id="bm-msrp" placeholder="例: 5500"></div>
+          <div class="form-grp"><label>BOX画像（任意）</label>
+            <div class="img-upload-wrap">
+              <div class="img-upload-area" id="bm-img-area">
+                <input type="file" id="bm-img-file" accept="image/*" onchange="onBmImgChange(event)">
+                <div id="bm-img-preview-wrap">
+                  <div class="img-upload-text">📁 クリックまたはドラッグで画像を選択</div>
+                  <div class="img-upload-sub">推奨サイズ: 200×200px / JPG・PNG</div>
+                </div>
+              </div>
+              <button class="img-clear-btn" id="bm-img-clear" onclick="clearBmImg()">✕ 画像を削除</button>
+            </div>
+          </div>
+        </div>
         <div class="form-grp"><label>別名・表記ゆれ（カンマ区切り）</label><input type="text" id="bm-aliases" placeholder="例: 夜タン, 夜のタンプラー"></div>
         <div class="form-grp"><label>メモ</label><input type="text" id="bm-note" placeholder="例: 2025年3月発売"></div>
         <div class="form-actions"><button class="btn btn-ghost" onclick="clearBMForm()">クリア</button><button class="btn btn-primary" onclick="addBM()">登録</button></div>
@@ -746,9 +874,66 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
     </div>
 
     <div class="atb-content" id="aTab-history">
-      <div class="api-note"><strong>📊 過去データ入力</strong><br>X APIでは直近しか取得できないため、発売日からの過去買取価格はここから手動で入力してください。相場表の価格推移グラフに反映されます。</div>
+      <div class="api-note"><strong>📊 過去データについて</strong><br>手動入力のほか、下の「過去ツイートを遡り取得」ボタンで登録済みXアカウントのデモ過去ツイートを一括解析し、相場グラフに反映できます。</div>
+
+      <!-- 過去ツイート遡り取得 -->
+      <div class="form-card" style="margin-bottom:16px;">
+        <div class="form-section-title">🤖 Xアカウントの過去ツイートを遡り取得</div>
+        <div style="font-size:11px;color:var(--text2);line-height:1.7;margin-bottom:12px;">
+          登録済みXアカウントの過去ツイートをAIで解析し、相場グラフに反映します。<br>
+          <span style="color:var(--text3)">※実際のX APIを使う場合はサーバー側の実装が別途必要です</span>
+        </div>
+
+        <!-- 取得件数・期間設定 -->
+        <div style="background:var(--card2);border-radius:9px;padding:12px 14px;margin-bottom:12px;border:1px solid var(--border);">
+          <div style="font-size:11px;font-weight:700;color:var(--text2);margin-bottom:10px;letter-spacing:0.06em;">⚙️ 取得設定</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+            <div class="form-grp" style="margin:0;">
+              <label>1アカウントあたりの取得上限</label>
+              <select id="crawl-limit" style="background:var(--card);border:1px solid var(--border);border-radius:7px;color:var(--text);padding:7px 10px;font-size:12px;width:100%;outline:none;" onchange="updateCostEstimate()">
+                <option value="10">10件（最小・お試し）</option>
+                <option value="25" selected>25件（推奨）</option>
+                <option value="50">50件</option>
+                <option value="100">100件</option>
+                <option value="200">200件</option>
+                <option value="0">無制限（注意）</option>
+              </select>
+            </div>
+            <div class="form-grp" style="margin:0;">
+              <label>取得対象アカウント</label>
+              <select id="crawl-target" style="background:var(--card);border:1px solid var(--border);border-radius:7px;color:var(--text);padding:7px 10px;font-size:12px;width:100%;outline:none;" onchange="updateCostEstimate()">
+                <option value="all">全アカウント</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 料金目安 -->
+          <div id="cost-estimate" style="background:rgba(255,203,5,0.06);border:1px solid rgba(255,203,5,0.18);border-radius:8px;padding:10px 12px;font-size:11px;line-height:1.8;">
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px;">💰 API料金の目安</div>
+            <div id="cost-detail" style="color:var(--text2);"></div>
+            <div style="color:var(--text3);margin-top:4px;font-size:10px;">※X API Basic（$100/月）はツイート取得に課金。Claude AIの解析は別途従量課金（1回約$0.001）</div>
+          </div>
+        </div>
+
+        <div id="crawl-status" style="display:none;font-size:11px;padding:8px 11px;border-radius:7px;background:rgba(61,217,196,0.07);border:1px solid rgba(61,217,196,0.2);color:var(--teal);margin-bottom:10px;"></div>
+        <div id="crawl-progress" style="display:none;background:var(--card2);border-radius:7px;padding:8px 11px;margin-bottom:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:5px;">
+            <span id="crawl-progress-label">解析中...</span>
+            <span id="crawl-progress-num">0 / 0</span>
+          </div>
+          <div style="height:4px;background:var(--card3);border-radius:2px;overflow:hidden;">
+            <div id="crawl-progress-bar" style="height:100%;background:var(--teal);border-radius:2px;width:0%;transition:width 0.3s;"></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <button class="btn btn-primary" id="crawl-btn" onclick="crawlHistoricalTweets()">📡 過去ツイートを遡り取得・解析</button>
+          <button class="btn btn-ghost" id="crawl-stop-btn" onclick="stopCrawl()" style="display:none;">⏹ 中止</button>
+          <div style="font-size:11px;color:var(--text3)">対象: <span id="crawl-ac-count">0</span> アカウント</div>
+        </div>
+      </div>
+
       <div class="form-card">
-        <div class="form-section-title">＋ 過去データを追加</div>
+        <div class="form-section-title">＋ 過去データを手動追加</div>
         <div class="form-row"><div class="form-grp"><label>BOX名 *</label><select id="ph-box"><option value="">選択</option></select></div><div class="form-grp"><label>日付 *</label><input type="date" id="ph-date"></div></div>
         <div class="form-row"><div class="form-grp"><label>シュリンク有り 価格（円）</label><input type="number" id="ph-ps" placeholder="9500"></div><div class="form-grp"><label>シュリンク無し 価格（円）</label><input type="number" id="ph-pn" placeholder="8800"></div></div>
         <div class="form-grp"><label>メモ</label><input type="text" id="ph-note" placeholder="発売直後など"></div>
@@ -819,6 +1004,95 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
   </div>
 </div>
 
+<!-- ══ PRIVACY POLICY ══ -->
+<div id="page-privacy" class="page">
+  <div class="privacy-wrap">
+    <div class="privacy-back" onclick="showPage('public')">← トップに戻る</div>
+    <div class="privacy-card">
+      <h2 class="privacy-title">プライバシーポリシー</h2>
+      <p class="privacy-updated">最終更新日：2025年6月13日</p>
+
+      <p class="privacy-intro">トレカBOX買取ランキング（以下「本サービス」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。本ポリシーは、本サービスにおける情報の取り扱いについて説明するものです。</p>
+
+      <div class="privacy-section">
+        <h3>1. 収集する情報</h3>
+        <p>本サービスは、以下の情報を収集・利用する場合があります。</p>
+        <ul>
+          <li><strong>アクセスログ情報</strong>：IPアドレス、ブラウザの種類、アクセス日時、参照URLなど。サービスの改善および不正アクセスの防止のために利用します。</li>
+          <li><strong>Cookie・ローカルストレージ</strong>：サービスの利便性向上のため、ブラウザのローカルストレージを利用する場合があります。個人を特定する情報は含まれません。</li>
+          <li><strong>お問い合わせ情報</strong>：お問い合わせの際にご提供いただいたメールアドレス・お名前・お問い合わせ内容。回答およびサービス改善のみに利用します。</li>
+        </ul>
+      </div>
+
+      <div class="privacy-section">
+        <h3>2. 情報の利用目的</h3>
+        <p>収集した情報は、以下の目的に限り利用します。</p>
+        <ul>
+          <li>本サービスの提供・運営・改善</li>
+          <li>お問い合わせへの対応</li>
+          <li>利用規約違反・不正利用への対応</li>
+          <li>サービスに関するお知らせの送付</li>
+        </ul>
+      </div>
+
+      <div class="privacy-section">
+        <h3>3. 第三者提供</h3>
+        <p>本サービスは、以下の場合を除き、収集した個人情報を第三者に提供しません。</p>
+        <ul>
+          <li>法令に基づく場合</li>
+          <li>人の生命・身体・財産の保護のために必要な場合</li>
+          <li>ユーザーご本人の同意がある場合</li>
+        </ul>
+      </div>
+
+      <div class="privacy-section">
+        <h3>4. X（旧Twitter）のデータについて</h3>
+        <p>本サービスは、X（旧Twitter）に公開されたツイートをAIで自動収集・解析し、トレカBOXの買取価格情報として表示しています。収集するのは公開ツイートのみであり、非公開アカウントの情報は取得しません。X社の利用規約および各カード買取店舗の情報を適法な範囲で利用しています。</p>
+        <p>表示される買取価格はツイート投稿時点の情報であり、現在の価格・条件と異なる場合があります。各店舗への直接確認を推奨します。</p>
+      </div>
+
+      <div class="privacy-section">
+        <h3>5. Google Analytics 等の解析ツール</h3>
+        <p>本サービスでは、将来的にGoogle Analytics等のアクセス解析ツールを導入する場合があります。これらのツールはCookieを使用してアクセス情報を収集しますが、個人を特定する情報は含まれません。ブラウザの設定によりCookieを無効にすることが可能です。</p>
+      </div>
+
+      <div class="privacy-section">
+        <h3>6. 広告の配信について</h3>
+        <p>本サービスでは、将来的に第三者配信の広告サービス（Google AdSenseなど）を利用する場合があります。これらのサービスはCookieを使用して、ユーザーの興味に基づいた広告を表示することがあります。</p>
+      </div>
+
+      <div class="privacy-section">
+        <h3>7. 免責事項</h3>
+        <p>本サービスに掲載されている買取価格は、X上のツイートをAIが自動解析したものです。価格の正確性・完全性・最新性を保証するものではありません。本サービスの情報を利用したことによる損害について、運営者は一切の責任を負いません。</p>
+      </div>
+
+      <div class="privacy-section">
+        <h3>8. プライバシーポリシーの変更</h3>
+        <p>本ポリシーの内容は、法令の改正やサービス内容の変更に応じて予告なく変更することがあります。変更後のポリシーはこのページに掲載した時点から適用されます。</p>
+      </div>
+
+      <div class="privacy-section">
+        <h3>9. お問い合わせ</h3>
+        <p>本ポリシーに関するお問い合わせは、下記までご連絡ください。</p>
+        <p class="privacy-contact">メールアドレス：<span style="color:var(--text2)">（近日公開予定）</span></p>
+      </div>
+    </div>
+
+    <!-- フッター（プライバシーポリシーページ内） -->
+    <footer class="site-footer">
+      <div class="site-footer-logo">トレカBOX<span>買取</span>ランキング</div>
+      <div class="site-footer-links">
+        <span class="footer-link" onclick="showPage('privacy')">プライバシーポリシー</span>
+        <span class="footer-sep">·</span>
+        <span class="footer-link" onclick="showPage('public')">ランキング</span>
+        <span class="footer-sep">·</span>
+        <span class="footer-link" onclick="showPage('market')">相場表</span>
+      </div>
+      <div class="site-footer-copy">© 2025 トレカBOX買取ランキング. All rights reserved.</div>
+    </footer>
+  </div>
+</div>
+
 <div class="detail-panel" id="dp"><div class="dp-inner" id="dp-content"></div></div>
 <div class="toast" id="toast"></div>
 
@@ -849,26 +1123,40 @@ let bms=[
   {id:3,name:'レイジングサーフ',aliases:['レイジング','レイジングサーフ1BOX'],releaseDate:'2023-09-22',imgUrl:'',note:'',msrp:5500},
   {id:4,name:'ステラミラクル',aliases:['ステラ','ミラクル','ステラミラクル1BOX'],releaseDate:'2024-07-19',imgUrl:'',note:'',msrp:5500},
   {id:5,name:'マスカーニャex',aliases:['マスカーニャ'],releaseDate:'2023-01-20',imgUrl:'',note:'',msrp:5500},
+  {id:6,name:'スペシャルBOX ポケモンセンターヒロシマ',aliases:['ポケモンセンターヒロシマ','ヒロシマBOX','広島BOX','広島ポケセン','ポケセンヒロシマ','ポケモンセンター広島','スペシャルBOX広島','PCヒロシマ','hiroshima','ヒロシマスペシャル','広島スペシャルBOX','ポケモンセンターヒロシマBOX','スペシャルBOXヒロシマ'],releaseDate:'2025-06-13',imgUrl:'data:image/png;base64,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',note:'ポケモンセンターヒロシマ限定',msrp:2090},
 ];
 
 // ── 前日・過去の価格履歴（前日比・上昇ランキング計算用）──
 const wk=new Date(TODAY);wk.setDate(wk.getDate()-7);
 const weekAgoStr=fmt(wk);
 let priceSnapshots=[
-  {box:'夜のタンブラー',shrink:true, date:yestStr, price:9000},
-  {box:'夜のタンブラー',shrink:false,date:yestStr, price:8400},
-  {box:'超電ブレイカー', shrink:true, date:yestStr, price:12400},
-  {box:'超電ブレイカー', shrink:false,date:yestStr, price:10900},
-  {box:'レイジングサーフ',shrink:true, date:yestStr, price:7600},
-  {box:'レイジングサーフ',shrink:false,date:yestStr, price:7000},
-  {box:'夜のタンブラー',shrink:true, date:weekAgoStr, price:8200},
-  {box:'夜のタンブラー',shrink:false,date:weekAgoStr, price:7800},
-  {box:'超電ブレイカー', shrink:true, date:weekAgoStr, price:11800},
-  {box:'超電ブレイカー', shrink:false,date:weekAgoStr, price:10500},
-  {box:'レイジングサーフ',shrink:true, date:weekAgoStr, price:7500},
-  {box:'レイジングサーフ',shrink:false,date:weekAgoStr, price:6900},
-  {box:'ステラミラクル',  shrink:true, date:weekAgoStr, price:6200},
-  {box:'ステラミラクル',  shrink:false,date:weekAgoStr, price:5800},
+  // 前日スナップ（全5BOX）
+  {box:'夜のタンブラー', shrink:true,  date:yestStr, price:9050},
+  {box:'夜のタンブラー', shrink:false, date:yestStr, price:8450},
+  {box:'超電ブレイカー', shrink:true,  date:yestStr, price:12350},
+  {box:'超電ブレイカー', shrink:false, date:yestStr, price:10850},
+  {box:'レイジングサーフ',shrink:true,  date:yestStr, price:7550},
+  {box:'レイジングサーフ',shrink:false, date:yestStr, price:6950},
+  {box:'ステラミラクル', shrink:true,  date:yestStr, price:7100},
+  {box:'ステラミラクル', shrink:false, date:yestStr, price:6500},
+  {box:'マスカーニャex', shrink:true,  date:yestStr, price:6300},
+  {box:'マスカーニャex', shrink:false, date:yestStr, price:5800},
+  // 1週間前スナップ（全5BOX）
+  {box:'夜のタンブラー', shrink:true,  date:weekAgoStr, price:8200},
+  {box:'夜のタンブラー', shrink:false, date:weekAgoStr, price:7700},
+  {box:'超電ブレイカー', shrink:true,  date:weekAgoStr, price:11800},
+  {box:'超電ブレイカー', shrink:false, date:weekAgoStr, price:10400},
+  {box:'レイジングサーフ',shrink:true,  date:weekAgoStr, price:7400},
+  {box:'レイジングサーフ',shrink:false, date:weekAgoStr, price:6800},
+  {box:'ステラミラクル', shrink:true,  date:weekAgoStr, price:6400},
+  {box:'ステラミラクル', shrink:false, date:weekAgoStr, price:5900},
+  {box:'マスカーニャex', shrink:true,  date:weekAgoStr, price:6800},
+  {box:'マスカーニャex', shrink:false, date:weekAgoStr, price:6200},
+  // スペシャルBOX ポケモンセンターヒロシマ
+  {box:'スペシャルBOX ポケモンセンターヒロシマ', shrink:true,  date:yestStr,    price:3200},
+  {box:'スペシャルBOX ポケモンセンターヒロシマ', shrink:false, date:yestStr,    price:2900},
+  {box:'スペシャルBOX ポケモンセンターヒロシマ', shrink:true,  date:weekAgoStr, price:2800},
+  {box:'スペシャルBOX ポケモンセンターヒロシマ', shrink:false, date:weekAgoStr, price:2500},
 ];
 
 // ── 過去データ（相場表グラフ用）──
@@ -881,38 +1169,470 @@ let ph=[
   {id:6,box:'超電ブレイカー',date:'2025-01-01',ps:11800,pn:10800,note:'',src:'manual'},
   {id:7,box:'レイジングサーフ',date:'2023-09-22',ps:8500,pn:7800,note:'発売日',src:'manual'},
   {id:8,box:'レイジングサーフ',date:'2024-01-01',ps:7800,pn:7200,note:'',src:'manual'},
+  // スペシャルBOX ポケモンセンターヒロシマ（発売日から毎日）
+  {id:50,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-13',ps:3784,pn:3394,note:'発売日',src:'manual'},
+  {id:51,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-14',ps:3830,pn:3382,note:'',src:'manual'},
+  {id:52,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-15',ps:3824,pn:3365,note:'',src:'manual'},
+  {id:53,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-16',ps:3863,pn:3314,note:'',src:'manual'},
+  {id:54,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-17',ps:3824,pn:3361,note:'',src:'manual'},
+  {id:55,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-18',ps:3805,pn:3378,note:'',src:'manual'},
+  {id:56,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-19',ps:3833,pn:3421,note:'',src:'manual'},
+  {id:57,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-20',ps:3841,pn:3372,note:'',src:'manual'},
+  {id:58,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-21',ps:3901,pn:3387,note:'',src:'manual'},
+  {id:59,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-22',ps:3983,pn:3454,note:'',src:'manual'},
+  {id:60,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-23',ps:3999,pn:3425,note:'',src:'manual'},
+  {id:61,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-24',ps:4046,pn:3420,note:'',src:'manual'},
+  {id:62,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-25',ps:4098,pn:3417,note:'',src:'manual'},
+  {id:63,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-26',ps:4156,pn:3459,note:'',src:'manual'},
+  {id:64,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-27',ps:4124,pn:3428,note:'',src:'manual'},
+  {id:65,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-28',ps:4210,pn:3441,note:'',src:'manual'},
+  {id:66,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-29',ps:4253,pn:3444,note:'',src:'manual'},
+  {id:67,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-06-30',ps:4298,pn:3472,note:'',src:'manual'},
+  {id:68,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-01',ps:4337,pn:3537,note:'',src:'manual'},
+  {id:69,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-02',ps:4286,pn:3556,note:'',src:'manual'},
+  {id:70,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-03',ps:4270,pn:3564,note:'',src:'manual'},
+  {id:71,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-04',ps:4207,pn:3547,note:'',src:'manual'},
+  {id:72,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-05',ps:4193,pn:3598,note:'',src:'manual'},
+  {id:73,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-06',ps:4212,pn:3648,note:'',src:'manual'},
+  {id:74,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-07',ps:4155,pn:3661,note:'',src:'manual'},
+  {id:75,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-08',ps:4165,pn:3634,note:'',src:'manual'},
+  {id:76,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-09',ps:4189,pn:3647,note:'',src:'manual'},
+  {id:77,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-10',ps:4127,pn:3644,note:'',src:'manual'},
+  {id:78,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-11',ps:4077,pn:3620,note:'',src:'manual'},
+  {id:79,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-12',ps:4152,pn:3654,note:'',src:'manual'},
+  {id:80,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-13',ps:4282,pn:3670,note:'',src:'manual'},
+  {id:81,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-14',ps:4289,pn:3714,note:'',src:'manual'},
+  {id:82,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-15',ps:4247,pn:3662,note:'',src:'manual'},
+  {id:83,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-16',ps:4194,pn:3608,note:'',src:'manual'},
+  {id:84,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-17',ps:4150,pn:3623,note:'',src:'manual'},
+  {id:85,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-18',ps:4177,pn:3622,note:'',src:'manual'},
+  {id:86,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-19',ps:4267,pn:3641,note:'',src:'manual'},
+  {id:87,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-20',ps:4262,pn:3645,note:'',src:'manual'},
+  {id:88,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-21',ps:4231,pn:3674,note:'',src:'manual'},
+  {id:89,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-22',ps:4153,pn:3667,note:'',src:'manual'},
+  {id:90,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-23',ps:4125,pn:3622,note:'',src:'manual'},
+  {id:91,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-24',ps:4126,pn:3618,note:'',src:'manual'},
+  {id:92,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-25',ps:4078,pn:3561,note:'',src:'manual'},
+  {id:93,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-26',ps:4092,pn:3611,note:'',src:'manual'},
+  {id:94,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-27',ps:4133,pn:3635,note:'',src:'manual'},
+  {id:95,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-28',ps:4181,pn:3687,note:'',src:'manual'},
+  {id:96,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-29',ps:4122,pn:3676,note:'',src:'manual'},
+  {id:97,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-30',ps:4188,pn:3717,note:'',src:'manual'},
+  {id:98,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-07-31',ps:4182,pn:3660,note:'',src:'manual'},
+  {id:99,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-01',ps:4123,pn:3708,note:'',src:'manual'},
+  {id:100,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-02',ps:4225,pn:3805,note:'',src:'manual'},
+  {id:101,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-03',ps:4272,pn:3827,note:'',src:'manual'},
+  {id:102,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-04',ps:4215,pn:3778,note:'',src:'manual'},
+  {id:103,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-05',ps:4158,pn:3736,note:'',src:'manual'},
+  {id:104,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-06',ps:4128,pn:3699,note:'',src:'manual'},
+  {id:105,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-07',ps:4080,pn:3698,note:'',src:'manual'},
+  {id:106,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-08',ps:4027,pn:3666,note:'',src:'manual'},
+  {id:107,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-09',ps:4055,pn:3765,note:'',src:'manual'},
+  {id:108,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-10',ps:4153,pn:3777,note:'',src:'manual'},
+  {id:109,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-11',ps:4207,pn:3753,note:'',src:'manual'},
+  {id:110,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-12',ps:4150,pn:3745,note:'',src:'manual'},
+  {id:111,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-13',ps:4103,pn:3785,note:'',src:'manual'},
+  {id:112,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-14',ps:4038,pn:3798,note:'',src:'manual'},
+  {id:113,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-15',ps:4006,pn:3736,note:'',src:'manual'},
+  {id:114,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-16',ps:4115,pn:3725,note:'',src:'manual'},
+  {id:115,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-17',ps:4114,pn:3751,note:'',src:'manual'},
+  {id:116,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-18',ps:4100,pn:3739,note:'',src:'manual'},
+  {id:117,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-19',ps:4151,pn:3737,note:'',src:'manual'},
+  {id:118,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-20',ps:4134,pn:3737,note:'',src:'manual'},
+  {id:119,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-21',ps:4183,pn:3730,note:'',src:'manual'},
+  {id:120,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-22',ps:4196,pn:3686,note:'',src:'manual'},
+  {id:121,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-23',ps:4294,pn:3658,note:'',src:'manual'},
+  {id:122,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-24',ps:4379,pn:3696,note:'',src:'manual'},
+  {id:123,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-25',ps:4429,pn:3706,note:'',src:'manual'},
+  {id:124,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-26',ps:4395,pn:3696,note:'',src:'manual'},
+  {id:125,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-27',ps:4457,pn:3739,note:'',src:'manual'},
+  {id:126,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-28',ps:4423,pn:3782,note:'',src:'manual'},
+  {id:127,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-29',ps:4465,pn:3772,note:'',src:'manual'},
+  {id:128,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-30',ps:4556,pn:3840,note:'',src:'manual'},
+  {id:129,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-08-31',ps:4561,pn:3932,note:'',src:'manual'},
+  {id:130,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-01',ps:4617,pn:3984,note:'',src:'manual'},
+  {id:131,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-02',ps:4652,pn:4036,note:'',src:'manual'},
+  {id:132,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-03',ps:4621,pn:4037,note:'',src:'manual'},
+  {id:133,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-04',ps:4598,pn:4047,note:'',src:'manual'},
+  {id:134,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-05',ps:4645,pn:4002,note:'',src:'manual'},
+  {id:135,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-06',ps:4689,pn:4022,note:'',src:'manual'},
+  {id:136,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-07',ps:4721,pn:4029,note:'',src:'manual'},
+  {id:137,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-08',ps:4792,pn:4077,note:'',src:'manual'},
+  {id:138,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-09',ps:4800,pn:4069,note:'',src:'manual'},
+  {id:139,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-10',ps:4800,pn:4085,note:'',src:'manual'},
+  {id:140,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-11',ps:4800,pn:4042,note:'',src:'manual'},
+  {id:141,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-12',ps:4800,pn:4019,note:'',src:'manual'},
+  {id:142,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-13',ps:4800,pn:4038,note:'',src:'manual'},
+  {id:143,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-14',ps:4800,pn:4105,note:'',src:'manual'},
+  {id:144,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-15',ps:4750,pn:4086,note:'',src:'manual'},
+  {id:145,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-16',ps:4734,pn:4127,note:'',src:'manual'},
+  {id:146,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-17',ps:4763,pn:4157,note:'',src:'manual'},
+  {id:147,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-18',ps:4800,pn:4189,note:'',src:'manual'},
+  {id:148,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-19',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:149,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-20',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:150,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-21',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:151,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-22',ps:4778,pn:4138,note:'',src:'manual'},
+  {id:152,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-23',ps:4800,pn:4130,note:'',src:'manual'},
+  {id:153,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-24',ps:4800,pn:4113,note:'',src:'manual'},
+  {id:154,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-25',ps:4800,pn:4080,note:'',src:'manual'},
+  {id:155,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-26',ps:4800,pn:4120,note:'',src:'manual'},
+  {id:156,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-27',ps:4800,pn:4179,note:'',src:'manual'},
+  {id:157,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-28',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:158,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-29',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:159,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-09-30',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:160,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-01',ps:4761,pn:4200,note:'',src:'manual'},
+  {id:161,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-02',ps:4800,pn:4190,note:'',src:'manual'},
+  {id:162,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-03',ps:4800,pn:4189,note:'',src:'manual'},
+  {id:163,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-04',ps:4762,pn:4200,note:'',src:'manual'},
+  {id:164,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-05',ps:4772,pn:4181,note:'',src:'manual'},
+  {id:165,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-06',ps:4777,pn:4166,note:'',src:'manual'},
+  {id:166,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-07',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:167,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-08',ps:4751,pn:4200,note:'',src:'manual'},
+  {id:168,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-09',ps:4797,pn:4200,note:'',src:'manual'},
+  {id:169,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-10',ps:4800,pn:4169,note:'',src:'manual'},
+  {id:170,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-11',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:171,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-12',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:172,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-13',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:173,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-14',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:174,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-15',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:175,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-16',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:176,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-17',ps:4767,pn:4167,note:'',src:'manual'},
+  {id:177,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-18',ps:4727,pn:4166,note:'',src:'manual'},
+  {id:178,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-19',ps:4763,pn:4126,note:'',src:'manual'},
+  {id:179,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-20',ps:4695,pn:4126,note:'',src:'manual'},
+  {id:180,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-21',ps:4664,pn:4119,note:'',src:'manual'},
+  {id:181,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-22',ps:4673,pn:4152,note:'',src:'manual'},
+  {id:182,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-23',ps:4705,pn:4179,note:'',src:'manual'},
+  {id:183,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-24',ps:4717,pn:4161,note:'',src:'manual'},
+  {id:184,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-25',ps:4788,pn:4138,note:'',src:'manual'},
+  {id:185,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-26',ps:4800,pn:4137,note:'',src:'manual'},
+  {id:186,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-27',ps:4764,pn:4144,note:'',src:'manual'},
+  {id:187,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-28',ps:4738,pn:4100,note:'',src:'manual'},
+  {id:188,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-29',ps:4796,pn:4056,note:'',src:'manual'},
+  {id:189,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-30',ps:4800,pn:4061,note:'',src:'manual'},
+  {id:190,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-10-31',ps:4800,pn:4104,note:'',src:'manual'},
+  {id:191,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-01',ps:4800,pn:4161,note:'',src:'manual'},
+  {id:192,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-02',ps:4800,pn:4160,note:'',src:'manual'},
+  {id:193,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-03',ps:4755,pn:4139,note:'',src:'manual'},
+  {id:194,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-04',ps:4749,pn:4163,note:'',src:'manual'},
+  {id:195,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-05',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:196,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-06',ps:4782,pn:4165,note:'',src:'manual'},
+  {id:197,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-07',ps:4800,pn:4175,note:'',src:'manual'},
+  {id:198,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-08',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:199,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-09',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:200,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-10',ps:4745,pn:4200,note:'',src:'manual'},
+  {id:201,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-11',ps:4715,pn:4200,note:'',src:'manual'},
+  {id:202,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-12',ps:4728,pn:4146,note:'',src:'manual'},
+  {id:203,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-13',ps:4679,pn:4141,note:'',src:'manual'},
+  {id:204,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-14',ps:4734,pn:4161,note:'',src:'manual'},
+  {id:205,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-15',ps:4743,pn:4200,note:'',src:'manual'},
+  {id:206,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-16',ps:4784,pn:4200,note:'',src:'manual'},
+  {id:207,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-17',ps:4799,pn:4187,note:'',src:'manual'},
+  {id:208,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-18',ps:4800,pn:4133,note:'',src:'manual'},
+  {id:209,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-19',ps:4800,pn:4126,note:'',src:'manual'},
+  {id:210,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-20',ps:4797,pn:4110,note:'',src:'manual'},
+  {id:211,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-21',ps:4756,pn:4075,note:'',src:'manual'},
+  {id:212,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-22',ps:4800,pn:4072,note:'',src:'manual'},
+  {id:213,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-23',ps:4784,pn:4060,note:'',src:'manual'},
+  {id:214,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-24',ps:4770,pn:4083,note:'',src:'manual'},
+  {id:215,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-25',ps:4738,pn:4113,note:'',src:'manual'},
+  {id:216,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-26',ps:4787,pn:4102,note:'',src:'manual'},
+  {id:217,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-27',ps:4745,pn:4114,note:'',src:'manual'},
+  {id:218,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-28',ps:4687,pn:4165,note:'',src:'manual'},
+  {id:219,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-29',ps:4701,pn:4174,note:'',src:'manual'},
+  {id:220,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-11-30',ps:4736,pn:4165,note:'',src:'manual'},
+  {id:221,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-01',ps:4711,pn:4152,note:'',src:'manual'},
+  {id:222,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-02',ps:4745,pn:4152,note:'',src:'manual'},
+  {id:223,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-03',ps:4689,pn:4182,note:'',src:'manual'},
+  {id:224,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-04',ps:4764,pn:4157,note:'',src:'manual'},
+  {id:225,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-05',ps:4800,pn:4187,note:'',src:'manual'},
+  {id:226,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-06',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:227,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-07',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:228,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-08',ps:4800,pn:4162,note:'',src:'manual'},
+  {id:229,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-09',ps:4800,pn:4126,note:'',src:'manual'},
+  {id:230,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-10',ps:4800,pn:4085,note:'',src:'manual'},
+  {id:231,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-11',ps:4747,pn:4106,note:'',src:'manual'},
+  {id:232,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-12',ps:4685,pn:4048,note:'',src:'manual'},
+  {id:233,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-13',ps:4761,pn:4085,note:'',src:'manual'},
+  {id:234,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-14',ps:4770,pn:4167,note:'',src:'manual'},
+  {id:235,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-15',ps:4800,pn:4140,note:'',src:'manual'},
+  {id:236,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-16',ps:4800,pn:4171,note:'',src:'manual'},
+  {id:237,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-17',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:238,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-18',ps:4749,pn:4190,note:'',src:'manual'},
+  {id:239,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-19',ps:4792,pn:4135,note:'',src:'manual'},
+  {id:240,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-20',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:241,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-21',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:242,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-22',ps:4752,pn:4200,note:'',src:'manual'},
+  {id:243,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-23',ps:4693,pn:4160,note:'',src:'manual'},
+  {id:244,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-24',ps:4694,pn:4196,note:'',src:'manual'},
+  {id:245,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-25',ps:4698,pn:4200,note:'',src:'manual'},
+  {id:246,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-26',ps:4765,pn:4139,note:'',src:'manual'},
+  {id:247,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-27',ps:4781,pn:4200,note:'',src:'manual'},
+  {id:248,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-28',ps:4800,pn:4194,note:'',src:'manual'},
+  {id:249,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-29',ps:4800,pn:4199,note:'',src:'manual'},
+  {id:250,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-30',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:251,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2025-12-31',ps:4800,pn:4150,note:'',src:'manual'},
+  {id:252,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-01',ps:4800,pn:4112,note:'',src:'manual'},
+  {id:253,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-02',ps:4800,pn:4075,note:'',src:'manual'},
+  {id:254,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-03',ps:4800,pn:4089,note:'',src:'manual'},
+  {id:255,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-04',ps:4800,pn:4065,note:'',src:'manual'},
+  {id:256,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-05',ps:4800,pn:4063,note:'',src:'manual'},
+  {id:257,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-06',ps:4728,pn:4046,note:'',src:'manual'},
+  {id:258,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-07',ps:4677,pn:4003,note:'',src:'manual'},
+  {id:259,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-08',ps:4603,pn:3984,note:'',src:'manual'},
+  {id:260,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-09',ps:4657,pn:4011,note:'',src:'manual'},
+  {id:261,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-10',ps:4669,pn:4001,note:'',src:'manual'},
+  {id:262,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-11',ps:4715,pn:3993,note:'',src:'manual'},
+  {id:263,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-12',ps:4651,pn:3989,note:'',src:'manual'},
+  {id:264,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-13',ps:4605,pn:4024,note:'',src:'manual'},
+  {id:265,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-14',ps:4639,pn:4014,note:'',src:'manual'},
+  {id:266,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-15',ps:4698,pn:4007,note:'',src:'manual'},
+  {id:267,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-16',ps:4729,pn:3998,note:'',src:'manual'},
+  {id:268,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-17',ps:4738,pn:3998,note:'',src:'manual'},
+  {id:269,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-18',ps:4761,pn:4071,note:'',src:'manual'},
+  {id:270,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-19',ps:4713,pn:4119,note:'',src:'manual'},
+  {id:271,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-20',ps:4746,pn:4063,note:'',src:'manual'},
+  {id:272,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-21',ps:4793,pn:4048,note:'',src:'manual'},
+  {id:273,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-22',ps:4800,pn:4051,note:'',src:'manual'},
+  {id:274,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-23',ps:4794,pn:4071,note:'',src:'manual'},
+  {id:275,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-24',ps:4784,pn:4120,note:'',src:'manual'},
+  {id:276,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-25',ps:4767,pn:4130,note:'',src:'manual'},
+  {id:277,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-26',ps:4733,pn:4171,note:'',src:'manual'},
+  {id:278,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-27',ps:4702,pn:4137,note:'',src:'manual'},
+  {id:279,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-28',ps:4761,pn:4166,note:'',src:'manual'},
+  {id:280,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-29',ps:4705,pn:4174,note:'',src:'manual'},
+  {id:281,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-30',ps:4635,pn:4200,note:'',src:'manual'},
+  {id:282,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-01-31',ps:4714,pn:4188,note:'',src:'manual'},
+  {id:283,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-01',ps:4800,pn:4179,note:'',src:'manual'},
+  {id:284,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-02',ps:4800,pn:4166,note:'',src:'manual'},
+  {id:285,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-03',ps:4739,pn:4147,note:'',src:'manual'},
+  {id:286,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-04',ps:4696,pn:4177,note:'',src:'manual'},
+  {id:287,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-05',ps:4743,pn:4185,note:'',src:'manual'},
+  {id:288,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-06',ps:4695,pn:4127,note:'',src:'manual'},
+  {id:289,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-07',ps:4723,pn:4146,note:'',src:'manual'},
+  {id:290,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-08',ps:4704,pn:4145,note:'',src:'manual'},
+  {id:291,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-09',ps:4717,pn:4116,note:'',src:'manual'},
+  {id:292,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-10',ps:4692,pn:4118,note:'',src:'manual'},
+  {id:293,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-11',ps:4634,pn:4127,note:'',src:'manual'},
+  {id:294,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-12',ps:4697,pn:4156,note:'',src:'manual'},
+  {id:295,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-13',ps:4633,pn:4148,note:'',src:'manual'},
+  {id:296,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-14',ps:4632,pn:4160,note:'',src:'manual'},
+  {id:297,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-15',ps:4685,pn:4171,note:'',src:'manual'},
+  {id:298,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-16',ps:4717,pn:4122,note:'',src:'manual'},
+  {id:299,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-17',ps:4706,pn:4151,note:'',src:'manual'},
+  {id:300,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-18',ps:4659,pn:4113,note:'',src:'manual'},
+  {id:301,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-19',ps:4602,pn:4121,note:'',src:'manual'},
+  {id:302,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-20',ps:4637,pn:4094,note:'',src:'manual'},
+  {id:303,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-21',ps:4720,pn:4159,note:'',src:'manual'},
+  {id:304,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-22',ps:4704,pn:4200,note:'',src:'manual'},
+  {id:305,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-23',ps:4706,pn:4200,note:'',src:'manual'},
+  {id:306,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-24',ps:4751,pn:4200,note:'',src:'manual'},
+  {id:307,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-25',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:308,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-26',ps:4734,pn:4172,note:'',src:'manual'},
+  {id:309,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-27',ps:4693,pn:4188,note:'',src:'manual'},
+  {id:310,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-02-28',ps:4755,pn:4200,note:'',src:'manual'},
+  {id:311,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-01',ps:4784,pn:4200,note:'',src:'manual'},
+  {id:312,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-02',ps:4792,pn:4146,note:'',src:'manual'},
+  {id:313,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-03',ps:4751,pn:4120,note:'',src:'manual'},
+  {id:314,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-04',ps:4723,pn:4173,note:'',src:'manual'},
+  {id:315,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-05',ps:4732,pn:4160,note:'',src:'manual'},
+  {id:316,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-06',ps:4730,pn:4124,note:'',src:'manual'},
+  {id:317,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-07',ps:4800,pn:4176,note:'',src:'manual'},
+  {id:318,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-08',ps:4749,pn:4194,note:'',src:'manual'},
+  {id:319,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-09',ps:4681,pn:4178,note:'',src:'manual'},
+  {id:320,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-10',ps:4640,pn:4128,note:'',src:'manual'},
+  {id:321,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-11',ps:4672,pn:4115,note:'',src:'manual'},
+  {id:322,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-12',ps:4631,pn:4098,note:'',src:'manual'},
+  {id:323,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-13',ps:4700,pn:4143,note:'',src:'manual'},
+  {id:324,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-14',ps:4668,pn:4200,note:'',src:'manual'},
+  {id:325,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-15',ps:4697,pn:4200,note:'',src:'manual'},
+  {id:326,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-16',ps:4739,pn:4198,note:'',src:'manual'},
+  {id:327,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-17',ps:4687,pn:4165,note:'',src:'manual'},
+  {id:328,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-18',ps:4670,pn:4167,note:'',src:'manual'},
+  {id:329,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-19',ps:4622,pn:4200,note:'',src:'manual'},
+  {id:330,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-20',ps:4599,pn:4200,note:'',src:'manual'},
+  {id:331,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-21',ps:4596,pn:4200,note:'',src:'manual'},
+  {id:332,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-22',ps:4553,pn:4200,note:'',src:'manual'},
+  {id:333,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-23',ps:4519,pn:4164,note:'',src:'manual'},
+  {id:334,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-24',ps:4543,pn:4119,note:'',src:'manual'},
+  {id:335,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-25',ps:4601,pn:4120,note:'',src:'manual'},
+  {id:336,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-26',ps:4534,pn:4117,note:'',src:'manual'},
+  {id:337,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-27',ps:4609,pn:4108,note:'',src:'manual'},
+  {id:338,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-28',ps:4621,pn:4168,note:'',src:'manual'},
+  {id:339,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-29',ps:4700,pn:4144,note:'',src:'manual'},
+  {id:340,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-30',ps:4634,pn:4091,note:'',src:'manual'},
+  {id:341,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-03-31',ps:4592,pn:4066,note:'',src:'manual'},
+  {id:342,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-01',ps:4556,pn:4061,note:'',src:'manual'},
+  {id:343,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-02',ps:4581,pn:4043,note:'',src:'manual'},
+  {id:344,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-03',ps:4628,pn:3996,note:'',src:'manual'},
+  {id:345,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-04',ps:4645,pn:3972,note:'',src:'manual'},
+  {id:346,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-05',ps:4635,pn:4058,note:'',src:'manual'},
+  {id:347,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-06',ps:4695,pn:4112,note:'',src:'manual'},
+  {id:348,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-07',ps:4682,pn:4131,note:'',src:'manual'},
+  {id:349,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-08',ps:4677,pn:4159,note:'',src:'manual'},
+  {id:350,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-09',ps:4742,pn:4159,note:'',src:'manual'},
+  {id:351,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-10',ps:4790,pn:4187,note:'',src:'manual'},
+  {id:352,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-11',ps:4800,pn:4200,note:'',src:'manual'},
+  {id:353,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-12',ps:4800,pn:4193,note:'',src:'manual'},
+  {id:354,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-13',ps:4772,pn:4200,note:'',src:'manual'},
+  {id:355,box:'スペシャルBOX ポケモンセンターヒロシマ',date:'2026-04-14',ps:4740,pn:4152,note:'',src:'manual'},
 ];
 
 // ── アカウント ──
+// historicalTw: 過去ツイートのデモデータ（遡り取得に使用）
 let accounts=[
   {id:1,name:'カードマーケット渋谷',url:'https://x.com/cardmkt_shibuya',handle:'@cardmkt_shibuya',pref:'東京都',type:'both',ship:true,walk:true,hours:'11:00〜21:00',holiday:'年中無休',note:'',active:true,
     tw:[
       {id:'t1',d:todayStr,text:'【本日の買取】夜のタンブラー 1BOX シュリンク有り¥9,200 シュリンク無し¥8,600 発送・持込対応！',img:false,imgDesc:null},
       {id:'t2',d:todayStr,text:'本日の買取リスト👇',img:true,imgDesc:'買取表。「超電ブレイカー 1BOX シュリンク有り 12,800円 5月末まで」と記載。'},
+    ],
+    historicalTw:[
+      {id:'h1',d:'2025-03-10',text:'夜のタンブラー シュリンク有り¥9,500 シュリンク無し¥8,900 買取強化中！',img:false,imgDesc:null},
+      {id:'h2',d:'2025-03-01',text:'超電ブレイカー シュリンク有り¥13,200円で買取！シュリンク無し¥12,000円',img:false,imgDesc:null},
+      {id:'h3',d:'2025-02-01',text:'超電ブレイカーBOX シュリンク有¥12,800 シュリンク無¥11,600 高価買取中',img:false,imgDesc:null},
+      {id:'h4',d:'2025-01-15',text:'ステラミラクル 1BOX シュリンク有り¥7,800 シュリンク無し¥7,200 買取します',img:false,imgDesc:null},
+      {id:'h5',d:'2024-12-01',text:'超電ブレイカー強化買取！シュリンク有¥12,500 シュリンク無¥11,300',img:false,imgDesc:null},
+      {id:'h6',d:'2024-11-01',text:'超電ブレイカー シュリンク有り12,000円 シュリンク無し11,000円',img:false,imgDesc:null},
     ]},
   {id:2,name:'トレカ王国大阪',url:'https://x.com/trecaking_osaka',handle:'@trecaking_osaka',pref:'大阪府',type:'shop',ship:true,walk:false,hours:'12:00〜20:00',holiday:'毎週水曜',note:'',active:true,
-    tw:[{id:'t3',d:yestStr,text:'',img:true,imgDesc:'手書きリスト。「夜のタンプラー BOX シュリンク有 9,000円　超電ブレーカー BOX シュリンク無 11,200円」（誤字あり）'}]},
+    tw:[{id:'t3',d:yestStr,text:'',img:true,imgDesc:'手書きリスト。「夜のタンプラー BOX シュリンク有 9,000円　超電ブレーカー BOX シュリンク無 11,200円」（誤字あり）'}],
+    historicalTw:[
+      {id:'h7',d:'2025-03-08',text:'夜のタンブラー発売！シュリンク有り9,200円 シュリンク無し8,500円で買取',img:false,imgDesc:null},
+      {id:'h8',d:'2025-02-15',text:'超電ブレイカー BOX シュリンク有り¥12,600 無し¥11,400',img:false,imgDesc:null},
+      {id:'h9',d:'2024-10-01',text:'超電ブレイカー シュリンク有12,300円 シュリンク無11,200円',img:false,imgDesc:null},
+      {id:'h10',d:'2024-07-20',text:'ステラミラクル 発売記念買取！シュリンク有¥8,200 無¥7,600',img:false,imgDesc:null},
+      {id:'h11',d:'2023-09-25',text:'レイジングサーフ 新発売！シュリンク有り8,300円で買取中',img:false,imgDesc:null},
+    ]},
   {id:3,name:'ポケカ専門ひかり堂',url:'https://x.com/hikari_pokeca',handle:'@hikari_pokeca',pref:'福岡県',type:'online',ship:true,walk:false,hours:'',holiday:'',note:'',active:true,
     tw:[
       {id:'t4',d:todayStr,text:'レイジングサーフ 1BOX シュリンク有り 7,800円で買取中📦',img:false,imgDesc:null},
       {id:'t5',d:'2025-01-01',text:'あけましておめでとう🎍',img:false,imgDesc:null},
+    ],
+    historicalTw:[
+      {id:'h12',d:'2025-03-09',text:'夜のタンブラー シュリンク有り9,100円 無し8,400円',img:false,imgDesc:null},
+      {id:'h13',d:'2025-01-10',text:'超電ブレイカー シュリンク有12,200円 無11,000円 発送のみ',img:false,imgDesc:null},
+      {id:'h14',d:'2024-08-01',text:'ステラミラクル BOX シュリンク有7,900円 シュリンク無7,300円',img:false,imgDesc:null},
+      {id:'h15',d:'2024-01-15',text:'レイジングサーフ シュリンク有7,600円 無7,000円',img:false,imgDesc:null},
+      {id:'h16',d:'2023-10-01',text:'レイジングサーフ シュリンク有り8,200円で買取！',img:false,imgDesc:null},
     ]},
 ];
 
-// ── デモ用初期データ ──
+// ── デモ用初期データ（20店舗 × 全5BOX）──
 let stores=[
-  {id:101,shrink:true, name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',   box:'夜のタンブラー',  price:9200,  pref:'東京都', ship:true,  walk:true,  expire:null,    url:'https://x.com/cardmkt_shibuya',    ai:true, d:todayStr},
-  {id:102,shrink:false,name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',   box:'夜のタンブラー',  price:8600,  pref:'東京都', ship:true,  walk:true,  expire:null,    url:'https://x.com/cardmkt_shibuya',    ai:true, d:todayStr},
-  {id:103,shrink:true, name:'トレカ王国大阪',       handle:'@trecaking_osaka',   box:'夜のタンブラー',  price:9000,  pref:'大阪府', ship:true,  walk:false, expire:null,    url:'https://x.com/trecaking_osaka',    ai:true, d:yestStr},
-  {id:104,shrink:false,name:'トレカ王国大阪',       handle:'@trecaking_osaka',   box:'夜のタンブラー',  price:8400,  pref:'大阪府', ship:true,  walk:false, expire:null,    url:'https://x.com/trecaking_osaka',    ai:true, d:yestStr},
-  {id:105,shrink:true, name:'カードジャングル埼玉', handle:'@cardjungle_saitama',box:'夜のタンブラー',  price:8900,  pref:'埼玉県', ship:true,  walk:true,  expire:null,    url:'https://x.com/cardjungle_saitama', ai:false,d:todayStr},
-  {id:106,shrink:false,name:'カードジャングル埼玉', handle:'@cardjungle_saitama',box:'夜のタンブラー',  price:8200,  pref:'埼玉県', ship:true,  walk:true,  expire:null,    url:'https://x.com/cardjungle_saitama', ai:false,d:todayStr},
-  {id:107,shrink:true, name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',   box:'超電ブレイカー', price:12800, pref:'東京都', ship:true,  walk:true,  expire:'2025-05-31',url:'https://x.com/cardmkt_shibuya', ai:true, d:todayStr},
-  {id:108,shrink:false,name:'トレカ王国大阪',       handle:'@trecaking_osaka',   box:'超電ブレイカー', price:11200, pref:'大阪府', ship:true,  walk:false, expire:null,    url:'https://x.com/trecaking_osaka',    ai:true, d:yestStr},
-  {id:109,shrink:true, name:'トレカパレス京都',     handle:'@treca_palace_kyoto',box:'超電ブレイカー', price:12500, pref:'京都府', ship:false, walk:true,  expire:null,    url:'https://x.com/treca_palace_kyoto', ai:false,d:todayStr},
-  {id:110,shrink:false,name:'トレカパレス京都',     handle:'@treca_palace_kyoto',box:'超電ブレイカー', price:11000, pref:'京都府', ship:false, walk:true,  expire:null,    url:'https://x.com/treca_palace_kyoto', ai:false,d:todayStr},
-  {id:111,shrink:true, name:'ポケカ専門ひかり堂',   handle:'@hikari_pokeca',     box:'レイジングサーフ',price:7800, pref:'福岡県', ship:true,  walk:false, expire:null,    url:'https://x.com/hikari_pokeca',      ai:true, d:todayStr},
-  {id:112,shrink:false,name:'ポケカ専門ひかり堂',   handle:'@hikari_pokeca',     box:'レイジングサーフ',price:7200, pref:'福岡県', ship:true,  walk:false, expire:null,    url:'https://x.com/hikari_pokeca',      ai:true, d:todayStr},
+  // ── 夜のタンブラー (定価5,500円) ──
+  {id:101,shrink:true, name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',    box:'夜のタンブラー', price:9500, pref:'東京都',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardmkt_shibuya',    ai:true, d:todayStr},
+  {id:102,shrink:false,name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',    box:'夜のタンブラー', price:8900, pref:'東京都',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardmkt_shibuya',    ai:true, d:todayStr},
+  {id:103,shrink:true, name:'トレカ王国大阪',        handle:'@trecaking_osaka',    box:'夜のタンブラー', price:9200, pref:'大阪府',  ship:true, walk:false, expire:null,        url:'https://x.com/trecaking_osaka',    ai:true, d:todayStr},
+  {id:104,shrink:false,name:'トレカ王国大阪',        handle:'@trecaking_osaka',    box:'夜のタンブラー', price:8600, pref:'大阪府',  ship:true, walk:false, expire:null,        url:'https://x.com/trecaking_osaka',    ai:true, d:todayStr},
+  {id:105,shrink:true, name:'カードジャングル埼玉',  handle:'@cardjungle_saitama', box:'夜のタンブラー', price:9100, pref:'埼玉県',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardjungle_saitama', ai:true, d:todayStr},
+  {id:106,shrink:false,name:'カードジャングル埼玉',  handle:'@cardjungle_saitama', box:'夜のタンブラー', price:8500, pref:'埼玉県',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardjungle_saitama', ai:true, d:todayStr},
+  {id:107,shrink:true, name:'ポケカ専門ひかり堂',    handle:'@hikari_pokeca',      box:'夜のタンブラー', price:9000, pref:'福岡県',  ship:true, walk:false, expire:null,        url:'https://x.com/hikari_pokeca',      ai:true, d:todayStr},
+  {id:108,shrink:false,name:'ポケカ専門ひかり堂',    handle:'@hikari_pokeca',      box:'夜のタンブラー', price:8400, pref:'福岡県',  ship:true, walk:false, expire:null,        url:'https://x.com/hikari_pokeca',      ai:true, d:todayStr},
+  {id:109,shrink:true, name:'トレカパレス京都',      handle:'@treca_palace_kyoto', box:'夜のタンブラー', price:8800, pref:'京都府',  ship:false,walk:true,  expire:null,        url:'https://x.com/treca_palace_kyoto', ai:true, d:todayStr},
+  {id:110,shrink:false,name:'トレカパレス京都',      handle:'@treca_palace_kyoto', box:'夜のタンブラー', price:8200, pref:'京都府',  ship:false,walk:true,  expire:null,        url:'https://x.com/treca_palace_kyoto', ai:true, d:todayStr},
+  {id:111,shrink:true, name:'カード買取本舗名古屋',  handle:'@kaitori_nagoya',     box:'夜のタンブラー', price:8700, pref:'愛知県',  ship:true, walk:true,  expire:null,        url:'https://x.com/kaitori_nagoya',     ai:true, d:todayStr},
+  {id:112,shrink:false,name:'カード買取本舗名古屋',  handle:'@kaitori_nagoya',     box:'夜のタンブラー', price:8100, pref:'愛知県',  ship:true, walk:true,  expire:null,        url:'https://x.com/kaitori_nagoya',     ai:true, d:todayStr},
+  {id:113,shrink:true, name:'札幌トレカセンター',    handle:'@sapporo_treca',      box:'夜のタンブラー', price:8600, pref:'北海道',  ship:true, walk:false, expire:null,        url:'https://x.com/sapporo_treca',      ai:true, d:todayStr},
+  {id:114,shrink:false,name:'札幌トレカセンター',    handle:'@sapporo_treca',      box:'夜のタンブラー', price:8000, pref:'北海道',  ship:true, walk:false, expire:null,        url:'https://x.com/sapporo_treca',      ai:true, d:todayStr},
+  {id:115,shrink:true, name:'横浜カードオアシス',    handle:'@card_oasis_yoko',    box:'夜のタンブラー', price:9050, pref:'神奈川県',ship:true, walk:true,  expire:null,        url:'https://x.com/card_oasis_yoko',    ai:true, d:todayStr},
+  {id:116,shrink:false,name:'横浜カードオアシス',    handle:'@card_oasis_yoko',    box:'夜のタンブラー', price:8450, pref:'神奈川県',ship:true, walk:true,  expire:null,        url:'https://x.com/card_oasis_yoko',    ai:true, d:todayStr},
+  {id:117,shrink:true, name:'仙台トレカ倶楽部',      handle:'@sendai_treca',       box:'夜のタンブラー', price:8500, pref:'宮城県',  ship:true, walk:false, expire:null,        url:'https://x.com/sendai_treca',       ai:true, d:yestStr},
+  {id:118,shrink:false,name:'仙台トレカ倶楽部',      handle:'@sendai_treca',       box:'夜のタンブラー', price:7900, pref:'宮城県',  ship:true, walk:false, expire:null,        url:'https://x.com/sendai_treca',       ai:true, d:yestStr},
+  {id:119,shrink:true, name:'広島カードマスター',    handle:'@hiroshima_card',     box:'夜のタンブラー', price:8400, pref:'広島県',  ship:true, walk:true,  expire:null,        url:'https://x.com/hiroshima_card',     ai:true, d:yestStr},
+  {id:120,shrink:false,name:'広島カードマスター',    handle:'@hiroshima_card',     box:'夜のタンブラー', price:7800, pref:'広島県',  ship:true, walk:true,  expire:null,        url:'https://x.com/hiroshima_card',     ai:true, d:yestStr},
+  // ── 超電ブレイカー (定価5,500円) ──
+  {id:201,shrink:true, name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',    box:'超電ブレイカー', price:13200,pref:'東京都',  ship:true, walk:true,  expire:'2025-06-30',url:'https://x.com/cardmkt_shibuya',    ai:true, d:todayStr},
+  {id:202,shrink:false,name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',    box:'超電ブレイカー', price:11800,pref:'東京都',  ship:true, walk:true,  expire:'2025-06-30',url:'https://x.com/cardmkt_shibuya',    ai:true, d:todayStr},
+  {id:203,shrink:true, name:'トレカ王国大阪',        handle:'@trecaking_osaka',    box:'超電ブレイカー', price:12900,pref:'大阪府',  ship:true, walk:false, expire:null,        url:'https://x.com/trecaking_osaka',    ai:true, d:todayStr},
+  {id:204,shrink:false,name:'トレカ王国大阪',        handle:'@trecaking_osaka',    box:'超電ブレイカー', price:11500,pref:'大阪府',  ship:true, walk:false, expire:null,        url:'https://x.com/trecaking_osaka',    ai:true, d:todayStr},
+  {id:205,shrink:true, name:'トレカパレス京都',      handle:'@treca_palace_kyoto', box:'超電ブレイカー', price:12700,pref:'京都府',  ship:false,walk:true,  expire:null,        url:'https://x.com/treca_palace_kyoto', ai:true, d:todayStr},
+  {id:206,shrink:false,name:'トレカパレス京都',      handle:'@treca_palace_kyoto', box:'超電ブレイカー', price:11300,pref:'京都府',  ship:false,walk:true,  expire:null,        url:'https://x.com/treca_palace_kyoto', ai:true, d:todayStr},
+  {id:207,shrink:true, name:'カードジャングル埼玉',  handle:'@cardjungle_saitama', box:'超電ブレイカー', price:12500,pref:'埼玉県',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardjungle_saitama', ai:true, d:todayStr},
+  {id:208,shrink:false,name:'カードジャングル埼玉',  handle:'@cardjungle_saitama', box:'超電ブレイカー', price:11100,pref:'埼玉県',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardjungle_saitama', ai:true, d:todayStr},
+  {id:209,shrink:true, name:'福岡トレカプレミアム',  handle:'@fukuoka_treca_p',    box:'超電ブレイカー', price:12300,pref:'福岡県',  ship:true, walk:true,  expire:null,        url:'https://x.com/fukuoka_treca_p',    ai:true, d:todayStr},
+  {id:210,shrink:false,name:'福岡トレカプレミアム',  handle:'@fukuoka_treca_p',    box:'超電ブレイカー', price:10900,pref:'福岡県',  ship:true, walk:true,  expire:null,        url:'https://x.com/fukuoka_treca_p',    ai:true, d:todayStr},
+  {id:211,shrink:true, name:'カード買取本舗名古屋',  handle:'@kaitori_nagoya',     box:'超電ブレイカー', price:12100,pref:'愛知県',  ship:true, walk:true,  expire:null,        url:'https://x.com/kaitori_nagoya',     ai:true, d:yestStr},
+  {id:212,shrink:false,name:'カード買取本舗名古屋',  handle:'@kaitori_nagoya',     box:'超電ブレイカー', price:10700,pref:'愛知県',  ship:true, walk:true,  expire:null,        url:'https://x.com/kaitori_nagoya',     ai:true, d:yestStr},
+  {id:213,shrink:true, name:'横浜カードオアシス',    handle:'@card_oasis_yoko',    box:'超電ブレイカー', price:12600,pref:'神奈川県',ship:true, walk:true,  expire:null,        url:'https://x.com/card_oasis_yoko',    ai:true, d:todayStr},
+  {id:214,shrink:false,name:'横浜カードオアシス',    handle:'@card_oasis_yoko',    box:'超電ブレイカー', price:11200,pref:'神奈川県',ship:true, walk:true,  expire:null,        url:'https://x.com/card_oasis_yoko',    ai:true, d:todayStr},
+  // ── レイジングサーフ (定価5,500円) ──
+  {id:301,shrink:true, name:'ポケカ専門ひかり堂',    handle:'@hikari_pokeca',      box:'レイジングサーフ',price:7900,pref:'福岡県',  ship:true, walk:false, expire:null,        url:'https://x.com/hikari_pokeca',      ai:true, d:todayStr},
+  {id:302,shrink:false,name:'ポケカ専門ひかり堂',    handle:'@hikari_pokeca',      box:'レイジングサーフ',price:7300,pref:'福岡県',  ship:true, walk:false, expire:null,        url:'https://x.com/hikari_pokeca',      ai:true, d:todayStr},
+  {id:303,shrink:true, name:'トレカ王国大阪',        handle:'@trecaking_osaka',    box:'レイジングサーフ',price:7700,pref:'大阪府',  ship:true, walk:false, expire:null,        url:'https://x.com/trecaking_osaka',    ai:true, d:todayStr},
+  {id:304,shrink:false,name:'トレカ王国大阪',        handle:'@trecaking_osaka',    box:'レイジングサーフ',price:7100,pref:'大阪府',  ship:true, walk:false, expire:null,        url:'https://x.com/trecaking_osaka',    ai:true, d:todayStr},
+  {id:305,shrink:true, name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',    box:'レイジングサーフ',price:7800,pref:'東京都',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardmkt_shibuya',    ai:true, d:todayStr},
+  {id:306,shrink:false,name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',    box:'レイジングサーフ',price:7200,pref:'東京都',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardmkt_shibuya',    ai:true, d:todayStr},
+  {id:307,shrink:true, name:'仙台トレカ倶楽部',      handle:'@sendai_treca',       box:'レイジングサーフ',price:7500,pref:'宮城県',  ship:true, walk:false, expire:null,        url:'https://x.com/sendai_treca',       ai:true, d:yestStr},
+  {id:308,shrink:false,name:'仙台トレカ倶楽部',      handle:'@sendai_treca',       box:'レイジングサーフ',price:6900,pref:'宮城県',  ship:true, walk:false, expire:null,        url:'https://x.com/sendai_treca',       ai:true, d:yestStr},
+  {id:309,shrink:true, name:'札幌トレカセンター',    handle:'@sapporo_treca',      box:'レイジングサーフ',price:7400,pref:'北海道',  ship:true, walk:false, expire:null,        url:'https://x.com/sapporo_treca',      ai:true, d:yestStr},
+  {id:310,shrink:false,name:'札幌トレカセンター',    handle:'@sapporo_treca',      box:'レイジングサーフ',price:6800,pref:'北海道',  ship:true, walk:false, expire:null,        url:'https://x.com/sapporo_treca',      ai:true, d:yestStr},
+  // ── ステラミラクル (定価5,500円) ──
+  {id:401,shrink:true, name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',    box:'ステラミラクル', price:7800, pref:'東京都',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardmkt_shibuya',    ai:true, d:todayStr},
+  {id:402,shrink:false,name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',    box:'ステラミラクル', price:7200, pref:'東京都',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardmkt_shibuya',    ai:true, d:todayStr},
+  {id:403,shrink:true, name:'トレカパレス京都',      handle:'@treca_palace_kyoto', box:'ステラミラクル', price:7600, pref:'京都府',  ship:false,walk:true,  expire:null,        url:'https://x.com/treca_palace_kyoto', ai:true, d:todayStr},
+  {id:404,shrink:false,name:'トレカパレス京都',      handle:'@treca_palace_kyoto', box:'ステラミラクル', price:7000, pref:'京都府',  ship:false,walk:true,  expire:null,        url:'https://x.com/treca_palace_kyoto', ai:true, d:todayStr},
+  {id:405,shrink:true, name:'横浜カードオアシス',    handle:'@card_oasis_yoko',    box:'ステラミラクル', price:7500, pref:'神奈川県',ship:true, walk:true,  expire:null,        url:'https://x.com/card_oasis_yoko',    ai:true, d:todayStr},
+  {id:406,shrink:false,name:'横浜カードオアシス',    handle:'@card_oasis_yoko',    box:'ステラミラクル', price:6900, pref:'神奈川県',ship:true, walk:true,  expire:null,        url:'https://x.com/card_oasis_yoko',    ai:true, d:todayStr},
+  {id:407,shrink:true, name:'福岡トレカプレミアム',  handle:'@fukuoka_treca_p',    box:'ステラミラクル', price:7400, pref:'福岡県',  ship:true, walk:true,  expire:null,        url:'https://x.com/fukuoka_treca_p',    ai:true, d:todayStr},
+  {id:408,shrink:false,name:'福岡トレカプレミアム',  handle:'@fukuoka_treca_p',    box:'ステラミラクル', price:6800, pref:'福岡県',  ship:true, walk:true,  expire:null,        url:'https://x.com/fukuoka_treca_p',    ai:true, d:todayStr},
+  {id:409,shrink:true, name:'カード買取本舗名古屋',  handle:'@kaitori_nagoya',     box:'ステラミラクル', price:7300, pref:'愛知県',  ship:true, walk:true,  expire:null,        url:'https://x.com/kaitori_nagoya',     ai:true, d:yestStr},
+  {id:410,shrink:false,name:'カード買取本舗名古屋',  handle:'@kaitori_nagoya',     box:'ステラミラクル', price:6700, pref:'愛知県',  ship:true, walk:true,  expire:null,        url:'https://x.com/kaitori_nagoya',     ai:true, d:yestStr},
+  {id:411,shrink:true, name:'広島カードマスター',    handle:'@hiroshima_card',     box:'ステラミラクル', price:7200, pref:'広島県',  ship:true, walk:true,  expire:null,        url:'https://x.com/hiroshima_card',     ai:true, d:yestStr},
+  {id:412,shrink:false,name:'広島カードマスター',    handle:'@hiroshima_card',     box:'ステラミラクル', price:6600, pref:'広島県',  ship:true, walk:true,  expire:null,        url:'https://x.com/hiroshima_card',     ai:true, d:yestStr},
+  // ── マスカーニャex (定価5,500円) ──
+  {id:501,shrink:true, name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',    box:'マスカーニャex', price:6800, pref:'東京都',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardmkt_shibuya',    ai:true, d:todayStr},
+  {id:502,shrink:false,name:'カードマーケット渋谷', handle:'@cardmkt_shibuya',    box:'マスカーニャex', price:6200, pref:'東京都',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardmkt_shibuya',    ai:true, d:todayStr},
+  {id:503,shrink:true, name:'トレカ王国大阪',        handle:'@trecaking_osaka',    box:'マスカーニャex', price:6600, pref:'大阪府',  ship:true, walk:false, expire:null,        url:'https://x.com/trecaking_osaka',    ai:true, d:todayStr},
+  {id:504,shrink:false,name:'トレカ王国大阪',        handle:'@trecaking_osaka',    box:'マスカーニャex', price:6000, pref:'大阪府',  ship:true, walk:false, expire:null,        url:'https://x.com/trecaking_osaka',    ai:true, d:todayStr},
+  {id:505,shrink:true, name:'ポケカ専門ひかり堂',    handle:'@hikari_pokeca',      box:'マスカーニャex', price:6500, pref:'福岡県',  ship:true, walk:false, expire:null,        url:'https://x.com/hikari_pokeca',      ai:true, d:todayStr},
+  {id:506,shrink:false,name:'ポケカ専門ひかり堂',    handle:'@hikari_pokeca',      box:'マスカーニャex', price:5900, pref:'福岡県',  ship:true, walk:false, expire:null,        url:'https://x.com/hikari_pokeca',      ai:true, d:todayStr},
+  {id:507,shrink:true, name:'カードジャングル埼玉',  handle:'@cardjungle_saitama', box:'マスカーニャex', price:6400, pref:'埼玉県',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardjungle_saitama', ai:true, d:todayStr},
+  {id:508,shrink:false,name:'カードジャングル埼玉',  handle:'@cardjungle_saitama', box:'マスカーニャex', price:5800, pref:'埼玉県',  ship:true, walk:true,  expire:null,        url:'https://x.com/cardjungle_saitama', ai:true, d:todayStr},
+  {id:509,shrink:true, name:'横浜カードオアシス',    handle:'@card_oasis_yoko',    box:'マスカーニャex', price:6700, pref:'神奈川県',ship:true, walk:true,  expire:null,        url:'https://x.com/card_oasis_yoko',    ai:true, d:yestStr},
+  {id:510,shrink:false,name:'横浜カードオアシス',    handle:'@card_oasis_yoko',    box:'マスカーニャex', price:6100, pref:'神奈川県',ship:true, walk:true,  expire:null,        url:'https://x.com/card_oasis_yoko',    ai:true, d:yestStr},
+  {id:511,shrink:true, name:'カード買取本舗名古屋',  handle:'@kaitori_nagoya',     box:'マスカーニャex', price:6300, pref:'愛知県',  ship:true, walk:true,  expire:null,        url:'https://x.com/kaitori_nagoya',     ai:true, d:yestStr},
+  {id:512,shrink:false,name:'カード買取本舗名古屋',  handle:'@kaitori_nagoya',     box:'マスカーニャex', price:5700, pref:'愛知県',  ship:true, walk:true,  expire:null,        url:'https://x.com/kaitori_nagoya',     ai:true, d:yestStr},
+  // ── スペシャルBOX ポケモンセンターヒロシマ (定価2,090円) ──
+  {id:601,shrink:true, name:'カードマーケット渋谷', handle:'@cardmkt_shibuya', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3500, pref:'東京都', ship:true, walk:true, expire:null, url:'https://x.com/cardmkt_shibuya', ai:true, d:todayStr},
+  {id:602,shrink:false,name:'カードマーケット渋谷', handle:'@cardmkt_shibuya', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3100, pref:'東京都', ship:true, walk:true, expire:null, url:'https://x.com/cardmkt_shibuya', ai:true, d:todayStr},
+  {id:603,shrink:true, name:'トレカ王国大阪', handle:'@trecaking_osaka', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3400, pref:'大阪府', ship:true, walk:false, expire:null, url:'https://x.com/trecaking_osaka', ai:true, d:todayStr},
+  {id:604,shrink:false,name:'トレカ王国大阪', handle:'@trecaking_osaka', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3000, pref:'大阪府', ship:true, walk:false, expire:null, url:'https://x.com/trecaking_osaka', ai:true, d:todayStr},
+  {id:605,shrink:true, name:'カードジャングル埼玉', handle:'@cardjungle_saitama', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3350, pref:'埼玉県', ship:true, walk:true, expire:null, url:'https://x.com/cardjungle_saitama', ai:true, d:yestStr},
+  {id:606,shrink:false,name:'カードジャングル埼玉', handle:'@cardjungle_saitama', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2950, pref:'埼玉県', ship:true, walk:true, expire:null, url:'https://x.com/cardjungle_saitama', ai:true, d:yestStr},
+  {id:607,shrink:true, name:'ポケカ専門ひかり堂', handle:'@hikari_pokeca', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3300, pref:'福岡県', ship:true, walk:false, expire:null, url:'https://x.com/hikari_pokeca', ai:true, d:todayStr},
+  {id:608,shrink:false,name:'ポケカ専門ひかり堂', handle:'@hikari_pokeca', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2900, pref:'福岡県', ship:true, walk:false, expire:null, url:'https://x.com/hikari_pokeca', ai:true, d:todayStr},
+  {id:609,shrink:true, name:'トレカパレス京都', handle:'@treca_palace_kyoto', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3450, pref:'京都府', ship:false, walk:true, expire:null, url:'https://x.com/treca_palace_kyoto', ai:true, d:todayStr},
+  {id:610,shrink:false,name:'トレカパレス京都', handle:'@treca_palace_kyoto', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3050, pref:'京都府', ship:false, walk:true, expire:null, url:'https://x.com/treca_palace_kyoto', ai:true, d:todayStr},
+  {id:611,shrink:true, name:'カード買取本舗名古屋', handle:'@kaitori_nagoya', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3280, pref:'愛知県', ship:true, walk:true, expire:null, url:'https://x.com/kaitori_nagoya', ai:true, d:yestStr},
+  {id:612,shrink:false,name:'カード買取本舗名古屋', handle:'@kaitori_nagoya', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2880, pref:'愛知県', ship:true, walk:true, expire:null, url:'https://x.com/kaitori_nagoya', ai:true, d:yestStr},
+  {id:613,shrink:true, name:'札幌トレカセンター', handle:'@sapporo_treca', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3200, pref:'北海道', ship:true, walk:false, expire:null, url:'https://x.com/sapporo_treca', ai:true, d:todayStr},
+  {id:614,shrink:false,name:'札幌トレカセンター', handle:'@sapporo_treca', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2800, pref:'北海道', ship:true, walk:false, expire:null, url:'https://x.com/sapporo_treca', ai:true, d:todayStr},
+  {id:615,shrink:true, name:'横浜カードオアシス', handle:'@card_oasis_yoko', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3380, pref:'神奈川県', ship:true, walk:true, expire:null, url:'https://x.com/card_oasis_yoko', ai:true, d:todayStr},
+  {id:616,shrink:false,name:'横浜カードオアシス', handle:'@card_oasis_yoko', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2980, pref:'神奈川県', ship:true, walk:true, expire:null, url:'https://x.com/card_oasis_yoko', ai:true, d:todayStr},
+  {id:617,shrink:true, name:'仙台トレカ倶楽部', handle:'@sendai_treca', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3150, pref:'宮城県', ship:true, walk:false, expire:null, url:'https://x.com/sendai_treca', ai:true, d:yestStr},
+  {id:618,shrink:false,name:'仙台トレカ倶楽部', handle:'@sendai_treca', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2750, pref:'宮城県', ship:true, walk:false, expire:null, url:'https://x.com/sendai_treca', ai:true, d:yestStr},
+  {id:619,shrink:true, name:'広島カードマスター', handle:'@hiroshima_card', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3420, pref:'広島県', ship:true, walk:true, expire:null, url:'https://x.com/hiroshima_card', ai:true, d:todayStr},
+  {id:620,shrink:false,name:'広島カードマスター', handle:'@hiroshima_card', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3020, pref:'広島県', ship:true, walk:true, expire:null, url:'https://x.com/hiroshima_card', ai:true, d:todayStr},
+  {id:621,shrink:true, name:'福岡トレカプレミアム', handle:'@fukuoka_treca_p', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3250, pref:'福岡県', ship:true, walk:true, expire:null, url:'https://x.com/fukuoka_treca_p', ai:true, d:todayStr},
+  {id:622,shrink:false,name:'福岡トレカプレミアム', handle:'@fukuoka_treca_p', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2850, pref:'福岡県', ship:true, walk:true, expire:null, url:'https://x.com/fukuoka_treca_p', ai:true, d:todayStr},
+  {id:623,shrink:true, name:'カードショップ仙台', handle:'@cardshop_sendai2', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3100, pref:'宮城県', ship:true, walk:false, expire:null, url:'https://x.com/cardshop_sendai2', ai:true, d:yestStr},
+  {id:624,shrink:false,name:'カードショップ仙台', handle:'@cardshop_sendai2', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2700, pref:'宮城県', ship:true, walk:false, expire:null, url:'https://x.com/cardshop_sendai2', ai:true, d:yestStr},
+  {id:625,shrink:true, name:'トレカ市場千葉', handle:'@treca_ichiba_chiba', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3320, pref:'千葉県', ship:true, walk:true, expire:null, url:'https://x.com/treca_ichiba_chiba', ai:true, d:todayStr},
+  {id:626,shrink:false,name:'トレカ市場千葉', handle:'@treca_ichiba_chiba', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2920, pref:'千葉県', ship:true, walk:true, expire:null, url:'https://x.com/treca_ichiba_chiba', ai:true, d:todayStr},
+  {id:627,shrink:true, name:'ポケカ買取京橋', handle:'@pokeka_kyobashi', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3370, pref:'大阪府', ship:true, walk:false, expire:null, url:'https://x.com/pokeka_kyobashi', ai:true, d:todayStr},
+  {id:628,shrink:false,name:'ポケカ買取京橋', handle:'@pokeka_kyobashi', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2970, pref:'大阪府', ship:true, walk:false, expire:null, url:'https://x.com/pokeka_kyobashi', ai:true, d:todayStr},
+  {id:629,shrink:true, name:'カードガーデン神戸', handle:'@card_garden_kobe', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3290, pref:'兵庫県', ship:true, walk:true, expire:null, url:'https://x.com/card_garden_kobe', ai:true, d:yestStr},
+  {id:630,shrink:false,name:'カードガーデン神戸', handle:'@card_garden_kobe', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2890, pref:'兵庫県', ship:true, walk:true, expire:null, url:'https://x.com/card_garden_kobe', ai:true, d:yestStr},
+  {id:631,shrink:true, name:'トレカハウス新潟', handle:'@treca_house_niigata', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3180, pref:'新潟県', ship:true, walk:false, expire:null, url:'https://x.com/treca_house_niigata', ai:true, d:todayStr},
+  {id:632,shrink:false,name:'トレカハウス新潟', handle:'@treca_house_niigata', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2780, pref:'新潟県', ship:true, walk:false, expire:null, url:'https://x.com/treca_house_niigata', ai:true, d:todayStr},
+  {id:633,shrink:true, name:'カード王国熊本', handle:'@card_kingdom_kuma', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3230, pref:'熊本県', ship:true, walk:true, expire:null, url:'https://x.com/card_kingdom_kuma', ai:true, d:todayStr},
+  {id:634,shrink:false,name:'カード王国熊本', handle:'@card_kingdom_kuma', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2830, pref:'熊本県', ship:true, walk:true, expire:null, url:'https://x.com/card_kingdom_kuma', ai:true, d:todayStr},
+  {id:635,shrink:true, name:'トレカワールド静岡', handle:'@treca_world_shizuoka', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3270, pref:'静岡県', ship:true, walk:false, expire:null, url:'https://x.com/treca_world_shizuoka', ai:true, d:yestStr},
+  {id:636,shrink:false,name:'トレカワールド静岡', handle:'@treca_world_shizuoka', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2870, pref:'静岡県', ship:true, walk:false, expire:null, url:'https://x.com/treca_world_shizuoka', ai:true, d:yestStr},
+  {id:637,shrink:true, name:'ポケカネット買取', handle:'@pokeka_net_kaitori', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3480, pref:'東京都', ship:true, walk:false, expire:null, url:'https://x.com/pokeka_net_kaitori', ai:true, d:todayStr},
+  {id:638,shrink:false,name:'ポケカネット買取', handle:'@pokeka_net_kaitori', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3080, pref:'東京都', ship:true, walk:false, expire:null, url:'https://x.com/pokeka_net_kaitori', ai:true, d:todayStr},
+  {id:639,shrink:true, name:'カードオフ岡山', handle:'@card_off_okayama', box:'スペシャルBOX ポケモンセンターヒロシマ', price:3160, pref:'岡山県', ship:true, walk:true, expire:null, url:'https://x.com/card_off_okayama', ai:true, d:todayStr},
+  {id:640,shrink:false,name:'カードオフ岡山', handle:'@card_off_okayama', box:'スペシャルBOX ポケモンセンターヒロシマ', price:2760, pref:'岡山県', ship:true, walk:true, expire:null, url:'https://x.com/card_off_okayama', ai:true, d:todayStr},
 ];
 
 // ── 類似度 ──
@@ -975,11 +1695,25 @@ async function runFetch(){
         for(const e of list){
           const nb=normBox(e.box);
           if(nb!==e.box)addLog(`  ↳ 名称統一: 「${e.box}」→「${nb}」`,'warn');
-          // 期限切れチェック
           if(e.expire&&e.expire<todayStr){addLog(`  ↳ 期限切れ除外: ${nb}`,'warn');continue;}
-          const ex=stores.find(s=>s.handle===ac.handle&&s.box===nb&&s.shrink===e.shrink&&s.d===tw.d);
-          if(ex){if(ex.price!==e.price){ex.price=e.price;if(e.expire)ex.expire=e.expire;addLog(`  ✓ 更新: ${nb} ¥${e.price.toLocaleString()}`,'ok');renderRank();}}
-          else{stores.unshift({id:Date.now()+Math.random(),shrink:e.shrink,name:ac.name,handle:ac.handle,box:nb,price:e.price,pref:ac.pref,ship:ac.ship,walk:ac.walk,expire:e.expire||null,url:ac.url,ai:true,d:tw.d});addLog(`  ✓ 追加: ${nb} ${e.shrink?'有':'無'} ¥${e.price.toLocaleString()}`,'ok');renderRank();}
+
+          // 同一アカウント×同一BOX×shrinkの既存エントリを全て検索
+          const sameEntries=stores.filter(s=>s.handle===ac.handle&&s.box===nb&&s.shrink===e.shrink);
+          if(sameEntries.length>0){
+            // 最新ツイート日付のエントリを残してあとは削除、価格を更新
+            const latest=sameEntries.reduce((a,b)=>a.d>b.d?a:b);
+            // 他の同一エントリを削除
+            stores=stores.filter(s=>!(s.handle===ac.handle&&s.box===nb&&s.shrink===e.shrink&&s.id!==latest.id));
+            if(latest.price!==e.price||latest.d!==tw.d){
+              latest.price=e.price;latest.d=tw.d;if(e.expire)latest.expire=e.expire;
+              addLog(`  ✓ 価格更新: ${nb} ${e.shrink?'有':'無'} ¥${e.price.toLocaleString()}`,'ok');
+              renderRank();
+            }
+          } else {
+            stores.unshift({id:Date.now()+Math.random(),shrink:e.shrink,name:ac.name,handle:ac.handle,box:nb,price:e.price,pref:ac.pref,ship:ac.ship,walk:ac.walk,expire:e.expire||null,url:ac.url,ai:true,d:tw.d});
+            addLog(`  ✓ 追加: ${nb} ${e.shrink?'有':'無'} ¥${e.price.toLocaleString()}`,'ok');
+            renderRank();
+          }
           const ep=ph.find(p=>p.box===nb&&p.date===tw.d&&p.src==='ai');
           if(!ep){ph.push({id:Date.now()+Math.random(),box:nb,date:tw.d,ps:e.shrink?e.price:null,pn:e.shrink?null:e.price,note:'X自動取得',src:'ai'});}
           else{if(e.shrink)ep.ps=e.price;else ep.pn=e.price;}
@@ -1379,21 +2113,93 @@ function drawChart(period){
   const now=new Date();
   let cut=null;
   if(period==='1m'){cut=new Date(now);cut.setMonth(cut.getMonth()-1);}
+  else if(period==='3m'){cut=new Date(now);cut.setMonth(cut.getMonth()-3);}
   else if(period==='6m'){cut=new Date(now);cut.setMonth(cut.getMonth()-6);}
   else if(period==='1y'){cut=new Date(now);cut.setFullYear(cut.getFullYear()-1);}
   if(cut)data=data.filter(p=>new Date(p.date)>=cut);
+
+  // チャートノート更新
+  const noteEl=document.querySelector('.mkt-chart-note');
+  if(noteEl)noteEl.textContent=`全${data.length}件表示 ／ グラフ上でカーソルを合わせると価格を確認できます`;
+
   if(chartInst){chartInst.destroy();chartInst=null;}
   const ctx=document.getElementById('price-chart').getContext('2d');
-  chartInst=new Chart(ctx,{type:'line',data:{labels:data.map(p=>p.date),datasets:[
-    {label:'シュリンク有り',data:data.map(p=>p.ps||null),borderColor:'#3dd9c4',backgroundColor:'rgba(61,217,196,0.06)',borderWidth:2,pointRadius:3,pointBackgroundColor:'#3dd9c4',tension:0.35,spanGaps:true},
-    {label:'シュリンク無し',data:data.map(p=>p.pn||null),borderColor:'#f97316',backgroundColor:'rgba(249,115,22,0.06)',borderWidth:2,pointRadius:3,pointBackgroundColor:'#f97316',tension:0.35,spanGaps:true},
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{
-    legend:{labels:{color:'rgba(240,242,250,0.5)',font:{size:11},boxWidth:12}},
-    tooltip:{backgroundColor:'#191c27',titleColor:'#f0f2fa',bodyColor:'rgba(240,242,250,0.65)',borderColor:'rgba(255,255,255,0.08)',borderWidth:1,callbacks:{label:c=>`${c.dataset.label}: ¥${c.parsed.y?.toLocaleString()}`}}
-  },scales:{
-    x:{ticks:{color:'rgba(240,242,250,0.28)',maxTicksLimit:8,font:{size:10}},grid:{color:'rgba(255,255,255,0.03)'}},
-    y:{ticks:{color:'rgba(240,242,250,0.28)',font:{size:10},callback:v=>'¥'+v.toLocaleString()},grid:{color:'rgba(255,255,255,0.03)'}}
-  }}});
+
+  chartInst=new Chart(ctx,{
+    type:'line',
+    data:{
+      labels:data.map(p=>p.date),
+      datasets:[
+        {
+          label:'シュリンク有り',
+          data:data.map(p=>p.ps||null),
+          borderColor:'#3dd9c4',
+          backgroundColor:'rgba(61,217,196,0.07)',
+          borderWidth:2,
+          pointRadius:0,
+          pointHoverRadius:6,
+          pointHoverBackgroundColor:'#3dd9c4',
+          pointHoverBorderColor:'#fff',
+          pointHoverBorderWidth:2,
+          tension:0,
+          spanGaps:true,
+          fill:true,
+        },
+        {
+          label:'シュリンク無し',
+          data:data.map(p=>p.pn||null),
+          borderColor:'#f97316',
+          backgroundColor:'rgba(249,115,22,0.07)',
+          borderWidth:2,
+          pointRadius:0,
+          pointHoverRadius:6,
+          pointHoverBackgroundColor:'#f97316',
+          pointHoverBorderColor:'#fff',
+          pointHoverBorderWidth:2,
+          tension:0,
+          spanGaps:true,
+          fill:true,
+        },
+      ]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{labels:{color:'rgba(240,242,250,0.5)',font:{size:11},boxWidth:12}},
+        tooltip:{
+          backgroundColor:'#191c27',
+          titleColor:'#f0f2fa',
+          titleFont:{size:11},
+          bodyColor:'rgba(240,242,250,0.8)',
+          bodyFont:{size:12},
+          borderColor:'rgba(255,255,255,0.1)',
+          borderWidth:1,
+          padding:10,
+          callbacks:{
+            label:c=>` ${c.dataset.label}: ¥${c.parsed.y!=null?c.parsed.y.toLocaleString():'—'}`
+          }
+        }
+      },
+      scales:{
+        x:{
+          ticks:{
+            color:'rgba(240,242,250,0.28)',
+            maxTicksLimit:12,
+            font:{size:10},
+            maxRotation:45,
+            minRotation:0,
+          },
+          grid:{color:'rgba(255,255,255,0.03)'}
+        },
+        y:{
+          ticks:{color:'rgba(240,242,250,0.28)',font:{size:10},callback:v=>'¥'+v.toLocaleString()},
+          grid:{color:'rgba(255,255,255,0.04)'}
+        }
+      }
+    }
+  });
 }
 function setRTab(t){rTab=t;document.getElementById('rtab-s').classList.toggle('on',t==='s');document.getElementById('rtab-n').classList.toggle('on',t==='n');renderRecentRows();}
 function renderRecentRows(){
@@ -1412,9 +2218,10 @@ function showPage(p){
   document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active-nav'));
-  if(p==='public')document.querySelectorAll('.nav-btn')[0].classList.add('active-nav');
+  if(p==='public'){document.querySelectorAll('.nav-btn')[0].classList.add('active-nav');renderSelector();if(selBox)renderRank();renderRisingRanking();}
   if(p==='market'){document.querySelectorAll('.nav-btn')[1].classList.add('active-nav');renderMarket();}
   if(p==='admin'){document.querySelectorAll('.nav-btn')[2].classList.add('active-nav');renderBMList();renderPHTable();renderACList();renderENTList();updateSels();}
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 function goAdmin(){loggedIn?showPage('admin'):showPage('login');}
 
@@ -1435,7 +2242,170 @@ function switchATab(t,el){
   document.querySelectorAll('.atb').forEach(x=>x.classList.remove('on'));
   document.querySelectorAll('.atb-content').forEach(x=>x.classList.remove('on'));
   el.classList.add('on');document.getElementById('aTab-'+t).classList.add('on');
-  if(t==='history')renderPHTable();
+  if(t==='history'){
+    renderPHTable();
+    // アカウント選択リストを更新
+    const targetEl=document.getElementById('crawl-target');
+    if(targetEl){
+      const acts=accounts.filter(a=>a.active&&a.historicalTw?.length);
+      targetEl.innerHTML='<option value="all">全アカウント</option>'+acts.map(a=>`<option value="${a.id}">${a.name}（${(a.historicalTw||[]).length}件）</option>`).join('');
+    }
+    const cc=document.getElementById('crawl-ac-count');
+    if(cc)cc.textContent=accounts.filter(a=>a.active&&a.historicalTw?.length).length;
+    updateCostEstimate();
+  }
+}
+
+// ── 画像アップロード ──
+let bmImgData='';
+function onBmImgChange(e){
+  const file=e.target.files[0];if(!file)return;
+  if(file.size>2*1024*1024){toast('画像サイズが大きすぎます（2MB以下推奨）','err');return;}
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    bmImgData=ev.target.result;
+    const area=document.getElementById('bm-img-area');
+    const wrap=document.getElementById('bm-img-preview-wrap');
+    if(area)area.classList.add('has-img');
+    if(wrap)wrap.innerHTML=`<img src="${bmImgData}" class="img-preview" alt="プレビュー"><div class="img-upload-text" style="font-size:10px;color:var(--green)">${file.name}</div>`;
+    const clrBtn=document.getElementById('bm-img-clear');if(clrBtn)clrBtn.style.display='block';
+  };
+  reader.readAsDataURL(file);
+}
+function clearBmImg(){
+  bmImgData='';
+  const fileEl=document.getElementById('bm-img-file');if(fileEl)fileEl.value='';
+  const area=document.getElementById('bm-img-area');if(area)area.classList.remove('has-img');
+  const wrap=document.getElementById('bm-img-preview-wrap');
+  if(wrap)wrap.innerHTML=`<div class="img-upload-text">📁 クリックまたはドラッグで画像を選択</div><div class="img-upload-sub">推奨サイズ: 200×200px / JPG・PNG・2MB以下</div>`;
+  const clrBtn=document.getElementById('bm-img-clear');if(clrBtn)clrBtn.style.display='none';
+}
+
+// ── 過去ツイート遡り取得 ──
+let crawlRunning=false;
+let crawlShouldStop=false;
+
+function stopCrawl(){
+  crawlShouldStop=true;
+  const btn=document.getElementById('crawl-stop-btn');
+  if(btn)btn.textContent='中止中...';
+}
+
+function updateCostEstimate(){
+  const limitEl=document.getElementById('crawl-limit');
+  const targetEl=document.getElementById('crawl-target');
+  const detailEl=document.getElementById('cost-detail');
+  if(!limitEl||!detailEl)return;
+
+  const limit=parseInt(limitEl.value)||0;
+  const targetVal=targetEl?.value||'all';
+  const acCount=targetVal==='all'
+    ?accounts.filter(a=>a.active&&a.historicalTw?.length).length
+    :1;
+
+  const tweetsPerAc=limit===0?200:limit; // 無制限は最大200と仮定
+  const totalTweets=tweetsPerAc*acCount;
+  // X API Basic: 月$100で月500,000ツイート取得可 → 1ツイート約$0.0002
+  const xCost=(totalTweets*0.0002).toFixed(2);
+  // Claude API: 入力1Mトークン$3、1ツイート約200トークン → 1ツイート$0.0006
+  const claudeCost=(totalTweets*0.0006).toFixed(2);
+  const totalCost=(parseFloat(xCost)+parseFloat(claudeCost)).toFixed(2);
+  const totalJpy=Math.round(parseFloat(totalCost)*150);
+
+  detailEl.innerHTML=`
+    <div>対象: <strong style="color:var(--text)">${acCount}アカウント × 最大${limit===0?'無制限(〜200)':limit}件 = 最大 ${totalTweets}件</strong></div>
+    <div>X APIツイート取得: 約 <strong style="color:var(--accent)">$${xCost}</strong>（月$100プランの消費分）</div>
+    <div>Claude AI解析: 約 <strong style="color:var(--accent)">$${claudeCost}</strong>（従量課金）</div>
+    <div style="margin-top:3px;border-top:1px solid rgba(255,203,5,0.15);padding-top:4px;">合計目安: <strong style="color:var(--accent);font-size:13px;">$${totalCost}（約${totalJpy.toLocaleString()}円）</strong></div>`;
+}
+
+async function crawlHistoricalTweets(){
+  if(crawlRunning)return;
+  const limitEl=document.getElementById('crawl-limit');
+  const targetEl=document.getElementById('crawl-target');
+  const limit=parseInt(limitEl?.value)||25;
+  const targetVal=targetEl?.value||'all';
+
+  let acts=accounts.filter(a=>a.active&&a.historicalTw&&a.historicalTw.length);
+  if(targetVal!=='all'){
+    const tid=parseInt(targetVal);
+    acts=acts.filter(a=>a.id===tid);
+  }
+  if(!acts.length){toast('対象のアカウントがありません','err');return;}
+
+  crawlRunning=true;crawlShouldStop=false;
+  const btn=document.getElementById('crawl-btn');
+  const stopBtn=document.getElementById('crawl-stop-btn');
+  const status=document.getElementById('crawl-status');
+  const progress=document.getElementById('crawl-progress');
+  const progressBar=document.getElementById('crawl-progress-bar');
+  const progressLabel=document.getElementById('crawl-progress-label');
+  const progressNum=document.getElementById('crawl-progress-num');
+
+  if(btn){btn.textContent='取得中...';btn.disabled=true;}
+  if(stopBtn)stopBtn.style.display='';
+  if(status){status.style.display='block';status.style.background='rgba(61,217,196,0.07)';status.style.borderColor='rgba(61,217,196,0.2)';status.style.color='var(--teal)';}
+  if(progress)progress.style.display='block';
+
+  const sl=ms=>new Promise(r=>setTimeout(r,ms));
+  let addedCount=0;
+  const bl=bms.map(b=>b.name).join('、');
+
+  // 全ツイート数をカウント（進捗用）
+  let totalTw=0;
+  for(const ac of acts){
+    const twList=limit===0?ac.historicalTw:ac.historicalTw.slice(0,limit);
+    totalTw+=twList.length;
+  }
+  let processedTw=0;
+
+  for(const ac of acts){
+    if(crawlShouldStop)break;
+    const twList=limit===0?ac.historicalTw:[...ac.historicalTw].slice(0,limit);
+    if(status)status.textContent=`📡 ${ac.name} の過去ツイートを解析中... (${twList.length}件)`;
+    addLog(`📡 過去遡り: ${ac.name} (${twList.length}件)`,'ai');
+
+    for(const tw of twList){
+      if(crawlShouldStop){addLog('  ⏹ 中止されました','warn');break;}
+      processedTw++;
+      const pct=Math.round((processedTw/totalTw)*100);
+      if(progressBar)progressBar.style.width=pct+'%';
+      if(progressNum)progressNum.textContent=`${processedTw} / ${totalTw}`;
+      if(progressLabel)progressLabel.textContent=`${ac.name} - ${tw.d}`;
+
+      const t=tw.text.toLowerCase();
+      const rel=tw.img||t.includes('買取')||t.includes('シュリンク')||t.includes('円');
+      if(!rel){processedTw++;continue;}
+      addLog(`  ↳ ${tw.d} 解析中`,'ai');
+      await sl(150);
+      try{
+        const p=`日本トレカ買取店のツイートです。\nツイート:「${tw.text}」\n登録BOX:【${bl}】\nBOX買取情報をJSON配列のみ返してください。形式:[{"box":"名前","price":数値,"shrink":true/false,"expire":null}]\n情報なければ[]`;
+        const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,messages:[{role:'user',content:p}]})});
+        const d=await r.json();
+        const txt=d.content?.map(c=>c.text||'').join('')||'';
+        const list=JSON.parse(txt.replace(/```json|```/g,'').trim());
+        if(list?.length){
+          for(const e of list){
+            const nb=normBox(e.box);
+            const exPH=ph.find(p=>p.box===nb&&p.date===tw.d&&p.src==='crawl');
+            if(exPH){if(e.shrink&&e.price)exPH.ps=e.price;if(!e.shrink&&e.price)exPH.pn=e.price;}
+            else{ph.push({id:Date.now()+Math.random(),box:nb,date:tw.d,ps:e.shrink?e.price:null,pn:e.shrink?null:e.price,note:`${ac.name} 過去取得`,src:'crawl'});addedCount++;addLog(`  ✓ 追加: ${nb} ${tw.d} ¥${e.price.toLocaleString()}`,'ok');}
+          }
+        }
+      }catch(err){addLog(`  ⚠ エラー: ${err.message}`,'warn');}
+      await sl(80);
+    }
+  }
+
+  ph.sort((a,b)=>a.date.localeCompare(b.date));
+  renderPHTable();
+  const msg=crawlShouldStop?`⏹ 中止しました（${addedCount}件追加済み）`:`✅ 完了！ ${addedCount}件の過去相場データを追加しました`;
+  if(status){status.textContent=msg;status.style.background='rgba(61,220,132,0.07)';status.style.borderColor='rgba(61,220,132,0.25)';status.style.color='var(--green)';}
+  if(progressBar)progressBar.style.width='100%';
+  if(btn){btn.textContent='📡 過去ツイートを遡り取得・解析';btn.disabled=false;}
+  if(stopBtn)stopBtn.style.display='none';
+  crawlRunning=false;crawlShouldStop=false;
+  toast(`${addedCount}件の過去データを追加しました`,'ok');
 }
 
 // ── BOXマスター ──
@@ -1445,10 +2415,14 @@ function addBM(){
   if(bms.find(b=>b.name===name))return toast('同名のBOXが存在します','err');
   const al=document.getElementById('bm-aliases').value.trim();
   const msrp=parseInt(document.getElementById('bm-msrp').value)||null;
-  bms.push({id:Date.now(),name,aliases:al?al.split(',').map(s=>s.trim()).filter(Boolean):[],releaseDate:document.getElementById('bm-date').value,imgUrl:document.getElementById('bm-img').value.trim(),note:document.getElementById('bm-note').value.trim(),msrp});
+  bms.push({id:Date.now(),name,aliases:al?al.split(',').map(s=>s.trim()).filter(Boolean):[],releaseDate:document.getElementById('bm-date').value,imgUrl:bmImgData||'',note:document.getElementById('bm-note').value.trim(),msrp});
   clearBMForm();renderBMList();updateSels();toast('BOXを登録しました','ok');
 }
-function clearBMForm(){['bm-name','bm-aliases','bm-img','bm-note','bm-msrp'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});document.getElementById('bm-date').value='';}
+function clearBMForm(){
+  ['bm-name','bm-aliases','bm-note','bm-msrp'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('bm-date').value='';
+  clearBmImg();
+}
 function delBM(id){if(!confirm('削除しますか？'))return;bms=bms.filter(b=>b.id!==id);renderBMList();updateSels();toast('削除しました','ok');}
 function clearAllBM(){if(!confirm('全削除しますか？'))return;bms=[];renderBMList();updateSels();toast('削除しました','ok');}
 function renderBMList(){
