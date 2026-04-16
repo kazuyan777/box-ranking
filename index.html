@@ -819,7 +819,7 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
         <p>本日・前日のX買取ツイートからAIが自動取得した単品カード買取相場</p>
       </div>
       <div class="disclaimer" style="border-color:rgba(180,125,255,0.2);background:rgba(180,125,255,0.05);color:rgba(180,125,255,0.85);">
-        ⚠️ 状態（PSA・未鑑定等）によって買取価格は大きく異なります。必ず各店舗の最新情報をご確認ください。
+        ⚠️ 状態（PSA・素体等）によって買取価格は大きく異なります。必ず各店舗の最新情報をご確認ください。
       </div>
 
       <!-- カード検索 -->
@@ -957,11 +957,11 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
               <div class="mkt-chart-note" id="mkt-card-chart-note"></div>
             </div>
             <div style="display:flex;flex-direction:column;gap:6px;">
-              <div style="display:flex;gap:4px;" id="mkt-card-cond-tabs">
-                <div class="period-btn active" onclick="setCardChartCond('psa10',this)" style="background:rgba(255,203,5,0.15);border-color:var(--accent);color:var(--accent)">PSA10</div>
-                <div class="period-btn" onclick="setCardChartCond('psa9',this)">PSA9</div>
-                <div class="period-btn" onclick="setCardChartCond('nm',this)">未鑑定</div>
-                <div class="period-btn" onclick="setCardChartCond('played',this)">プレイ用</div>
+              <div style="display:flex;gap:4px;flex-wrap:wrap;" id="mkt-card-cond-tabs">
+                <div class="period-btn cond-tab-btn active" data-cond="nm" onclick="setCardChartCond('nm',this)" style="background:rgba(108,143,255,0.18);border-color:rgba(108,143,255,0.5);color:rgb(108,143,255);">素体</div>
+                <div class="period-btn cond-tab-btn" data-cond="played" onclick="setCardChartCond('played',this)">プレイ用</div>
+                <div class="period-btn cond-tab-btn" data-cond="psa9" onclick="setCardChartCond('psa9',this)">PSA9</div>
+                <div class="period-btn cond-tab-btn" data-cond="psa10" onclick="setCardChartCond('psa10',this)">PSA10</div>
               </div>
               <div class="period-row">
                 <div class="period-btn active" onclick="setCardChartP('all',this)">全期間</div>
@@ -982,10 +982,10 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
         <div class="mkt-recent-card">
           <div class="mkt-recent-hdr">最新の買取情報</div>
           <div style="display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap;" id="mkt-card-cond-filter">
-            <div class="recent-tab s on" onclick="setCardRTab('psa10',this)" style="background:rgba(255,203,5,0.15);border-color:var(--accent);color:var(--accent)">PSA10</div>
-            <div class="recent-tab" onclick="setCardRTab('psa9',this)">PSA9</div>
-            <div class="recent-tab" onclick="setCardRTab('nm',this)">未鑑定 NM</div>
-            <div class="recent-tab" onclick="setCardRTab('played',this)">プレイ用</div>
+            <div class="recent-tab rtab-cond on" data-cond="nm" onclick="setCardRTab('nm',this)" style="background:rgba(108,143,255,0.18);border-color:rgba(108,143,255,0.5);color:rgb(108,143,255);">素体 NM</div>
+            <div class="recent-tab rtab-cond" data-cond="played" onclick="setCardRTab('played',this)">プレイ用</div>
+            <div class="recent-tab rtab-cond" data-cond="psa9" onclick="setCardRTab('psa9',this)">PSA9</div>
+            <div class="recent-tab rtab-cond" data-cond="psa10" onclick="setCardRTab('psa10',this)">PSA10</div>
           </div>
           <div class="mkt-recent-rows" id="mkt-card-recent-rows"></div>
         </div>
@@ -5348,7 +5348,7 @@ let cardMasters=[
 const CONDITIONS=[
   {id:'psa10',label:'PSA 10',cls:'cond-psa10',color:'var(--accent)'},
   {id:'psa9', label:'PSA 9', cls:'cond-psa9', color:'var(--teal)'},
-  {id:'nm',   label:'未鑑定 NM',cls:'cond-nm',color:'var(--blue)'},
+  {id:'nm',   label:'素体 NM',cls:'cond-nm',color:'var(--blue)'},
   {id:'played',label:'プレイ用',cls:'cond-played',color:'var(--text3)'},
 ];
 
@@ -6590,9 +6590,9 @@ let currentMktMode='box';
 let selCard=null;
 let currentCardDropdownList=[];
 let cardChartInst=null;
-let cardChartCond='psa10';
+let cardChartCond='nm';
 let cardChartPeriod='all';
-let cardRTab='psa10';
+let cardRTab='nm';
 let detailCard=null;
 
 // ── ポケモンTCG API 画像自動取得 ──
@@ -6785,7 +6785,7 @@ function renderCardRank(){
         <span class="section-icon">✨</span>
         <div class="section-title-wrap">
           <div class="section-title" style="color:var(--purple);">全コンディション ランキング</div>
-          <div class="section-desc">未鑑定・プレイ用を含む全買取情報</div>
+          <div class="section-desc">素体・プレイ用を含む全買取情報</div>
         </div>
         <div class="section-count" style="color:var(--purple);">${fullList.length}件</div>
       </div>
@@ -6933,7 +6933,7 @@ function renderCardMarket(){
         ${cm.howToGet?`<div style="font-size:10px;color:var(--blue);margin-bottom:5px;line-height:1.5;">${cm.howToGet}</div>`:''}
         <div class="mbr-avgs">
           <div class="mbr-avg-item"><div class="mbr-avg-lbl">PSA10平均</div><div class="mbr-avg-val" style="color:var(--accent)">${psa10avg?psa10avg.toLocaleString()+'円':'—'}</div></div>
-          <div class="mbr-avg-item"><div class="mbr-avg-lbl">未鑑定NM平均</div><div class="mbr-avg-val" style="color:var(--blue)">${nmavg?nmavg.toLocaleString()+'円':'—'}</div></div>
+          <div class="mbr-avg-item"><div class="mbr-avg-lbl">素体NM平均</div><div class="mbr-avg-val" style="color:var(--blue)">${nmavg?nmavg.toLocaleString()+'円':'—'}</div></div>
         </div>
       </div>
       <div class="mbr-arrow">›</div>
@@ -7006,13 +7006,16 @@ function renderCardWeeklyChange(name){
 
 function setCardChartCond(cond,el){
   cardChartCond=cond;
-  document.querySelectorAll('#mkt-card-cond-tabs .period-btn').forEach(b=>{
+  // 全ボタンのactiveを外してスタイルリセット
+  document.querySelectorAll('#mkt-card-cond-tabs .cond-tab-btn').forEach(b=>{
     b.classList.remove('active');
     b.style.cssText='';
   });
-  const condDef=CONDITIONS.find(c=>c.id===cond);
+  // 押されたボタンをactiveに（condに応じた色）
+  const condColors={psa10:'255,203,5',psa9:'61,217,196',nm:'108,143,255',played:'240,242,250'};
+  const rgb=condColors[cond]||'180,125,255';
   el.classList.add('active');
-  el.style.background=`rgba(255,255,255,0.06)`;
+  el.style.cssText=`background:rgba(${rgb},0.18);border-color:rgba(${rgb},0.5);color:rgb(${rgb});`;
   drawCardChart(cardChartPeriod);
 }
 
@@ -7065,8 +7068,14 @@ function drawCardChart(period){
 
 function setCardRTab(cond,el){
   cardRTab=cond;
-  document.querySelectorAll('#mkt-card-cond-filter .recent-tab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('#mkt-card-cond-filter .rtab-cond').forEach(b=>{
+    b.classList.remove('on');
+    b.style.cssText='';
+  });
+  const condColors={psa10:'255,203,5',psa9:'61,217,196',nm:'108,143,255',played:'240,242,250'};
+  const rgb=condColors[cond]||'180,125,255';
   el.classList.add('on');
+  el.style.cssText=`background:rgba(${rgb},0.18);border-color:rgba(${rgb},0.5);color:rgb(${rgb});`;
   renderCardRecentRows();
 }
 
@@ -7211,6 +7220,42 @@ async function loadSetsFromAPI() {
   }
   
   if(statusEl) statusEl.style.display = 'none';
+}
+
+// カード名の日本語→英語マッピング
+const CARD_NAME_EN = {
+  'ピカチュウex':'Pikachu ex','リザードンex':'Charizard ex',
+  'カビゴンex':'Snorlax ex','ミュウツーex':'Mewtwo ex',
+  'イーブイex':'Eevee ex','フシギバナex':'Bulbasaur ex',
+  'ゲンガーex':'Gengar ex','ルチャブルex':'Hawlucha ex',
+  'マスカーニャex':'Meowscarada ex','ムゲンダイナVMAX':'Eternatus VMAX',
+  'テツノカイナex':'Iron Hands ex','オーガポンex':'Ogerpon ex',
+};
+
+// 起動時に各カードの正確な画像URLをAPIから取得
+async function fetchCardImageByName(jpName){
+  const enName = CARD_NAME_EN[jpName] || jpName;
+  try{
+    const res = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:"${encodeURIComponent(enName)}"&pageSize=5&orderBy=-set.releaseDate`);
+    const data = await res.json();
+    if(data.data && data.data.length > 0){
+      // 最新セットのカードを優先
+      const card = data.data[0];
+      return card.images?.large || card.images?.small || '';
+    }
+  }catch(e){}
+  return '';
+}
+
+async function loadCardImagesFromAPI(){
+  for(const cm of cardMasters){
+    const url = await fetchCardImageByName(cm.name);
+    if(url) cm.imgUrl = url;
+    await new Promise(r=>setTimeout(r,80)); // レート制限対策
+  }
+  // UI更新
+  renderCardMarket && renderCardMarket();
+  if(selCard) renderCardRank && renderCardRank();
 }
 
 // カードをAPIから取得してcardMastersに追加
