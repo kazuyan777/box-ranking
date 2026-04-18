@@ -25,7 +25,7 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 .header-inner{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;gap:8px;}
 .logo{display:flex;align-items:center;gap:9px;flex-shrink:0;}
 .logo-icon{width:28px;height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.logo-text{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.1em;color:var(--text);line-height:1;white-space:nowrap;}
+.logo-text{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:0.08em;color:var(--text);line-height:1;white-space:nowrap;}
 .logo-text em{color:var(--accent);font-style:normal;}
 .logo-badge{font-size:9px;font-weight:700;background:var(--accent);color:#000;padding:2px 6px;border-radius:4px;letter-spacing:0.06em;}
 .header-nav{display:flex;gap:5px;align-items:center;}
@@ -482,7 +482,7 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 .cond-psa10{background:rgba(255,203,5,0.15);color:var(--accent);border:1px solid rgba(255,203,5,0.3);}
 .cond-psa9{background:rgba(61,217,196,0.12);color:var(--teal);border:1px solid rgba(61,217,196,0.25);}
 .cond-nm{background:rgba(108,143,255,0.12);color:var(--blue);border:1px solid rgba(108,143,255,0.25);}
-.cond-played{background:rgba(255,255,255,0.05);color:var(--text3);border:1px solid var(--border);}
+
 .tag-rarity{background:rgba(180,125,255,0.12);color:var(--purple);border:1px solid rgba(180,125,255,0.22);}
 .card-section-hdr{background:linear-gradient(135deg,rgba(180,125,255,0.1),rgba(180,125,255,0.04));border:1px solid rgba(180,125,255,0.18);}
 .card-section-hdr .section-title{color:var(--purple);}
@@ -621,7 +621,7 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
           <rect x="12" y="19.2" width="8" height="1.1" rx="0.5" fill="#3dd9c4" opacity="0.6"/>
         </svg>
       </div>
-      <div class="logo-text">Rankard<em>トレカ</em>買取</div>
+      <div class="logo-text"><span style="font-size:22px;letter-spacing:0.12em;color:var(--accent);">RANKARD</span><span style="font-size:11px;color:var(--text2);margin-left:5px;letter-spacing:0.04em;">トレカ買取</span></div>
       <div class="logo-badge">BETA</div>
     </div>
     <div class="header-nav">
@@ -641,10 +641,53 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
   <!-- モード切替タブ -->
   <div class="mode-tabs">
     <div class="mode-tab box-tab-btn active" id="mode-tab-box" onclick="setMode('box')">
-      <span class="mode-tab-icon">📦</span>BOX買取ランキング
+      <span class="mode-tab-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <!-- BOX本体 -->
+        <rect x="2" y="9" width="18" height="12" rx="2" fill="#ffcb05" stroke="#c8960a" stroke-width="1"/>
+        <!-- BOX上部フラップ -->
+        <path d="M2 10 L11 6 L20 10" stroke="#c8960a" stroke-width="1" fill="#ffe44d"/>
+        <!-- BOX帯（ポケボール風の赤い帯） -->
+        <rect x="2" y="13.5" width="18" height="3.5" fill="#e53935" opacity="0.85"/>
+        <!-- 帯の中央ライン -->
+        <line x1="2" y1="15.2" x2="20" y2="15.2" stroke="#b71c1c" stroke-width="0.5"/>
+        <!-- 中央のボタン（ポケボール） -->
+        <circle cx="11" cy="15.2" r="2.2" fill="#fff" stroke="#c8960a" stroke-width="0.7"/>
+        <circle cx="11" cy="15.2" r="1" fill="#e53935"/>
+        <!-- ポケボールの横線 -->
+        <line x1="8.8" y1="15.2" x2="9.8" y2="15.2" stroke="#333" stroke-width="0.5"/>
+        <line x1="12.2" y1="15.2" x2="13.2" y2="15.2" stroke="#333" stroke-width="0.5"/>
+      </svg></span>BOX買取ランキング
     </div>
     <div class="mode-tab card-tab-btn" id="mode-tab-card" onclick="setMode('card')">
-      <span class="mode-tab-icon">✨</span>単品カード買取ランキング
+      <span class="mode-tab-icon"><svg width="18" height="24" viewBox="0 0 18 24" fill="none">
+        <!-- カード外枠 -->
+        <rect x="1" y="1" width="16" height="22" rx="2" fill="#fffde7" stroke="#f9a825" stroke-width="1.2"/>
+        <!-- カード内枠 -->
+        <rect x="2.5" y="2.5" width="13" height="19" rx="1.5" fill="#fff9c4"/>
+        <!-- 上部イラストエリア（黄色） -->
+        <rect x="3" y="3" width="12" height="10" rx="1" fill="#ffeb3b"/>
+        <!-- ピカチュウの耳（三角） -->
+        <polygon points="5,3 7,6 4,6" fill="#1a1a1a"/>
+        <polygon points="11,3 14,3 12,6" fill="#1a1a1a"/>
+        <polygon points="5.5,3 7,5.5 4.5,5.5" fill="#ffeb3b"/>
+        <polygon points="11.5,3 13.5,3 12,5.5" fill="#ffeb3b"/>
+        <!-- 顔 -->
+        <ellipse cx="9" cy="9" rx="4" ry="3.5" fill="#ffcc02"/>
+        <!-- 目 -->
+        <circle cx="7.5" cy="8" r="0.7" fill="#1a1a1a"/>
+        <circle cx="10.5" cy="8" r="0.7" fill="#1a1a1a"/>
+        <!-- 頬の赤 -->
+        <ellipse cx="6.5" cy="9.5" rx="1.2" ry="0.8" fill="#e53935" opacity="0.7"/>
+        <ellipse cx="11.5" cy="9.5" rx="1.2" ry="0.8" fill="#e53935" opacity="0.7"/>
+        <!-- 口 -->
+        <path d="M8 10.2 Q9 11 10 10.2" stroke="#1a1a1a" stroke-width="0.5" fill="none"/>
+        <!-- テキストエリア -->
+        <rect x="3" y="14" width="12" height="1.2" rx="0.5" fill="#f9a825" opacity="0.5"/>
+        <rect x="3" y="16" width="10" height="1" rx="0.5" fill="#bdbdbd" opacity="0.5"/>
+        <rect x="3" y="17.5" width="8" height="1" rx="0.5" fill="#bdbdbd" opacity="0.4"/>
+        <!-- レアリティ（右下の星） -->
+        <text x="12.5" y="21.5" font-size="4" fill="#f9a825">★</text>
+      </svg></span>単品カード買取ランキング
     </div>
   </div>
   <div class="rank-wrap">
@@ -819,7 +862,7 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
         <p>本日・前日のX買取ツイートからAIが自動取得した単品カード買取相場</p>
       </div>
       <div class="disclaimer" style="border-color:rgba(180,125,255,0.2);background:rgba(180,125,255,0.05);color:rgba(180,125,255,0.85);">
-        ⚠️ 状態（PSA・素体等）によって買取価格は大きく異なります。必ず各店舗の最新情報をご確認ください。
+        ⚠️ 状態（素体・PSA10・PSA9）によって買取価格は大きく異なります。必ず各店舗の最新情報をご確認ください。
       </div>
 
       <!-- カード検索 -->
@@ -847,6 +890,39 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
           <div class="sbb-sub" id="card-sbb-sub"></div>
         </div>
         <button class="sbb-change" onclick="clearSelectedCard()">変更</button>
+      </div>
+
+      <!-- カードフィルターバー -->
+      <div class="filter-bar" id="card-filter-bar" style="display:none;border-color:rgba(180,125,255,0.2);">
+        <div class="filter-row">
+          <span class="filter-title">対応方法</span>
+          <div class="chip active" data-cf="all" onclick="setCardF('all',this)">すべて</div>
+          <div class="chip" data-cf="ship" onclick="setCardF('ship',this)">📦 発送対応</div>
+          <div class="chip" data-cf="walk" onclick="setCardF('walk',this)">🚶 持込対応</div>
+        </div>
+        <hr class="filter-divider">
+        <div class="filter-row">
+          <span class="filter-title">地域</span>
+          <div class="pref-dropdown" id="card-pref-dropdown">
+            <button class="pref-more-btn" id="card-pref-summary-btn" onclick="toggleCardPrefPanel()">📍 全国 ▾</button>
+            <div class="pref-dropdown-panel" id="card-pref-panel">
+              <div class="pref-dp-title">都道府県を選択（複数可）</div>
+              <div class="pref-dp-grid" id="card-pref-grid"></div>
+              <div class="pref-dp-actions">
+                <button class="pref-dp-clear" onclick="clearCardPrefs()">クリア</button>
+                <button class="pref-dp-close" onclick="closeCardPrefPanel()">決定</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="filter-divider">
+        <div class="sort-row">
+          <span class="sort-label">並び順:</span>
+          <select class="sort-select" id="card-sort-sel" onchange="renderCardRank()">
+            <option value="price">💰 買取価格が高い順</option>
+            <option value="name">🔤 店舗名順</option>
+          </select>
+        </div>
       </div>
 
       <!-- カードランキング本体 -->
@@ -959,9 +1035,8 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
             <div style="display:flex;flex-direction:column;gap:6px;">
               <div style="display:flex;gap:4px;flex-wrap:wrap;" id="mkt-card-cond-tabs">
                 <div class="period-btn cond-tab-btn active" data-cond="nm" onclick="setCardChartCond('nm',this)" style="background:rgba(108,143,255,0.18);border-color:rgba(108,143,255,0.5);color:rgb(108,143,255);">素体</div>
-                <div class="period-btn cond-tab-btn" data-cond="played" onclick="setCardChartCond('played',this)">プレイ用</div>
-                <div class="period-btn cond-tab-btn" data-cond="psa9" onclick="setCardChartCond('psa9',this)">PSA9</div>
                 <div class="period-btn cond-tab-btn" data-cond="psa10" onclick="setCardChartCond('psa10',this)">PSA10</div>
+                <div class="period-btn cond-tab-btn" data-cond="psa9" onclick="setCardChartCond('psa9',this)">PSA9</div>
               </div>
               <div class="period-row">
                 <div class="period-btn active" onclick="setCardChartP('all',this)">全期間</div>
@@ -983,9 +1058,8 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
           <div class="mkt-recent-hdr">最新の買取情報</div>
           <div style="display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap;" id="mkt-card-cond-filter">
             <div class="recent-tab rtab-cond on" data-cond="nm" onclick="setCardRTab('nm',this)" style="background:rgba(108,143,255,0.18);border-color:rgba(108,143,255,0.5);color:rgb(108,143,255);">素体 NM</div>
-            <div class="recent-tab rtab-cond" data-cond="played" onclick="setCardRTab('played',this)">プレイ用</div>
-            <div class="recent-tab rtab-cond" data-cond="psa9" onclick="setCardRTab('psa9',this)">PSA9</div>
             <div class="recent-tab rtab-cond" data-cond="psa10" onclick="setCardRTab('psa10',this)">PSA10</div>
+            <div class="recent-tab rtab-cond" data-cond="psa9" onclick="setCardRTab('psa9',this)">PSA9</div>
           </div>
           <div class="mkt-recent-rows" id="mkt-card-recent-rows"></div>
         </div>
@@ -5349,7 +5423,7 @@ const CONDITIONS=[
   {id:'psa10',label:'PSA 10',cls:'cond-psa10',color:'var(--accent)'},
   {id:'psa9', label:'PSA 9', cls:'cond-psa9', color:'var(--teal)'},
   {id:'nm',   label:'素体 NM',cls:'cond-nm',color:'var(--blue)'},
-  {id:'played',label:'プレイ用',cls:'cond-played',color:'var(--text3)'},
+
 ];
 
 // ── カード買取デモデータ ──
@@ -5357,323 +5431,243 @@ let cardStores=[
   {id:2001,cardName:'ピカチュウex',condition:'psa10',price:28900,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2002,cardName:'ピカチュウex',condition:'psa9',price:15900,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2003,cardName:'ピカチュウex',condition:'nm',price:13200,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
-  {id:2004,cardName:'ピカチュウex',condition:'played',price:7500,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2005,cardName:'ピカチュウex',condition:'psa10',price:29600,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2006,cardName:'ピカチュウex',condition:'psa9',price:18800,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2007,cardName:'ピカチュウex',condition:'nm',price:15300,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
-  {id:2008,cardName:'ピカチュウex',condition:'played',price:7200,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2009,cardName:'ピカチュウex',condition:'psa10',price:27500,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-14'},
   {id:2010,cardName:'ピカチュウex',condition:'psa9',price:16000,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-14'},
   {id:2011,cardName:'ピカチュウex',condition:'nm',price:13100,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-14'},
-  {id:2012,cardName:'ピカチュウex',condition:'played',price:8000,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-14'},
   {id:2013,cardName:'ピカチュウex',condition:'psa10',price:24800,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2014,cardName:'ピカチュウex',condition:'psa9',price:16700,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2015,cardName:'ピカチュウex',condition:'nm',price:14500,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
-  {id:2016,cardName:'ピカチュウex',condition:'played',price:8100,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2017,cardName:'ピカチュウex',condition:'psa10',price:26100,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2018,cardName:'ピカチュウex',condition:'psa9',price:18400,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2019,cardName:'ピカチュウex',condition:'nm',price:15000,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
-  {id:2020,cardName:'ピカチュウex',condition:'played',price:7100,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2021,cardName:'ピカチュウex',condition:'psa10',price:30100,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-14'},
   {id:2022,cardName:'ピカチュウex',condition:'psa9',price:18900,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-14'},
   {id:2023,cardName:'ピカチュウex',condition:'nm',price:13500,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-14'},
-  {id:2024,cardName:'ピカチュウex',condition:'played',price:7300,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-14'},
   {id:2025,cardName:'ピカチュウex',condition:'psa10',price:31100,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2026,cardName:'ピカチュウex',condition:'psa9',price:17300,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2027,cardName:'ピカチュウex',condition:'nm',price:12600,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
-  {id:2028,cardName:'ピカチュウex',condition:'played',price:7200,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2029,cardName:'ピカチュウex',condition:'psa10',price:30300,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2030,cardName:'ピカチュウex',condition:'psa9',price:18400,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2031,cardName:'ピカチュウex',condition:'nm',price:15000,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
-  {id:2032,cardName:'ピカチュウex',condition:'played',price:8400,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2033,cardName:'ピカチュウex',condition:'psa10',price:28200,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-14'},
   {id:2034,cardName:'ピカチュウex',condition:'psa9',price:20000,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-14'},
   {id:2035,cardName:'ピカチュウex',condition:'nm',price:13600,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-14'},
-  {id:2036,cardName:'ピカチュウex',condition:'played',price:8100,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-14'},
   {id:2037,cardName:'ピカチュウex',condition:'psa10',price:30200,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2038,cardName:'ピカチュウex',condition:'psa9',price:18500,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2039,cardName:'ピカチュウex',condition:'nm',price:15200,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
-  {id:2040,cardName:'ピカチュウex',condition:'played',price:8100,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2041,cardName:'リザードンex',condition:'psa10',price:47200,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2042,cardName:'リザードンex',condition:'psa9',price:26700,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2043,cardName:'リザードンex',condition:'nm',price:20600,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
-  {id:2044,cardName:'リザードンex',condition:'played',price:11400,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2045,cardName:'リザードンex',condition:'psa10',price:40500,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-14'},
   {id:2046,cardName:'リザードンex',condition:'psa9',price:28100,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-14'},
   {id:2047,cardName:'リザードンex',condition:'nm',price:19900,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-14'},
-  {id:2048,cardName:'リザードンex',condition:'played',price:11400,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-14'},
   {id:2049,cardName:'リザードンex',condition:'psa10',price:46500,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2050,cardName:'リザードンex',condition:'psa9',price:29000,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2051,cardName:'リザードンex',condition:'nm',price:21300,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
-  {id:2052,cardName:'リザードンex',condition:'played',price:11200,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2053,cardName:'リザードンex',condition:'psa10',price:42500,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2054,cardName:'リザードンex',condition:'psa9',price:33100,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2055,cardName:'リザードンex',condition:'nm',price:22800,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
-  {id:2056,cardName:'リザードンex',condition:'played',price:12300,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2057,cardName:'リザードンex',condition:'psa10',price:41400,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-14'},
   {id:2058,cardName:'リザードンex',condition:'psa9',price:31600,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-14'},
   {id:2059,cardName:'リザードンex',condition:'nm',price:20200,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-14'},
-  {id:2060,cardName:'リザードンex',condition:'played',price:11700,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-14'},
   {id:2061,cardName:'リザードンex',condition:'psa10',price:50300,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2062,cardName:'リザードンex',condition:'psa9',price:31000,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2063,cardName:'リザードンex',condition:'nm',price:22300,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
-  {id:2064,cardName:'リザードンex',condition:'played',price:12500,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2065,cardName:'リザードンex',condition:'psa10',price:48700,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2066,cardName:'リザードンex',condition:'psa9',price:32000,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2067,cardName:'リザードンex',condition:'nm',price:20600,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
-  {id:2068,cardName:'リザードンex',condition:'played',price:10700,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2069,cardName:'リザードンex',condition:'psa10',price:43000,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-14'},
   {id:2070,cardName:'リザードンex',condition:'psa9',price:28300,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-14'},
   {id:2071,cardName:'リザードンex',condition:'nm',price:20500,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-14'},
-  {id:2072,cardName:'リザードンex',condition:'played',price:13300,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-14'},
   {id:2073,cardName:'リザードンex',condition:'psa10',price:49100,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2074,cardName:'リザードンex',condition:'psa9',price:28700,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2075,cardName:'リザードンex',condition:'nm',price:22800,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
-  {id:2076,cardName:'リザードンex',condition:'played',price:11700,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2077,cardName:'リザードンex',condition:'psa10',price:49500,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2078,cardName:'リザードンex',condition:'psa9',price:29700,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2079,cardName:'リザードンex',condition:'nm',price:20800,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
-  {id:2080,cardName:'リザードンex',condition:'played',price:11300,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2081,cardName:'カビゴンex',condition:'psa10',price:18300,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-14'},
   {id:2082,cardName:'カビゴンex',condition:'psa9',price:11300,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-14'},
   {id:2083,cardName:'カビゴンex',condition:'nm',price:9200,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-14'},
-  {id:2084,cardName:'カビゴンex',condition:'played',price:5500,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-14'},
   {id:2085,cardName:'カビゴンex',condition:'psa10',price:17600,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2086,cardName:'カビゴンex',condition:'psa9',price:11200,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2087,cardName:'カビゴンex',condition:'nm',price:10100,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
-  {id:2088,cardName:'カビゴンex',condition:'played',price:5000,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2089,cardName:'カビゴンex',condition:'psa10',price:16200,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2090,cardName:'カビゴンex',condition:'psa9',price:10700,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2091,cardName:'カビゴンex',condition:'nm',price:8200,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
-  {id:2092,cardName:'カビゴンex',condition:'played',price:5200,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2093,cardName:'カビゴンex',condition:'psa10',price:19300,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-14'},
   {id:2094,cardName:'カビゴンex',condition:'psa9',price:11800,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-14'},
   {id:2095,cardName:'カビゴンex',condition:'nm',price:8100,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-14'},
-  {id:2096,cardName:'カビゴンex',condition:'played',price:4900,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-14'},
   {id:2097,cardName:'カビゴンex',condition:'psa10',price:20100,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2098,cardName:'カビゴンex',condition:'psa9',price:12100,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2099,cardName:'カビゴンex',condition:'nm',price:10000,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
-  {id:2100,cardName:'カビゴンex',condition:'played',price:5400,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2101,cardName:'カビゴンex',condition:'psa10',price:15900,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2102,cardName:'カビゴンex',condition:'psa9',price:12600,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2103,cardName:'カビゴンex',condition:'nm',price:9400,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
-  {id:2104,cardName:'カビゴンex',condition:'played',price:5000,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2105,cardName:'カビゴンex',condition:'psa10',price:17000,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-14'},
   {id:2106,cardName:'カビゴンex',condition:'psa9',price:12400,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-14'},
   {id:2107,cardName:'カビゴンex',condition:'nm',price:8200,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-14'},
-  {id:2108,cardName:'カビゴンex',condition:'played',price:4900,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-14'},
   {id:2109,cardName:'カビゴンex',condition:'psa10',price:17800,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2110,cardName:'カビゴンex',condition:'psa9',price:13300,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2111,cardName:'カビゴンex',condition:'nm',price:9800,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
-  {id:2112,cardName:'カビゴンex',condition:'played',price:4700,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2113,cardName:'カビゴンex',condition:'psa10',price:18000,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2114,cardName:'カビゴンex',condition:'psa9',price:11100,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2115,cardName:'カビゴンex',condition:'nm',price:9900,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
-  {id:2116,cardName:'カビゴンex',condition:'played',price:5400,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2117,cardName:'カビゴンex',condition:'psa10',price:17100,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-14'},
   {id:2118,cardName:'カビゴンex',condition:'psa9',price:12400,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-14'},
   {id:2119,cardName:'カビゴンex',condition:'nm',price:9200,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-14'},
-  {id:2120,cardName:'カビゴンex',condition:'played',price:4600,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-14'},
   {id:2121,cardName:'ミュウツーex',condition:'psa10',price:37200,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2122,cardName:'ミュウツーex',condition:'psa9',price:22200,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2123,cardName:'ミュウツーex',condition:'nm',price:17100,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
-  {id:2124,cardName:'ミュウツーex',condition:'played',price:9100,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2125,cardName:'ミュウツーex',condition:'psa10',price:30800,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2126,cardName:'ミュウツーex',condition:'psa9',price:21100,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2127,cardName:'ミュウツーex',condition:'nm',price:14200,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
-  {id:2128,cardName:'ミュウツーex',condition:'played',price:9900,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2129,cardName:'ミュウツーex',condition:'psa10',price:38200,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-14'},
   {id:2130,cardName:'ミュウツーex',condition:'psa9',price:23800,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-14'},
   {id:2131,cardName:'ミュウツーex',condition:'nm',price:15300,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-14'},
-  {id:2132,cardName:'ミュウツーex',condition:'played',price:8000,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-14'},
   {id:2133,cardName:'ミュウツーex',condition:'psa10',price:38200,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2134,cardName:'ミュウツーex',condition:'psa9',price:24400,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2135,cardName:'ミュウツーex',condition:'nm',price:14400,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
-  {id:2136,cardName:'ミュウツーex',condition:'played',price:9000,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2137,cardName:'ミュウツーex',condition:'psa10',price:31400,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2138,cardName:'ミュウツーex',condition:'psa9',price:23400,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2139,cardName:'ミュウツーex',condition:'nm',price:17000,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
-  {id:2140,cardName:'ミュウツーex',condition:'played',price:8200,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2141,cardName:'ミュウツーex',condition:'psa10',price:34800,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-14'},
   {id:2142,cardName:'ミュウツーex',condition:'psa9',price:22300,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-14'},
   {id:2143,cardName:'ミュウツーex',condition:'nm',price:15100,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-14'},
-  {id:2144,cardName:'ミュウツーex',condition:'played',price:9800,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-14'},
   {id:2145,cardName:'ミュウツーex',condition:'psa10',price:34400,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2146,cardName:'ミュウツーex',condition:'psa9',price:20500,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2147,cardName:'ミュウツーex',condition:'nm',price:16200,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
-  {id:2148,cardName:'ミュウツーex',condition:'played',price:9500,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2149,cardName:'ミュウツーex',condition:'psa10',price:32500,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2150,cardName:'ミュウツーex',condition:'psa9',price:21000,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2151,cardName:'ミュウツーex',condition:'nm',price:17900,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
-  {id:2152,cardName:'ミュウツーex',condition:'played',price:9300,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2153,cardName:'ミュウツーex',condition:'psa10',price:34500,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-14'},
   {id:2154,cardName:'ミュウツーex',condition:'psa9',price:22100,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-14'},
   {id:2155,cardName:'ミュウツーex',condition:'nm',price:14500,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-14'},
-  {id:2156,cardName:'ミュウツーex',condition:'played',price:8400,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-14'},
   {id:2157,cardName:'ミュウツーex',condition:'psa10',price:33600,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2158,cardName:'ミュウツーex',condition:'psa9',price:22500,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2159,cardName:'ミュウツーex',condition:'nm',price:15000,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
-  {id:2160,cardName:'ミュウツーex',condition:'played',price:8400,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2161,cardName:'イーブイex',condition:'psa10',price:19700,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2162,cardName:'イーブイex',condition:'psa9',price:15500,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2163,cardName:'イーブイex',condition:'nm',price:10300,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
-  {id:2164,cardName:'イーブイex',condition:'played',price:7100,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2165,cardName:'イーブイex',condition:'psa10',price:23900,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-14'},
   {id:2166,cardName:'イーブイex',condition:'psa9',price:13500,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-14'},
   {id:2167,cardName:'イーブイex',condition:'nm',price:10300,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-14'},
-  {id:2168,cardName:'イーブイex',condition:'played',price:6800,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-14'},
   {id:2169,cardName:'イーブイex',condition:'psa10',price:20500,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2170,cardName:'イーブイex',condition:'psa9',price:13700,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2171,cardName:'イーブイex',condition:'nm',price:12100,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
-  {id:2172,cardName:'イーブイex',condition:'played',price:6600,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2173,cardName:'イーブイex',condition:'psa10',price:21900,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2174,cardName:'イーブイex',condition:'psa9',price:16000,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2175,cardName:'イーブイex',condition:'nm',price:11800,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
-  {id:2176,cardName:'イーブイex',condition:'played',price:6000,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2177,cardName:'イーブイex',condition:'psa10',price:19900,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-14'},
   {id:2178,cardName:'イーブイex',condition:'psa9',price:14800,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-14'},
   {id:2179,cardName:'イーブイex',condition:'nm',price:10800,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-14'},
-  {id:2180,cardName:'イーブイex',condition:'played',price:6400,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-14'},
   {id:2181,cardName:'イーブイex',condition:'psa10',price:23200,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2182,cardName:'イーブイex',condition:'psa9',price:15600,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2183,cardName:'イーブイex',condition:'nm',price:12300,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
-  {id:2184,cardName:'イーブイex',condition:'played',price:5900,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2185,cardName:'イーブイex',condition:'psa10',price:21500,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2186,cardName:'イーブイex',condition:'psa9',price:14400,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2187,cardName:'イーブイex',condition:'nm',price:12000,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
-  {id:2188,cardName:'イーブイex',condition:'played',price:6100,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2189,cardName:'イーブイex',condition:'psa10',price:20400,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-14'},
   {id:2190,cardName:'イーブイex',condition:'psa9',price:14800,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-14'},
   {id:2191,cardName:'イーブイex',condition:'nm',price:10800,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-14'},
-  {id:2192,cardName:'イーブイex',condition:'played',price:6200,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-14'},
   {id:2193,cardName:'イーブイex',condition:'psa10',price:20700,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2194,cardName:'イーブイex',condition:'psa9',price:16500,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2195,cardName:'イーブイex',condition:'nm',price:10800,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
-  {id:2196,cardName:'イーブイex',condition:'played',price:7100,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2197,cardName:'イーブイex',condition:'psa10',price:22300,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2198,cardName:'イーブイex',condition:'psa9',price:13400,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2199,cardName:'イーブイex',condition:'nm',price:12300,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
-  {id:2200,cardName:'イーブイex',condition:'played',price:7000,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2201,cardName:'フシギバナex',condition:'psa10',price:22300,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-14'},
   {id:2202,cardName:'フシギバナex',condition:'psa9',price:14300,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-14'},
   {id:2203,cardName:'フシギバナex',condition:'nm',price:10800,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-14'},
-  {id:2204,cardName:'フシギバナex',condition:'played',price:5100,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-14'},
   {id:2205,cardName:'フシギバナex',condition:'psa10',price:19900,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2206,cardName:'フシギバナex',condition:'psa9',price:12100,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2207,cardName:'フシギバナex',condition:'nm',price:9800,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
-  {id:2208,cardName:'フシギバナex',condition:'played',price:4900,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2209,cardName:'フシギバナex',condition:'psa10',price:19400,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2210,cardName:'フシギバナex',condition:'psa9',price:14500,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2211,cardName:'フシギバナex',condition:'nm',price:9400,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
-  {id:2212,cardName:'フシギバナex',condition:'played',price:5900,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2213,cardName:'フシギバナex',condition:'psa10',price:19800,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-14'},
   {id:2214,cardName:'フシギバナex',condition:'psa9',price:12800,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-14'},
   {id:2215,cardName:'フシギバナex',condition:'nm',price:11100,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-14'},
-  {id:2216,cardName:'フシギバナex',condition:'played',price:6200,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-14'},
   {id:2217,cardName:'フシギバナex',condition:'psa10',price:20300,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2218,cardName:'フシギバナex',condition:'psa9',price:13700,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2219,cardName:'フシギバナex',condition:'nm',price:9200,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
-  {id:2220,cardName:'フシギバナex',condition:'played',price:5200,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2221,cardName:'フシギバナex',condition:'psa10',price:22200,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2222,cardName:'フシギバナex',condition:'psa9',price:13200,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2223,cardName:'フシギバナex',condition:'nm',price:10100,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
-  {id:2224,cardName:'フシギバナex',condition:'played',price:5800,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2225,cardName:'フシギバナex',condition:'psa10',price:17900,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-14'},
   {id:2226,cardName:'フシギバナex',condition:'psa9',price:13300,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-14'},
   {id:2227,cardName:'フシギバナex',condition:'nm',price:10000,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-14'},
-  {id:2228,cardName:'フシギバナex',condition:'played',price:6000,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-14'},
   {id:2229,cardName:'フシギバナex',condition:'psa10',price:18400,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2230,cardName:'フシギバナex',condition:'psa9',price:14400,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2231,cardName:'フシギバナex',condition:'nm',price:9000,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
-  {id:2232,cardName:'フシギバナex',condition:'played',price:5100,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2233,cardName:'フシギバナex',condition:'psa10',price:20500,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2234,cardName:'フシギバナex',condition:'psa9',price:13500,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2235,cardName:'フシギバナex',condition:'nm',price:9400,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
-  {id:2236,cardName:'フシギバナex',condition:'played',price:5000,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2237,cardName:'フシギバナex',condition:'psa10',price:21900,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-14'},
   {id:2238,cardName:'フシギバナex',condition:'psa9',price:12200,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-14'},
   {id:2239,cardName:'フシギバナex',condition:'nm',price:10200,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-14'},
-  {id:2240,cardName:'フシギバナex',condition:'played',price:5700,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-14'},
   {id:2241,cardName:'ゲンガーex',condition:'psa10',price:24500,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2242,cardName:'ゲンガーex',condition:'psa9',price:16300,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2243,cardName:'ゲンガーex',condition:'nm',price:12100,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
-  {id:2244,cardName:'ゲンガーex',condition:'played',price:7700,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2245,cardName:'ゲンガーex',condition:'psa10',price:23200,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2246,cardName:'ゲンガーex',condition:'psa9',price:16800,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2247,cardName:'ゲンガーex',condition:'nm',price:11200,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
-  {id:2248,cardName:'ゲンガーex',condition:'played',price:6800,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-15'},
   {id:2249,cardName:'ゲンガーex',condition:'psa10',price:26000,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-14'},
   {id:2250,cardName:'ゲンガーex',condition:'psa9',price:15200,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-14'},
   {id:2251,cardName:'ゲンガーex',condition:'nm',price:11500,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-14'},
-  {id:2252,cardName:'ゲンガーex',condition:'played',price:7400,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-14'},
   {id:2253,cardName:'ゲンガーex',condition:'psa10',price:22400,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2254,cardName:'ゲンガーex',condition:'psa9',price:15800,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2255,cardName:'ゲンガーex',condition:'nm',price:13400,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
-  {id:2256,cardName:'ゲンガーex',condition:'played',price:7800,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2257,cardName:'ゲンガーex',condition:'psa10',price:22400,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2258,cardName:'ゲンガーex',condition:'psa9',price:14900,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2259,cardName:'ゲンガーex',condition:'nm',price:11300,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
-  {id:2260,cardName:'ゲンガーex',condition:'played',price:7700,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-15'},
   {id:2261,cardName:'ゲンガーex',condition:'psa10',price:27300,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-14'},
   {id:2262,cardName:'ゲンガーex',condition:'psa9',price:17500,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-14'},
   {id:2263,cardName:'ゲンガーex',condition:'nm',price:11600,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-14'},
-  {id:2264,cardName:'ゲンガーex',condition:'played',price:6400,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-14'},
   {id:2265,cardName:'ゲンガーex',condition:'psa10',price:27000,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2266,cardName:'ゲンガーex',condition:'psa9',price:16800,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2267,cardName:'ゲンガーex',condition:'nm',price:12300,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
-  {id:2268,cardName:'ゲンガーex',condition:'played',price:7800,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2269,cardName:'ゲンガーex',condition:'psa10',price:25900,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2270,cardName:'ゲンガーex',condition:'psa9',price:14100,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2271,cardName:'ゲンガーex',condition:'nm',price:12900,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
-  {id:2272,cardName:'ゲンガーex',condition:'played',price:6700,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-15'},
   {id:2273,cardName:'ゲンガーex',condition:'psa10',price:26000,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-14'},
   {id:2274,cardName:'ゲンガーex',condition:'psa9',price:17700,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-14'},
   {id:2275,cardName:'ゲンガーex',condition:'nm',price:10900,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-14'},
-  {id:2276,cardName:'ゲンガーex',condition:'played',price:6400,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-14'},
   {id:2277,cardName:'ゲンガーex',condition:'psa10',price:22600,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2278,cardName:'ゲンガーex',condition:'psa9',price:16200,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2279,cardName:'ゲンガーex',condition:'nm',price:11300,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
-  {id:2280,cardName:'ゲンガーex',condition:'played',price:7200,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2281,cardName:'ルチャブルex',condition:'psa10',price:15800,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2282,cardName:'ルチャブルex',condition:'psa9',price:9300,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2283,cardName:'ルチャブルex',condition:'nm',price:7700,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
-  {id:2284,cardName:'ルチャブルex',condition:'played',price:3800,name:'カードマーケット渋谷',handle:'@cardmkt_shibuya',pref:'東京都',ship:true,walk:true,expire:null,url:'https://x.com/cardmkt_shibuya',ai:true,d:'2026-04-15'},
   {id:2285,cardName:'ルチャブルex',condition:'psa10',price:15000,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-14'},
   {id:2286,cardName:'ルチャブルex',condition:'psa9',price:11000,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-14'},
   {id:2287,cardName:'ルチャブルex',condition:'nm',price:8100,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-14'},
-  {id:2288,cardName:'ルチャブルex',condition:'played',price:3600,name:'トレカ王国大阪',handle:'@trecaking_osaka',pref:'大阪府',ship:true,walk:false,expire:null,url:'https://x.com/trecaking_osaka',ai:true,d:'2026-04-14'},
   {id:2289,cardName:'ルチャブルex',condition:'psa10',price:14700,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2290,cardName:'ルチャブルex',condition:'psa9',price:9500,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2291,cardName:'ルチャブルex',condition:'nm',price:6600,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
-  {id:2292,cardName:'ルチャブルex',condition:'played',price:4300,name:'カードジャングル埼玉',handle:'@cardjungle_saitama',pref:'埼玉県',ship:true,walk:true,expire:null,url:'https://x.com/cardjungle_saitama',ai:true,d:'2026-04-15'},
   {id:2293,cardName:'ルチャブルex',condition:'psa10',price:15500,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2294,cardName:'ルチャブルex',condition:'psa9',price:9400,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2295,cardName:'ルチャブルex',condition:'nm',price:7900,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
-  {id:2296,cardName:'ルチャブルex',condition:'played',price:4000,name:'ポケカ専門ひかり堂',handle:'@hikari_pokeca',pref:'福岡県',ship:true,walk:false,expire:null,url:'https://x.com/hikari_pokeca',ai:true,d:'2026-04-15'},
   {id:2297,cardName:'ルチャブルex',condition:'psa10',price:14700,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-14'},
   {id:2298,cardName:'ルチャブルex',condition:'psa9',price:8800,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-14'},
   {id:2299,cardName:'ルチャブルex',condition:'nm',price:6700,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-14'},
-  {id:2300,cardName:'ルチャブルex',condition:'played',price:4400,name:'トレカパレス京都',handle:'@treca_palace_kyoto',pref:'京都府',ship:false,walk:true,expire:null,url:'https://x.com/treca_palace_kyoto',ai:true,d:'2026-04-14'},
   {id:2301,cardName:'ルチャブルex',condition:'psa10',price:16500,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2302,cardName:'ルチャブルex',condition:'psa9',price:10100,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2303,cardName:'ルチャブルex',condition:'nm',price:8100,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
-  {id:2304,cardName:'ルチャブルex',condition:'played',price:4100,name:'横浜カードオアシス',handle:'@card_oasis_yoko',pref:'神奈川県',ship:true,walk:true,expire:null,url:'https://x.com/card_oasis_yoko',ai:true,d:'2026-04-15'},
   {id:2305,cardName:'ルチャブルex',condition:'psa10',price:13700,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2306,cardName:'ルチャブルex',condition:'psa9',price:9100,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2307,cardName:'ルチャブルex',condition:'nm',price:7200,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
-  {id:2308,cardName:'ルチャブルex',condition:'played',price:4400,name:'カード買取本舗名古屋',handle:'@kaitori_nagoya',pref:'愛知県',ship:true,walk:true,expire:null,url:'https://x.com/kaitori_nagoya',ai:true,d:'2026-04-15'},
   {id:2309,cardName:'ルチャブルex',condition:'psa10',price:16100,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-14'},
   {id:2310,cardName:'ルチャブルex',condition:'psa9',price:10900,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-14'},
   {id:2311,cardName:'ルチャブルex',condition:'nm',price:8200,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-14'},
-  {id:2312,cardName:'ルチャブルex',condition:'played',price:3700,name:'福岡トレカプレミアム',handle:'@fukuoka_treca_p',pref:'福岡県',ship:true,walk:true,expire:null,url:'https://x.com/fukuoka_treca_p',ai:true,d:'2026-04-14'},
   {id:2313,cardName:'ルチャブルex',condition:'psa10',price:14100,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2314,cardName:'ルチャブルex',condition:'psa9',price:9000,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2315,cardName:'ルチャブルex',condition:'nm',price:8000,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
-  {id:2316,cardName:'ルチャブルex',condition:'played',price:4400,name:'仙台トレカ倶楽部',handle:'@sendai_treca',pref:'宮城県',ship:true,walk:false,expire:null,url:'https://x.com/sendai_treca',ai:true,d:'2026-04-15'},
   {id:2317,cardName:'ルチャブルex',condition:'psa10',price:14700,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2318,cardName:'ルチャブルex',condition:'psa9',price:10300,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
   {id:2319,cardName:'ルチャブルex',condition:'nm',price:6900,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
-  {id:2320,cardName:'ルチャブルex',condition:'played',price:4400,name:'広島カードマスター',handle:'@hiroshima_card',pref:'広島県',ship:true,walk:true,expire:null,url:'https://x.com/hiroshima_card',ai:true,d:'2026-04-15'},
 ];
 
 // ── カード前日・週間スナップ ──
@@ -5684,64 +5678,56 @@ let cardPriceSnapshots=[
   {card:'ピカチュウex',condition:'psa9',date:weekAgoStr,price:15800},
   {card:'ピカチュウex',condition:'nm',date:yestStr,price:13400},
   {card:'ピカチュウex',condition:'nm',date:weekAgoStr,price:12300},
-  {card:'ピカチュウex',condition:'played',date:yestStr,price:7700},
-  {card:'ピカチュウex',condition:'played',date:weekAgoStr,price:7000},
+
   {card:'リザードンex',condition:'psa10',date:yestStr,price:43200},
   {card:'リザードンex',condition:'psa10',date:weekAgoStr,price:39600},
   {card:'リザードンex',condition:'psa9',date:yestStr,price:28800},
   {card:'リザードンex',condition:'psa9',date:weekAgoStr,price:26400},
   {card:'リザードンex',condition:'nm',date:yestStr,price:21100},
   {card:'リザードンex',condition:'nm',date:weekAgoStr,price:19400},
-  {card:'リザードンex',condition:'played',date:yestStr,price:11500},
-  {card:'リザードンex',condition:'played',date:weekAgoStr,price:10600},
+
   {card:'カビゴンex',condition:'psa10',date:yestStr,price:17300},
   {card:'カビゴンex',condition:'psa10',date:weekAgoStr,price:15800},
   {card:'カビゴンex',condition:'psa9',date:yestStr,price:11500},
   {card:'カビゴンex',condition:'psa9',date:weekAgoStr,price:10600},
   {card:'カビゴンex',condition:'nm',date:yestStr,price:8600},
   {card:'カビゴンex',condition:'nm',date:weekAgoStr,price:7900},
-  {card:'カビゴンex',condition:'played',date:yestStr,price:4800},
-  {card:'カビゴンex',condition:'played',date:weekAgoStr,price:4400},
+
   {card:'ミュウツーex',condition:'psa10',date:yestStr,price:33600},
   {card:'ミュウツーex',condition:'psa10',date:weekAgoStr,price:30800},
   {card:'ミュウツーex',condition:'psa9',date:yestStr,price:21100},
   {card:'ミュウツーex',condition:'psa9',date:weekAgoStr,price:19400},
   {card:'ミュウツーex',condition:'nm',date:yestStr,price:15400},
   {card:'ミュウツーex',condition:'nm',date:weekAgoStr,price:14100},
-  {card:'ミュウツーex',condition:'played',date:yestStr,price:8600},
-  {card:'ミュウツーex',condition:'played',date:weekAgoStr,price:7900},
+
   {card:'イーブイex',condition:'psa10',date:yestStr,price:21100},
   {card:'イーブイex',condition:'psa10',date:weekAgoStr,price:19400},
   {card:'イーブイex',condition:'psa9',date:yestStr,price:14400},
   {card:'イーブイex',condition:'psa9',date:weekAgoStr,price:13200},
   {card:'イーブイex',condition:'nm',date:yestStr,price:10600},
   {card:'イーブイex',condition:'nm',date:weekAgoStr,price:9700},
-  {card:'イーブイex',condition:'played',date:yestStr,price:6200},
-  {card:'イーブイex',condition:'played',date:weekAgoStr,price:5700},
+
   {card:'フシギバナex',condition:'psa10',date:yestStr,price:19200},
   {card:'フシギバナex',condition:'psa10',date:weekAgoStr,price:17600},
   {card:'フシギバナex',condition:'psa9',date:yestStr,price:12500},
   {card:'フシギバナex',condition:'psa9',date:weekAgoStr,price:11400},
   {card:'フシギバナex',condition:'nm',date:yestStr,price:9600},
   {card:'フシギバナex',condition:'nm',date:weekAgoStr,price:8800},
-  {card:'フシギバナex',condition:'played',date:yestStr,price:5300},
-  {card:'フシギバナex',condition:'played',date:weekAgoStr,price:4800},
+
   {card:'ゲンガーex',condition:'psa10',date:yestStr,price:24000},
   {card:'ゲンガーex',condition:'psa10',date:weekAgoStr,price:22000},
   {card:'ゲンガーex',condition:'psa9',date:yestStr,price:15400},
   {card:'ゲンガーex',condition:'psa9',date:weekAgoStr,price:14100},
   {card:'ゲンガーex',condition:'nm',date:yestStr,price:11500},
   {card:'ゲンガーex',condition:'nm',date:weekAgoStr,price:10600},
-  {card:'ゲンガーex',condition:'played',date:yestStr,price:6700},
-  {card:'ゲンガーex',condition:'played',date:weekAgoStr,price:6200},
+
   {card:'ルチャブルex',condition:'psa10',date:yestStr,price:14400},
   {card:'ルチャブルex',condition:'psa10',date:weekAgoStr,price:13200},
   {card:'ルチャブルex',condition:'psa9',date:yestStr,price:9600},
   {card:'ルチャブルex',condition:'psa9',date:weekAgoStr,price:8800},
   {card:'ルチャブルex',condition:'nm',date:yestStr,price:7200},
   {card:'ルチャブルex',condition:'nm',date:weekAgoStr,price:6600},
-  {card:'ルチャブルex',condition:'played',date:yestStr,price:3800},
-  {card:'ルチャブルex',condition:'played',date:weekAgoStr,price:3500},
+
 ];
 
 // ── カード相場グラフ用データ ──
@@ -5824,32 +5810,31 @@ let cardPH=[
   {id:1075,card:'ピカチュウex',condition:'nm',date:'2026-03-27',price:13300,src:'manual'},
   {id:1076,card:'ピカチュウex',condition:'nm',date:'2026-04-03',price:14500,src:'manual'},
   {id:1077,card:'ピカチュウex',condition:'nm',date:'2026-04-10',price:13800,src:'manual'},
-  {id:1078,card:'ピカチュウex',condition:'played',date:'2025-10-17',price:8200,src:'manual'},
-  {id:1079,card:'ピカチュウex',condition:'played',date:'2025-10-24',price:7800,src:'manual'},
-  {id:1080,card:'ピカチュウex',condition:'played',date:'2025-10-31',price:8200,src:'manual'},
-  {id:1081,card:'ピカチュウex',condition:'played',date:'2025-11-07',price:8400,src:'manual'},
-  {id:1082,card:'ピカチュウex',condition:'played',date:'2025-11-14',price:7600,src:'manual'},
-  {id:1083,card:'ピカチュウex',condition:'played',date:'2025-11-21',price:8300,src:'manual'},
-  {id:1084,card:'ピカチュウex',condition:'played',date:'2025-11-28',price:8400,src:'manual'},
-  {id:1085,card:'ピカチュウex',condition:'played',date:'2025-12-05',price:7800,src:'manual'},
-  {id:1086,card:'ピカチュウex',condition:'played',date:'2025-12-12',price:8000,src:'manual'},
-  {id:1087,card:'ピカチュウex',condition:'played',date:'2025-12-19',price:7800,src:'manual'},
-  {id:1088,card:'ピカチュウex',condition:'played',date:'2025-12-26',price:8200,src:'manual'},
-  {id:1089,card:'ピカチュウex',condition:'played',date:'2026-01-02',price:7900,src:'manual'},
-  {id:1090,card:'ピカチュウex',condition:'played',date:'2026-01-09',price:7900,src:'manual'},
-  {id:1091,card:'ピカチュウex',condition:'played',date:'2026-01-16',price:7900,src:'manual'},
-  {id:1092,card:'ピカチュウex',condition:'played',date:'2026-01-23',price:8200,src:'manual'},
-  {id:1093,card:'ピカチュウex',condition:'played',date:'2026-01-30',price:7800,src:'manual'},
-  {id:1094,card:'ピカチュウex',condition:'played',date:'2026-02-06',price:8100,src:'manual'},
-  {id:1095,card:'ピカチュウex',condition:'played',date:'2026-02-13',price:7600,src:'manual'},
-  {id:1096,card:'ピカチュウex',condition:'played',date:'2026-02-20',price:7700,src:'manual'},
-  {id:1097,card:'ピカチュウex',condition:'played',date:'2026-02-27',price:8000,src:'manual'},
-  {id:1098,card:'ピカチュウex',condition:'played',date:'2026-03-06',price:8200,src:'manual'},
-  {id:1099,card:'ピカチュウex',condition:'played',date:'2026-03-13',price:7900,src:'manual'},
-  {id:1100,card:'ピカチュウex',condition:'played',date:'2026-03-20',price:8200,src:'manual'},
-  {id:1101,card:'ピカチュウex',condition:'played',date:'2026-03-27',price:8300,src:'manual'},
-  {id:1102,card:'ピカチュウex',condition:'played',date:'2026-04-03',price:8400,src:'manual'},
-  {id:1103,card:'ピカチュウex',condition:'played',date:'2026-04-10',price:7700,src:'manual'},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   {id:1104,card:'リザードンex',condition:'psa10',date:'2025-10-17',price:47300,src:'manual'},
   {id:1105,card:'リザードンex',condition:'psa10',date:'2025-10-24',price:47000,src:'manual'},
   {id:1106,card:'リザードンex',condition:'psa10',date:'2025-10-31',price:44800,src:'manual'},
@@ -5928,32 +5913,31 @@ let cardPH=[
   {id:1179,card:'リザードンex',condition:'nm',date:'2026-03-27',price:22500,src:'manual'},
   {id:1180,card:'リザードンex',condition:'nm',date:'2026-04-03',price:23200,src:'manual'},
   {id:1181,card:'リザードンex',condition:'nm',date:'2026-04-10',price:22700,src:'manual'},
-  {id:1182,card:'リザードンex',condition:'played',date:'2025-10-17',price:12200,src:'manual'},
-  {id:1183,card:'リザードンex',condition:'played',date:'2025-10-24',price:12400,src:'manual'},
-  {id:1184,card:'リザードンex',condition:'played',date:'2025-10-31',price:12200,src:'manual'},
-  {id:1185,card:'リザードンex',condition:'played',date:'2025-11-07',price:11600,src:'manual'},
-  {id:1186,card:'リザードンex',condition:'played',date:'2025-11-14',price:12300,src:'manual'},
-  {id:1187,card:'リザードンex',condition:'played',date:'2025-11-21',price:12200,src:'manual'},
-  {id:1188,card:'リザードンex',condition:'played',date:'2025-11-28',price:11800,src:'manual'},
-  {id:1189,card:'リザードンex',condition:'played',date:'2025-12-05',price:11800,src:'manual'},
-  {id:1190,card:'リザードンex',condition:'played',date:'2025-12-12',price:12600,src:'manual'},
-  {id:1191,card:'リザードンex',condition:'played',date:'2025-12-19',price:11800,src:'manual'},
-  {id:1192,card:'リザードンex',condition:'played',date:'2025-12-26',price:12300,src:'manual'},
-  {id:1193,card:'リザードンex',condition:'played',date:'2026-01-02',price:12300,src:'manual'},
-  {id:1194,card:'リザードンex',condition:'played',date:'2026-01-09',price:12600,src:'manual'},
-  {id:1195,card:'リザードンex',condition:'played',date:'2026-01-16',price:11800,src:'manual'},
-  {id:1196,card:'リザードンex',condition:'played',date:'2026-01-23',price:11800,src:'manual'},
-  {id:1197,card:'リザードンex',condition:'played',date:'2026-01-30',price:12200,src:'manual'},
-  {id:1198,card:'リザードンex',condition:'played',date:'2026-02-06',price:11400,src:'manual'},
-  {id:1199,card:'リザードンex',condition:'played',date:'2026-02-13',price:11900,src:'manual'},
-  {id:1200,card:'リザードンex',condition:'played',date:'2026-02-20',price:11800,src:'manual'},
-  {id:1201,card:'リザードンex',condition:'played',date:'2026-02-27',price:11800,src:'manual'},
-  {id:1202,card:'リザードンex',condition:'played',date:'2026-03-06',price:12000,src:'manual'},
-  {id:1203,card:'リザードンex',condition:'played',date:'2026-03-13',price:11900,src:'manual'},
-  {id:1204,card:'リザードンex',condition:'played',date:'2026-03-20',price:12400,src:'manual'},
-  {id:1205,card:'リザードンex',condition:'played',date:'2026-03-27',price:11400,src:'manual'},
-  {id:1206,card:'リザードンex',condition:'played',date:'2026-04-03',price:11600,src:'manual'},
-  {id:1207,card:'リザードンex',condition:'played',date:'2026-04-10',price:11600,src:'manual'},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   {id:1208,card:'カビゴンex',condition:'psa10',date:'2025-10-17',price:17900,src:'manual'},
   {id:1209,card:'カビゴンex',condition:'psa10',date:'2025-10-24',price:18500,src:'manual'},
   {id:1210,card:'カビゴンex',condition:'psa10',date:'2025-10-31',price:17500,src:'manual'},
@@ -6032,32 +6016,31 @@ let cardPH=[
   {id:1283,card:'カビゴンex',condition:'nm',date:'2026-03-27',price:8800,src:'manual'},
   {id:1284,card:'カビゴンex',condition:'nm',date:'2026-04-03',price:8900,src:'manual'},
   {id:1285,card:'カビゴンex',condition:'nm',date:'2026-04-10',price:8700,src:'manual'},
-  {id:1286,card:'カビゴンex',condition:'played',date:'2025-10-17',price:5200,src:'manual'},
-  {id:1287,card:'カビゴンex',condition:'played',date:'2025-10-24',price:4800,src:'manual'},
-  {id:1288,card:'カビゴンex',condition:'played',date:'2025-10-31',price:5300,src:'manual'},
-  {id:1289,card:'カビゴンex',condition:'played',date:'2025-11-07',price:4900,src:'manual'},
-  {id:1290,card:'カビゴンex',condition:'played',date:'2025-11-14',price:5200,src:'manual'},
-  {id:1291,card:'カビゴンex',condition:'played',date:'2025-11-21',price:5000,src:'manual'},
-  {id:1292,card:'カビゴンex',condition:'played',date:'2025-11-28',price:5100,src:'manual'},
-  {id:1293,card:'カビゴンex',condition:'played',date:'2025-12-05',price:4900,src:'manual'},
-  {id:1294,card:'カビゴンex',condition:'played',date:'2025-12-12',price:4800,src:'manual'},
-  {id:1295,card:'カビゴンex',condition:'played',date:'2025-12-19',price:4900,src:'manual'},
-  {id:1296,card:'カビゴンex',condition:'played',date:'2025-12-26',price:5000,src:'manual'},
-  {id:1297,card:'カビゴンex',condition:'played',date:'2026-01-02',price:4800,src:'manual'},
-  {id:1298,card:'カビゴンex',condition:'played',date:'2026-01-09',price:5300,src:'manual'},
-  {id:1299,card:'カビゴンex',condition:'played',date:'2026-01-16',price:4700,src:'manual'},
-  {id:1300,card:'カビゴンex',condition:'played',date:'2026-01-23',price:5000,src:'manual'},
-  {id:1301,card:'カビゴンex',condition:'played',date:'2026-01-30',price:5300,src:'manual'},
-  {id:1302,card:'カビゴンex',condition:'played',date:'2026-02-06',price:5100,src:'manual'},
-  {id:1303,card:'カビゴンex',condition:'played',date:'2026-02-13',price:5100,src:'manual'},
-  {id:1304,card:'カビゴンex',condition:'played',date:'2026-02-20',price:4900,src:'manual'},
-  {id:1305,card:'カビゴンex',condition:'played',date:'2026-02-27',price:4800,src:'manual'},
-  {id:1306,card:'カビゴンex',condition:'played',date:'2026-03-06',price:4900,src:'manual'},
-  {id:1307,card:'カビゴンex',condition:'played',date:'2026-03-13',price:4800,src:'manual'},
-  {id:1308,card:'カビゴンex',condition:'played',date:'2026-03-20',price:5000,src:'manual'},
-  {id:1309,card:'カビゴンex',condition:'played',date:'2026-03-27',price:4800,src:'manual'},
-  {id:1310,card:'カビゴンex',condition:'played',date:'2026-04-03',price:5300,src:'manual'},
-  {id:1311,card:'カビゴンex',condition:'played',date:'2026-04-10',price:4700,src:'manual'},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   {id:1312,card:'ミュウツーex',condition:'psa10',date:'2025-10-17',price:35700,src:'manual'},
   {id:1313,card:'ミュウツーex',condition:'psa10',date:'2025-10-24',price:36400,src:'manual'},
   {id:1314,card:'ミュウツーex',condition:'psa10',date:'2025-10-31',price:35900,src:'manual'},
@@ -6136,32 +6119,31 @@ let cardPH=[
   {id:1387,card:'ミュウツーex',condition:'nm',date:'2026-03-27',price:16100,src:'manual'},
   {id:1388,card:'ミュウツーex',condition:'nm',date:'2026-04-03',price:15700,src:'manual'},
   {id:1389,card:'ミュウツーex',condition:'nm',date:'2026-04-10',price:15900,src:'manual'},
-  {id:1390,card:'ミュウツーex',condition:'played',date:'2025-10-17',price:9100,src:'manual'},
-  {id:1391,card:'ミュウツーex',condition:'played',date:'2025-10-24',price:9200,src:'manual'},
-  {id:1392,card:'ミュウツーex',condition:'played',date:'2025-10-31',price:9400,src:'manual'},
-  {id:1393,card:'ミュウツーex',condition:'played',date:'2025-11-07',price:9000,src:'manual'},
-  {id:1394,card:'ミュウツーex',condition:'played',date:'2025-11-14',price:9100,src:'manual'},
-  {id:1395,card:'ミュウツーex',condition:'played',date:'2025-11-21',price:9000,src:'manual'},
-  {id:1396,card:'ミュウツーex',condition:'played',date:'2025-11-28',price:8900,src:'manual'},
-  {id:1397,card:'ミュウツーex',condition:'played',date:'2025-12-05',price:8700,src:'manual'},
-  {id:1398,card:'ミュウツーex',condition:'played',date:'2025-12-12',price:8900,src:'manual'},
-  {id:1399,card:'ミュウツーex',condition:'played',date:'2025-12-19',price:9100,src:'manual'},
-  {id:1400,card:'ミュウツーex',condition:'played',date:'2025-12-26',price:8700,src:'manual'},
-  {id:1401,card:'ミュウツーex',condition:'played',date:'2026-01-02',price:8800,src:'manual'},
-  {id:1402,card:'ミュウツーex',condition:'played',date:'2026-01-09',price:8900,src:'manual'},
-  {id:1403,card:'ミュウツーex',condition:'played',date:'2026-01-16',price:8900,src:'manual'},
-  {id:1404,card:'ミュウツーex',condition:'played',date:'2026-01-23',price:9500,src:'manual'},
-  {id:1405,card:'ミュウツーex',condition:'played',date:'2026-01-30',price:9000,src:'manual'},
-  {id:1406,card:'ミュウツーex',condition:'played',date:'2026-02-06',price:9500,src:'manual'},
-  {id:1407,card:'ミュウツーex',condition:'played',date:'2026-02-13',price:9000,src:'manual'},
-  {id:1408,card:'ミュウツーex',condition:'played',date:'2026-02-20',price:8700,src:'manual'},
-  {id:1409,card:'ミュウツーex',condition:'played',date:'2026-02-27',price:8900,src:'manual'},
-  {id:1410,card:'ミュウツーex',condition:'played',date:'2026-03-06',price:9100,src:'manual'},
-  {id:1411,card:'ミュウツーex',condition:'played',date:'2026-03-13',price:8900,src:'manual'},
-  {id:1412,card:'ミュウツーex',condition:'played',date:'2026-03-20',price:9200,src:'manual'},
-  {id:1413,card:'ミュウツーex',condition:'played',date:'2026-03-27',price:8800,src:'manual'},
-  {id:1414,card:'ミュウツーex',condition:'played',date:'2026-04-03',price:9100,src:'manual'},
-  {id:1415,card:'ミュウツーex',condition:'played',date:'2026-04-10',price:8500,src:'manual'},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   {id:1416,card:'イーブイex',condition:'psa10',date:'2025-10-17',price:22900,src:'manual'},
   {id:1417,card:'イーブイex',condition:'psa10',date:'2025-10-24',price:21200,src:'manual'},
   {id:1418,card:'イーブイex',condition:'psa10',date:'2025-10-31',price:21800,src:'manual'},
@@ -6240,32 +6222,31 @@ let cardPH=[
   {id:1491,card:'イーブイex',condition:'nm',date:'2026-03-27',price:11600,src:'manual'},
   {id:1492,card:'イーブイex',condition:'nm',date:'2026-04-03',price:11300,src:'manual'},
   {id:1493,card:'イーブイex',condition:'nm',date:'2026-04-10',price:10900,src:'manual'},
-  {id:1494,card:'イーブイex',condition:'played',date:'2025-10-17',price:6100,src:'manual'},
-  {id:1495,card:'イーブイex',condition:'played',date:'2025-10-24',price:6300,src:'manual'},
-  {id:1496,card:'イーブイex',condition:'played',date:'2025-10-31',price:6400,src:'manual'},
-  {id:1497,card:'イーブイex',condition:'played',date:'2025-11-07',price:6800,src:'manual'},
-  {id:1498,card:'イーブイex',condition:'played',date:'2025-11-14',price:6400,src:'manual'},
-  {id:1499,card:'イーブイex',condition:'played',date:'2025-11-21',price:6800,src:'manual'},
-  {id:1500,card:'イーブイex',condition:'played',date:'2025-11-28',price:6600,src:'manual'},
-  {id:1501,card:'イーブイex',condition:'played',date:'2025-12-05',price:6200,src:'manual'},
-  {id:1502,card:'イーブイex',condition:'played',date:'2025-12-12',price:6800,src:'manual'},
-  {id:1503,card:'イーブイex',condition:'played',date:'2025-12-19',price:6300,src:'manual'},
-  {id:1504,card:'イーブイex',condition:'played',date:'2025-12-26',price:6400,src:'manual'},
-  {id:1505,card:'イーブイex',condition:'played',date:'2026-01-02',price:6800,src:'manual'},
-  {id:1506,card:'イーブイex',condition:'played',date:'2026-01-09',price:6700,src:'manual'},
-  {id:1507,card:'イーブイex',condition:'played',date:'2026-01-16',price:6800,src:'manual'},
-  {id:1508,card:'イーブイex',condition:'played',date:'2026-01-23',price:6300,src:'manual'},
-  {id:1509,card:'イーブイex',condition:'played',date:'2026-01-30',price:6500,src:'manual'},
-  {id:1510,card:'イーブイex',condition:'played',date:'2026-02-06',price:6200,src:'manual'},
-  {id:1511,card:'イーブイex',condition:'played',date:'2026-02-13',price:6700,src:'manual'},
-  {id:1512,card:'イーブイex',condition:'played',date:'2026-02-20',price:6300,src:'manual'},
-  {id:1513,card:'イーブイex',condition:'played',date:'2026-02-27',price:6800,src:'manual'},
-  {id:1514,card:'イーブイex',condition:'played',date:'2026-03-06',price:6300,src:'manual'},
-  {id:1515,card:'イーブイex',condition:'played',date:'2026-03-13',price:6400,src:'manual'},
-  {id:1516,card:'イーブイex',condition:'played',date:'2026-03-20',price:6300,src:'manual'},
-  {id:1517,card:'イーブイex',condition:'played',date:'2026-03-27',price:6200,src:'manual'},
-  {id:1518,card:'イーブイex',condition:'played',date:'2026-04-03',price:6200,src:'manual'},
-  {id:1519,card:'イーブイex',condition:'played',date:'2026-04-10',price:6300,src:'manual'},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   {id:1520,card:'フシギバナex',condition:'psa10',date:'2025-10-17',price:20100,src:'manual'},
   {id:1521,card:'フシギバナex',condition:'psa10',date:'2025-10-24',price:21100,src:'manual'},
   {id:1522,card:'フシギバナex',condition:'psa10',date:'2025-10-31',price:20000,src:'manual'},
@@ -6344,32 +6325,31 @@ let cardPH=[
   {id:1595,card:'フシギバナex',condition:'nm',date:'2026-03-27',price:9900,src:'manual'},
   {id:1596,card:'フシギバナex',condition:'nm',date:'2026-04-03',price:10500,src:'manual'},
   {id:1597,card:'フシギバナex',condition:'nm',date:'2026-04-10',price:9700,src:'manual'},
-  {id:1598,card:'フシギバナex',condition:'played',date:'2025-10-17',price:5500,src:'manual'},
-  {id:1599,card:'フシギバナex',condition:'played',date:'2025-10-24',price:5600,src:'manual'},
-  {id:1600,card:'フシギバナex',condition:'played',date:'2025-10-31',price:5700,src:'manual'},
-  {id:1601,card:'フシギバナex',condition:'played',date:'2025-11-07',price:5300,src:'manual'},
-  {id:1602,card:'フシギバナex',condition:'played',date:'2025-11-14',price:5200,src:'manual'},
-  {id:1603,card:'フシギバナex',condition:'played',date:'2025-11-21',price:5800,src:'manual'},
-  {id:1604,card:'フシギバナex',condition:'played',date:'2025-11-28',price:5800,src:'manual'},
-  {id:1605,card:'フシギバナex',condition:'played',date:'2025-12-05',price:5400,src:'manual'},
-  {id:1606,card:'フシギバナex',condition:'played',date:'2025-12-12',price:5300,src:'manual'},
-  {id:1607,card:'フシギバナex',condition:'played',date:'2025-12-19',price:5500,src:'manual'},
-  {id:1608,card:'フシギバナex',condition:'played',date:'2025-12-26',price:5700,src:'manual'},
-  {id:1609,card:'フシギバナex',condition:'played',date:'2026-01-02',price:5200,src:'manual'},
-  {id:1610,card:'フシギバナex',condition:'played',date:'2026-01-09',price:5700,src:'manual'},
-  {id:1611,card:'フシギバナex',condition:'played',date:'2026-01-16',price:5600,src:'manual'},
-  {id:1612,card:'フシギバナex',condition:'played',date:'2026-01-23',price:5300,src:'manual'},
-  {id:1613,card:'フシギバナex',condition:'played',date:'2026-01-30',price:5400,src:'manual'},
-  {id:1614,card:'フシギバナex',condition:'played',date:'2026-02-06',price:5300,src:'manual'},
-  {id:1615,card:'フシギバナex',condition:'played',date:'2026-02-13',price:5600,src:'manual'},
-  {id:1616,card:'フシギバナex',condition:'played',date:'2026-02-20',price:5300,src:'manual'},
-  {id:1617,card:'フシギバナex',condition:'played',date:'2026-02-27',price:5300,src:'manual'},
-  {id:1618,card:'フシギバナex',condition:'played',date:'2026-03-06',price:5700,src:'manual'},
-  {id:1619,card:'フシギバナex',condition:'played',date:'2026-03-13',price:5500,src:'manual'},
-  {id:1620,card:'フシギバナex',condition:'played',date:'2026-03-20',price:5700,src:'manual'},
-  {id:1621,card:'フシギバナex',condition:'played',date:'2026-03-27',price:5400,src:'manual'},
-  {id:1622,card:'フシギバナex',condition:'played',date:'2026-04-03',price:5600,src:'manual'},
-  {id:1623,card:'フシギバナex',condition:'played',date:'2026-04-10',price:5700,src:'manual'},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   {id:1624,card:'ゲンガーex',condition:'psa10',date:'2025-10-17',price:25400,src:'manual'},
   {id:1625,card:'ゲンガーex',condition:'psa10',date:'2025-10-24',price:24500,src:'manual'},
   {id:1626,card:'ゲンガーex',condition:'psa10',date:'2025-10-31',price:25400,src:'manual'},
@@ -6448,32 +6428,31 @@ let cardPH=[
   {id:1699,card:'ゲンガーex',condition:'nm',date:'2026-03-27',price:11800,src:'manual'},
   {id:1700,card:'ゲンガーex',condition:'nm',date:'2026-04-03',price:12000,src:'manual'},
   {id:1701,card:'ゲンガーex',condition:'nm',date:'2026-04-10',price:12600,src:'manual'},
-  {id:1702,card:'ゲンガーex',condition:'played',date:'2025-10-17',price:7300,src:'manual'},
-  {id:1703,card:'ゲンガーex',condition:'played',date:'2025-10-24',price:7000,src:'manual'},
-  {id:1704,card:'ゲンガーex',condition:'played',date:'2025-10-31',price:7200,src:'manual'},
-  {id:1705,card:'ゲンガーex',condition:'played',date:'2025-11-07',price:6700,src:'manual'},
-  {id:1706,card:'ゲンガーex',condition:'played',date:'2025-11-14',price:6900,src:'manual'},
-  {id:1707,card:'ゲンガーex',condition:'played',date:'2025-11-21',price:7300,src:'manual'},
-  {id:1708,card:'ゲンガーex',condition:'played',date:'2025-11-28',price:7100,src:'manual'},
-  {id:1709,card:'ゲンガーex',condition:'played',date:'2025-12-05',price:7000,src:'manual'},
-  {id:1710,card:'ゲンガーex',condition:'played',date:'2025-12-12',price:6900,src:'manual'},
-  {id:1711,card:'ゲンガーex',condition:'played',date:'2025-12-19',price:7200,src:'manual'},
-  {id:1712,card:'ゲンガーex',condition:'played',date:'2025-12-26',price:7300,src:'manual'},
-  {id:1713,card:'ゲンガーex',condition:'played',date:'2026-01-02',price:7400,src:'manual'},
-  {id:1714,card:'ゲンガーex',condition:'played',date:'2026-01-09',price:7100,src:'manual'},
-  {id:1715,card:'ゲンガーex',condition:'played',date:'2026-01-16',price:7100,src:'manual'},
-  {id:1716,card:'ゲンガーex',condition:'played',date:'2026-01-23',price:6600,src:'manual'},
-  {id:1717,card:'ゲンガーex',condition:'played',date:'2026-01-30',price:7200,src:'manual'},
-  {id:1718,card:'ゲンガーex',condition:'played',date:'2026-02-06',price:6600,src:'manual'},
-  {id:1719,card:'ゲンガーex',condition:'played',date:'2026-02-13',price:6800,src:'manual'},
-  {id:1720,card:'ゲンガーex',condition:'played',date:'2026-02-20',price:7200,src:'manual'},
-  {id:1721,card:'ゲンガーex',condition:'played',date:'2026-02-27',price:7300,src:'manual'},
-  {id:1722,card:'ゲンガーex',condition:'played',date:'2026-03-06',price:6900,src:'manual'},
-  {id:1723,card:'ゲンガーex',condition:'played',date:'2026-03-13',price:6800,src:'manual'},
-  {id:1724,card:'ゲンガーex',condition:'played',date:'2026-03-20',price:7300,src:'manual'},
-  {id:1725,card:'ゲンガーex',condition:'played',date:'2026-03-27',price:6700,src:'manual'},
-  {id:1726,card:'ゲンガーex',condition:'played',date:'2026-04-03',price:7000,src:'manual'},
-  {id:1727,card:'ゲンガーex',condition:'played',date:'2026-04-10',price:6700,src:'manual'},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   {id:1728,card:'ルチャブルex',condition:'psa10',date:'2025-10-17',price:15700,src:'manual'},
   {id:1729,card:'ルチャブルex',condition:'psa10',date:'2025-10-24',price:15400,src:'manual'},
   {id:1730,card:'ルチャブルex',condition:'psa10',date:'2025-10-31',price:15500,src:'manual'},
@@ -6552,32 +6531,31 @@ let cardPH=[
   {id:1803,card:'ルチャブルex',condition:'nm',date:'2026-03-27',price:7800,src:'manual'},
   {id:1804,card:'ルチャブルex',condition:'nm',date:'2026-04-03',price:7100,src:'manual'},
   {id:1805,card:'ルチャブルex',condition:'nm',date:'2026-04-10',price:7700,src:'manual'},
-  {id:1806,card:'ルチャブルex',condition:'played',date:'2025-10-17',price:4100,src:'manual'},
-  {id:1807,card:'ルチャブルex',condition:'played',date:'2025-10-24',price:4000,src:'manual'},
-  {id:1808,card:'ルチャブルex',condition:'played',date:'2025-10-31',price:4200,src:'manual'},
-  {id:1809,card:'ルチャブルex',condition:'played',date:'2025-11-07',price:4200,src:'manual'},
-  {id:1810,card:'ルチャブルex',condition:'played',date:'2025-11-14',price:4200,src:'manual'},
-  {id:1811,card:'ルチャブルex',condition:'played',date:'2025-11-21',price:3900,src:'manual'},
-  {id:1812,card:'ルチャブルex',condition:'played',date:'2025-11-28',price:4200,src:'manual'},
-  {id:1813,card:'ルチャブルex',condition:'played',date:'2025-12-05',price:4200,src:'manual'},
-  {id:1814,card:'ルチャブルex',condition:'played',date:'2025-12-12',price:3900,src:'manual'},
-  {id:1815,card:'ルチャブルex',condition:'played',date:'2025-12-19',price:4100,src:'manual'},
-  {id:1816,card:'ルチャブルex',condition:'played',date:'2025-12-26',price:4200,src:'manual'},
-  {id:1817,card:'ルチャブルex',condition:'played',date:'2026-01-02',price:3900,src:'manual'},
-  {id:1818,card:'ルチャブルex',condition:'played',date:'2026-01-09',price:3900,src:'manual'},
-  {id:1819,card:'ルチャブルex',condition:'played',date:'2026-01-16',price:4100,src:'manual'},
-  {id:1820,card:'ルチャブルex',condition:'played',date:'2026-01-23',price:3900,src:'manual'},
-  {id:1821,card:'ルチャブルex',condition:'played',date:'2026-01-30',price:4100,src:'manual'},
-  {id:1822,card:'ルチャブルex',condition:'played',date:'2026-02-06',price:3900,src:'manual'},
-  {id:1823,card:'ルチャブルex',condition:'played',date:'2026-02-13',price:4100,src:'manual'},
-  {id:1824,card:'ルチャブルex',condition:'played',date:'2026-02-20',price:4100,src:'manual'},
-  {id:1825,card:'ルチャブルex',condition:'played',date:'2026-02-27',price:4100,src:'manual'},
-  {id:1826,card:'ルチャブルex',condition:'played',date:'2026-03-06',price:4200,src:'manual'},
-  {id:1827,card:'ルチャブルex',condition:'played',date:'2026-03-13',price:4100,src:'manual'},
-  {id:1828,card:'ルチャブルex',condition:'played',date:'2026-03-20',price:4100,src:'manual'},
-  {id:1829,card:'ルチャブルex',condition:'played',date:'2026-03-27',price:4200,src:'manual'},
-  {id:1830,card:'ルチャブルex',condition:'played',date:'2026-04-03',price:3800,src:'manual'},
-  {id:1831,card:'ルチャブルex',condition:'played',date:'2026-04-10',price:4100,src:'manual'},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ];
 
 
@@ -6623,6 +6601,51 @@ async function loadCardImages(){
       if(url)cm.imgUrl=url;
     }
   }
+}
+
+
+// ── カードランキング フィルター変数 ──
+let cardActiveF='all';
+let cardSelectedPrefs=[];
+let cardPrefPanelOpen=false;
+
+function setCardF(f,el){
+  cardActiveF=f;
+  document.querySelectorAll('[data-cf]').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+  renderCardRank();
+}
+
+function initCardPrefGrid(){
+  const grid=document.getElementById('card-pref-grid');
+  if(!grid)return;
+  grid.innerHTML=ALL_PREFS.map((p,i)=>`<div class="pref-dp-chip ${cardSelectedPrefs.includes(p)?'active':''}" onclick="toggleCardPref(${i})">${p}</div>`).join('');
+}
+function toggleCardPref(idx){
+  const p=ALL_PREFS[idx];
+  const i=cardSelectedPrefs.indexOf(p);
+  if(i>=0)cardSelectedPrefs.splice(i,1);else cardSelectedPrefs.push(p);
+  document.querySelectorAll('#card-pref-grid .pref-dp-chip')[idx]?.classList.toggle('active',cardSelectedPrefs.includes(p));
+  updateCardPrefSummary();
+}
+function clearCardPrefs(){cardSelectedPrefs=[];initCardPrefGrid();updateCardPrefSummary();}
+function updateCardPrefSummary(){
+  const btn=document.getElementById('card-pref-summary-btn');
+  if(!btn)return;
+  if(!cardSelectedPrefs.length)btn.textContent='📍 全国 ▾';
+  else if(cardSelectedPrefs.length===1)btn.textContent=`📍 ${cardSelectedPrefs[0]} ▾`;
+  else btn.textContent=`📍 ${cardSelectedPrefs.length}地域選択中 ▾`;
+  renderCardRank();
+}
+function toggleCardPrefPanel(){
+  const panel=document.getElementById('card-pref-panel');
+  const ov=document.getElementById('overlay');
+  if(panel?.classList.contains('open')){closeCardPrefPanel();}
+  else{initCardPrefGrid();panel?.classList.add('open');if(ov)ov.style.display='block';}
+}
+function closeCardPrefPanel(){
+  document.getElementById('card-pref-panel')?.classList.remove('open');
+  document.getElementById('overlay').style.display='none';
 }
 
 // ── ランキングページ モード切替 ──
@@ -6730,6 +6753,7 @@ function selectCard(name){
   document.getElementById('card-sbb-name').textContent=name;
   document.getElementById('card-sbb-sub').textContent=cm?`${cm.set||''} ${cm.rarity?'/ '+cm.rarity:''}`:'';
   sbb.classList.add('show');
+  document.getElementById('card-filter-bar').style.display='flex';
   document.getElementById('card-no-select-msg').style.display='none';
   document.getElementById('card-rank-list-area').style.display='block';
   renderCardRank();
@@ -6739,6 +6763,7 @@ function clearSelectedCard(){
   selCard=null;
   document.getElementById('card-search-q').value='';
   document.getElementById('card-sbb').classList.remove('show');
+  document.getElementById('card-filter-bar').style.display='none';
   document.getElementById('card-no-select-msg').style.display='block';
   document.getElementById('card-rank-list-area').style.display='none';
 }
@@ -6751,7 +6776,16 @@ function closeCardDropdown(){
 // ── カードランキング描画 ──
 function renderCardRank(){
   if(!selCard)return;
-  const allList=cardStores.filter(s=>s.cardName===selCard&&(s.d===todayStr||s.d===yestStr));
+  const sortV=document.getElementById('card-sort-sel')?.value||'price';
+  let allList=cardStores.filter(s=>{
+    if(s.cardName!==selCard)return false;
+    if(s.d!==todayStr&&s.d!==yestStr)return false;
+    if(cardActiveF==='ship'&&!s.ship)return false;
+    if(cardActiveF==='walk'&&!s.walk)return false;
+    if(cardSelectedPrefs.length>0&&!cardSelectedPrefs.includes(s.pref))return false;
+    return true;
+  });
+  if(sortV==='name')allList.sort((a,b)=>a.name.localeCompare(b.name,'ja'));
   // PSAのみランキング（PSA10・PSA9のみ）
   const psaList=allList.filter(s=>s.condition==='psa10'||s.condition==='psa9').sort((a,b)=>b.price-a.price);
   // 全コンディション
@@ -6785,7 +6819,7 @@ function renderCardRank(){
         <span class="section-icon">✨</span>
         <div class="section-title-wrap">
           <div class="section-title" style="color:var(--purple);">全コンディション ランキング</div>
-          <div class="section-desc">素体・プレイ用を含む全買取情報</div>
+          <div class="section-desc">素体・PSA10・PSA9の全買取情報</div>
         </div>
         <div class="section-count" style="color:var(--purple);">${fullList.length}件</div>
       </div>
@@ -7314,6 +7348,41 @@ async function loadCardsFromAPI() {
 }
 
 
+// ── サーバー設定 ──
+const SERVER_URL = 'http://160.251.205.168:3000';
+let useServer = false; // サーバー接続が確認できたらtrueになる
+
+// サーバーからデータを取得
+async function loadFromServer() {
+  try {
+    const res = await fetch(`${SERVER_URL}/api/stores`);
+    if(!res.ok) throw new Error('サーバーエラー');
+    const data = await res.json();
+    if(data.length > 0) {
+      // サーバーのデータをデモデータに上書き
+      stores = data;
+      useServer = true;
+      addLog(`✅ サーバーから${data.length}件取得`, 'ok');
+      renderRisingRanking();
+      if(selBox) renderRank();
+    }
+  } catch(e) {
+    addLog(`⚠ サーバー未接続（デモモード）: ${e.message}`, 'warn');
+  }
+}
+
+// サーバーからアカウント一覧を取得してaccountsに反映
+async function syncAccountsFromServer() {
+  try {
+    const res = await fetch(`${SERVER_URL}/api/accounts`);
+    const data = await res.json();
+    if(data.length > 0) {
+      accounts = data;
+      addLog(`✅ アカウント${data.length}件同期`, 'ok');
+    }
+  } catch(e) {}
+}
+
 // ── 初期化 ──
 updateSels();
 renderMarket();
@@ -7322,6 +7391,11 @@ startTimer();
 // APIからセット（BOX）とカードを動的ロード
 loadSetsFromAPI();
 loadCardsFromAPI();
+// サーバーからデータ取得（接続できれば）
+loadFromServer();
+syncAccountsFromServer();
+// 30秒ごとにサーバーと同期
+setInterval(loadFromServer, 30000);
 </script>
 </body>
 </html>
