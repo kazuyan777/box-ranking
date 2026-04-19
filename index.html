@@ -134,8 +134,8 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 }
 .selected-box-banner.show{display:flex;}
 .sbb-accent-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 55%);}
-.sbb-img{width:120px;height:168px;border-radius:11px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.5);}
-.sbb-img img{width:100%;height:100%;object-fit:contain;display:block;background:var(--card2);}
+.sbb-img{width:auto;max-width:160px;height:140px;border-radius:11px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.5);}
+.sbb-img img{width:auto;height:100%;object-fit:contain;display:block;background:var(--card2);max-width:160px;}
 .sbb-info{flex:1;min-width:0;}
 .sbb-label{font-size:10px;color:var(--text3);letter-spacing:0.1em;margin-bottom:3px;}
 .sbb-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.05em;line-height:1;}
@@ -330,8 +330,8 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 .mkt-box-list{display:flex;flex-direction:column;gap:8px;}
 .mkt-box-row{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:13px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:all 0.16s;}
 .mkt-box-row:hover{border-color:rgba(255,203,5,0.24);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,0.28);}
-.mbr-img{width:110px;height:154px;border-radius:10px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.4);}
-.mbr-img img{width:100%;height:100%;object-fit:contain;display:block;background:var(--card2);}
+.mbr-img{width:auto;max-width:160px;height:120px;border-radius:10px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.4);}
+.mbr-img img{width:auto;height:100%;object-fit:contain;display:block;background:var(--card2);max-width:160px;}
 .mbr-info{flex:1;min-width:0;}
 .mbr-name{font-size:13px;font-weight:700;margin-bottom:2px;}
 .mbr-meta{font-size:10px;color:var(--text3);margin-bottom:4px;}
@@ -349,8 +349,8 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 .mkt-top-card{background:var(--card);border:1.5px solid var(--border2);border-radius:14px;padding:16px;margin-bottom:11px;position:relative;overflow:hidden;}
 .mkt-top-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 50%);}
 .mkt-top-hdr{display:flex;gap:13px;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap;}
-.mkt-box-img{width:160px;height:224px;border-radius:14px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:50px;flex-shrink:0;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,0.5);}
-.mkt-box-img img{width:100%;height:100%;object-fit:contain;display:block;background:var(--card2);}
+.mkt-box-img{width:auto;max-width:200px;height:180px;border-radius:14px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:50px;flex-shrink:0;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,0.5);}
+.mkt-box-img img{width:auto;height:100%;object-fit:contain;display:block;background:var(--card2);max-width:200px;}
 .mkt-box-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:0.05em;line-height:1;margin-bottom:3px;}
 .mkt-box-rel{font-size:11px;color:var(--text2);}
 .mkt-box-aliases{font-size:10px;color:var(--text3);margin-top:2px;}
@@ -490,6 +490,16 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 .card-section-hdr .section-title{color:var(--purple);}
 .card-section-hdr .section-count{color:var(--purple);}
 
+
+
+/* ── カード画像（縦長） ── */
+.card-img-upload{width:80px;height:112px;border-radius:8px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.3);}
+.card-img-upload img{width:100%;height:100%;object-fit:contain;display:block;}
+/* ランキング・相場表のカード画像も縦長に */
+.bdd-img.card-type{width:72px;height:100px;}
+.mbr-img.card-type{width:auto;max-width:100px;height:140px;}
+.mkt-box-img.card-type{width:auto;max-width:140px;height:196px;}
+.sbb-img.card-type{width:auto;max-width:100px;height:140px;}
 
 /* ── 編集モーダル ── */
 .edit-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:900;display:flex;align-items:center;justify-content:center;padding:16px;}
@@ -1352,7 +1362,17 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
           </div>
         </div>
         <div class="form-grp"><label>別名・検索ワード（カンマ区切り）</label><input type="text" id="cm-aliases" placeholder="例: ピカチュウEX, pikachu ex, ピカex"></div>
-        <div class="form-grp"><label>カード画像URL（任意）</label><input type="text" id="cm-img" placeholder="https://images.pokemontcg.io/..."></div>
+        <div class="form-grp"><label>カード画像（任意）</label>
+          <div class="img-upload-wrap">
+            <div class="img-upload-area" id="cm-img-area" style="width:80px;height:112px;border-radius:8px;">
+              <input type="file" id="cm-img-file" accept="image/*" onchange="onCmImgChange(event)">
+              <div id="cm-img-preview-wrap">
+                <div class="img-upload-text" style="font-size:10px;">📁 カード画像</div>
+              </div>
+            </div>
+          </div>
+          <input type="text" id="cm-img" placeholder="またはURLを入力 https://..." style="margin-top:6px;width:100%;background:var(--card2);border:1px solid var(--border);border-radius:7px;padding:6px 10px;color:var(--text);font-size:11px;box-sizing:border-box;" oninput="onCmImgUrl(this.value)">
+        </div>
         <div class="form-grp"><label>メモ</label><input type="text" id="cm-note" placeholder="備考など"></div>
         <button class="btn btn-primary" style="margin-top:8px" onclick="addCM()">✚ カードを登録</button>
       </div>
@@ -2483,6 +2503,38 @@ function renderACList(){
 
 
 
+
+// ── カード画像アップロード ──
+let cmImgData='';
+
+function onCmImgChange(e){
+  const file=e.target.files[0];if(!file)return;
+  if(file.size>3*1024*1024){toast('画像サイズが大きすぎます（3MB以下推奨）','err');return;}
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    cmImgData=ev.target.result;
+    const wrap=document.getElementById('cm-img-preview-wrap');
+    if(wrap) wrap.innerHTML=`<img src="${cmImgData}" style="width:100%;height:100%;object-fit:contain;display:block;border-radius:6px;">`;
+    document.getElementById('cm-img').value='';
+  };
+  reader.readAsDataURL(file);
+}
+
+function onCmImgUrl(url){
+  if(!url)return;
+  cmImgData='';
+  const wrap=document.getElementById('cm-img-preview-wrap');
+  if(wrap) wrap.innerHTML=`<img src="${url}" style="width:100%;height:100%;object-fit:contain;display:block;border-radius:6px;" onerror="this.style.display='none'">`;
+}
+
+function clearCmImg(){
+  cmImgData='';
+  const wrap=document.getElementById('cm-img-preview-wrap');
+  if(wrap) wrap.innerHTML='<div class="img-upload-text" style="font-size:10px;">📁 カード画像</div>';
+  const fileEl=document.getElementById('cm-img-file');
+  if(fileEl) fileEl.value='';
+}
+
 // ════════════════════════════════════════
 // 単品カード管理
 // ════════════════════════════════════════
@@ -2531,6 +2583,7 @@ function clearCMForm(){
   ['cm-name','cm-set','cm-number','cm-aliases','cm-img','cm-note'].forEach(id=>{
     const el=document.getElementById(id);if(el)el.value='';
   });
+  clearCmImg();
   const rEl=document.getElementById('cm-rarity');if(rEl)rEl.value='';
   const hEl=document.getElementById('cm-howtget');if(hEl)hEl.value='拡張パック封入';
   const dEl=document.getElementById('cm-date');if(dEl)dEl.value='';
@@ -2551,7 +2604,7 @@ async function addCM(){
     number:document.getElementById('cm-number')?.value.trim()||'',
     howToGet:document.getElementById('cm-howtget')?.value||'拡張パック封入',
     aliases:document.getElementById('cm-aliases')?.value.split(',').map(s=>s.trim()).filter(Boolean)||[],
-    imgUrl:document.getElementById('cm-img')?.value.trim()||'',
+    imgUrl:cmImgData||document.getElementById('cm-img')?.value.trim()||'',
     note:document.getElementById('cm-note')?.value.trim()||'',
   };
 
