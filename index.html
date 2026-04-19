@@ -2097,17 +2097,55 @@ function showPage(p){
 function goAdmin(){loggedIn?showPage('admin'):showPage('login');}
 
 // ── 認証 ──
-function doLogin(){
+async function doLogin(){
   const id=document.getElementById('login-id').value.trim(),pw=document.getElementById('login-pw').value;
-  if(id===cred.id&&pw===cred.pw){loggedIn=true;document.getElementById('login-err').classList.remove('show');document.getElementById('login-id').value='';document.getElementById('login-pw').value='';showPage('admin');}
-  else document.getElementById('login-err').classList.add('show');
+  // まずサーバーで認証を試みる
+  try{
+    const res=await fetch(`${SERVER_URL}/api/auth`,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id,pw})
+    });
+    if(res.ok){
+      const data=await res.json();
+      if(data.ok){
+        cred={id,pw};
+        loggedIn=true;
+        document.getElementById('login-err').classList.remove('show');
+        document.getElementById('login-id').value='';
+        document.getElementById('login-pw').value='';
+        showPage('admin');return;
+      }
+    }
+  }catch(e){}
+  // サーバー未接続時はローカル認証
+  if(id===cred.id&&pw===cred.pw){
+    loggedIn=true;
+    document.getElementById('login-err').classList.remove('show');
+    document.getElementById('login-id').value='';
+    document.getElementById('login-pw').value='';
+    showPage('admin');
+  }else{
+    document.getElementById('login-err').classList.add('show');
+  }
 }
 function doLogout(){loggedIn=false;showPage('public');toast('ログアウトしました','ok');}
-function changePW(){
+async function changePW(){
   const id=document.getElementById('new-id').value.trim(),pw=document.getElementById('new-pw').value,pw2=document.getElementById('new-pw2').value;
   if(!id||!pw)return toast('入力してください','err');
   if(pw!==pw2)return toast('パスワードが一致しません','err');
-  cred={id,pw};['new-id','new-pw','new-pw2'].forEach(i=>document.getElementById(i).value='');toast('変更しました','ok');
+  cred={id,pw};
+  ['new-id','new-pw','new-pw2'].forEach(i=>document.getElementById(i).value='');
+  // サーバーに保存
+  try{
+    await fetch(`${SERVER_URL}/api/auth/update`,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id,pw})
+    });
+    toast('変更しました（サーバーに保存済み）','ok');
+    addLog('✅ 管理者ID・パスワードを変更しました','ok');
+  }catch(e){
+    toast('変更しました（サーバー未接続：次回接続時まで有効）','ok');
+  }
 }
 function switchATab(t,el){
   document.querySelectorAll('.atb').forEach(x=>x.classList.remove('on'));
@@ -2115,14 +2153,7 @@ function switchATab(t,el){
   el.classList.add('on');document.getElementById('aTab-'+t).classList.add('on');
   if(t==='history'){
     renderPHTable();
-    // アカウント選択リストを更新
-    const targetEl=document.getElementById('crawl-target');
-    if(targetEl){
-      const acts=accounts.filter(a=>a.active&&a.historicalTw?.length);
-      targetEl.innerHTML='<option value="all">全アカウント</option>'+acts.map(a=>`<option value="${a.id}">${a.name}（${(a.historicalTw||[]).length}件）</option>`).join('');
-    }
-    const cc=document.getElementById('crawl-ac-count');
-    if(cc)cc.textContent=accounts.filter(a=>a.active&&a.historicalTw?.length).length;
+    initCrawlTarget();
     updateCostEstimate();
   }
 }
@@ -2366,22 +2397,37 @@ async function crawlHistoricalTweets(){
 }
 
 // ── BOXマスター ──
-function addBM(){
+async function addBM(){
   const name=document.getElementById('bm-name').value.trim();
   if(!name)return toast('BOX名は必須です','err');
   if(bms.find(b=>b.name===name))return toast('同名のBOXが存在します','err');
   const al=document.getElementById('bm-aliases').value.trim();
   const msrp=parseInt(document.getElementById('bm-msrp').value)||null;
-  bms.push({id:Date.now(),name,aliases:al?al.split(',').map(s=>s.trim()).filter(Boolean):[],releaseDate:document.getElementById('bm-date').value,imgUrl:bmImgData||'',note:document.getElementById('bm-note').value.trim(),msrp});
-  clearBMForm();renderBMList();updateSels();toast('BOXを登録しました','ok');
+  const entry={id:Date.now(),name,aliases:al?al.split(',').map(s=>s.trim()).filter(Boolean):[],releaseDate:document.getElementById('bm-date').value,imgUrl:bmImgData||'',note:document.getElementById('bm-note').value.trim(),msrp};
+  bms.push(entry);
+  clearBMForm();renderBMList();updateSels();
+  try{
+    await fetch(`${SERVER_URL}/api/bms`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(entry)});
+    toast('BOXを登録しました（サーバーに同期済み）','ok');
+    addLog(`✅ BOX登録: ${name}`,'ok');
+  }catch(e){ toast('BOXを登録しました（サーバー未接続）','ok'); }
 }
 function clearBMForm(){
   ['bm-name','bm-aliases','bm-note','bm-msrp'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('bm-date').value='';
   clearBmImg();
 }
-function delBM(id){if(!confirm('削除しますか？'))return;bms=bms.filter(b=>b.id!==id);renderBMList();updateSels();toast('削除しました','ok');}
-function clearAllBM(){if(!confirm('全削除しますか？'))return;bms=[];renderBMList();updateSels();toast('削除しました','ok');}
+async function delBM(id){
+  if(!confirm('削除しますか？'))return;
+  bms=bms.filter(b=>b.id!==id);renderBMList();updateSels();
+  try{ await fetch(`${SERVER_URL}/api/bms/${id}`,{method:'DELETE'}); toast('削除しました（サーバーに同期済み）','ok'); }
+  catch(e){ toast('削除しました（サーバー未接続）','ok'); }
+}
+async function clearAllBM(){
+  if(!confirm('全削除しますか？'))return;
+  for(const b of bms){ try{ await fetch(`${SERVER_URL}/api/bms/${b.id}`,{method:'DELETE'}); }catch(e){} }
+  bms=[];renderBMList();updateSels();toast('全削除しました','ok');
+}
 function renderBMList(){
   document.getElementById('bm-count').textContent=bms.length;
   const el=document.getElementById('bm-list');
@@ -2800,17 +2846,30 @@ async function saveCard(id){
 // ── 買取情報 ──
 function setShrink(v){shrinkMode=v;document.getElementById('stog-s').classList.toggle('on',v);document.getElementById('stog-n').classList.toggle('on',!v);}
 function fillAC(){const id=parseInt(document.getElementById('ent-ac').value);if(!id)return;const a=accounts.find(x=>x.id===id);if(!a)return;document.getElementById('ent-name').value=a.name;document.getElementById('ent-handle').value=a.handle;document.getElementById('ent-pref').value=a.pref||'';document.getElementById('ent-ship').checked=a.ship;document.getElementById('ent-walk').checked=a.walk;}
-function addENT(){
+async function addENT(){
   const name=document.getElementById('ent-name').value.trim(),box=document.getElementById('ent-box').value,price=parseInt(document.getElementById('ent-price').value);
   if(!name||!box||!price)return toast('必須項目を入力してください','err');
   const expire=document.getElementById('ent-expire').value||null;
   if(expire&&expire<todayStr)return toast('買取期限が過去の日付です','err');
-  stores.unshift({id:Date.now(),shrink:shrinkMode,name,handle:document.getElementById('ent-handle').value.trim()||'@unknown',box,price,pref:document.getElementById('ent-pref').value,ship:document.getElementById('ent-ship').checked,walk:document.getElementById('ent-walk').checked,expire,url:document.getElementById('ent-url').value.trim(),ai:false,d:todayStr});
-  clearENTForm();renderENTList();if(selBox===box)renderRank();toast('追加しました','ok');
+  const entry={id:Date.now(),shrink:shrinkMode,name,handle:document.getElementById('ent-handle').value.trim()||'@unknown',box,price,pref:document.getElementById('ent-pref').value,ship:document.getElementById('ent-ship').checked,walk:document.getElementById('ent-walk').checked,expire,url:document.getElementById('ent-url').value.trim(),ai:false,d:todayStr};
+  stores.unshift(entry);
+  clearENTForm();renderENTList();if(selBox===box)renderRank();
+  try{
+    await fetch(`${SERVER_URL}/api/stores`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(entry)});
+    toast('追加しました（サーバーに同期済み）','ok');
+  }catch(e){ toast('追加しました（サーバー未接続）','ok'); }
 }
 function clearENTForm(){['ent-name','ent-handle','ent-price','ent-url'].forEach(id=>document.getElementById(id).value='');document.getElementById('ent-pref').value='';document.getElementById('ent-expire').value='';document.getElementById('ent-ship').checked=true;document.getElementById('ent-walk').checked=false;document.getElementById('ent-ac').value='';document.getElementById('ent-box').value='';}
-function delENT(id){stores=stores.filter(s=>s.id!==id);renderENTList();if(selBox)renderRank();toast('削除しました','ok');}
-function clearAllENT(){if(!confirm('全削除しますか？'))return;stores=[];renderENTList();if(selBox)renderRank();toast('削除しました','ok');}
+async function delENT(id){
+  stores=stores.filter(s=>s.id!==id);renderENTList();if(selBox)renderRank();
+  try{ await fetch(`${SERVER_URL}/api/stores/${id}`,{method:'DELETE'}); toast('削除しました（サーバーに同期済み）','ok'); }
+  catch(e){ toast('削除しました','ok'); }
+}
+async function clearAllENT(){
+  if(!confirm('全削除しますか？'))return;
+  try{ await fetch(`${SERVER_URL}/api/stores`,{method:'DELETE'}); }catch(e){}
+  stores=[];renderENTList();if(selBox)renderRank();toast('全削除しました','ok');
+}
 function renderENTList(){
   document.getElementById('ent-count').textContent=stores.length;
   const el=document.getElementById('ent-list');
@@ -3530,6 +3589,20 @@ async function loadCardImagesFromAPI(){ }
 
 // ── サーバー設定 ──
 const SERVER_URL = 'https://api.rankard.jp';
+
+// サーバーから認証情報を取得
+async function loadCredFromServer(){
+  try{
+    const res=await fetch(`${SERVER_URL}/api/auth/cred`);
+    if(res.ok){
+      const data=await res.json();
+      if(data.id&&data.pw){
+        cred={id:data.id,pw:data.pw};
+        addLog('✅ 認証情報をサーバーから取得','ok');
+      }
+    }
+  }catch(e){}
+}
 let useServer = false; // サーバー接続が確認できたらtrueになる
 
 // サーバーからデータを取得
@@ -3587,6 +3660,8 @@ startTimer();
 loadFromServer();
 syncAccountsFromServer();
 loadMastersFromServer();
+// サーバーから認証情報を取得
+loadCredFromServer();
 // 30秒ごとにサーバーと同期
 setInterval(loadFromServer, 30000);
 </script>
