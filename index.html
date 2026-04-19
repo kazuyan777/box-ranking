@@ -488,6 +488,17 @@ header{background:rgba(8,9,13,0.94);border-bottom:1px solid var(--border);paddin
 .card-section-hdr .section-title{color:var(--purple);}
 .card-section-hdr .section-count{color:var(--purple);}
 
+
+/* ── 編集モーダル ── */
+.edit-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:900;display:flex;align-items:center;justify-content:center;padding:16px;}
+.edit-modal{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:20px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto;}
+.edit-modal h3{font-size:14px;font-weight:700;margin-bottom:14px;color:var(--accent);}
+.edit-modal .form-group{margin-bottom:10px;}
+.edit-modal label{font-size:11px;color:var(--text2);display:block;margin-bottom:3px;}
+.edit-modal input,.edit-modal select{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:7px;padding:7px 10px;color:var(--text);font-size:12px;box-sizing:border-box;}
+.edit-modal-btns{display:flex;gap:8px;margin-top:14px;}
+.edit-modal-btns button{flex:1;padding:8px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;}
+
 /* ── 特徴バナー ── */
 .feature-banner{
   background:linear-gradient(135deg,rgba(255,203,5,0.06),rgba(61,217,196,0.04));
@@ -2247,7 +2258,10 @@ function renderBMList(){
         <div class="bm-row-name">📦 ${b.name}${b.msrp?` <span style="font-size:10px;color:var(--text3);font-weight:400;">定価 ${b.msrp.toLocaleString()}円</span>`:''}</div>
         <div class="bm-row-meta">${b.releaseDate?`発売:${b.releaseDate}　`:''}${(b.aliases||[]).length?`別名:${b.aliases.join(', ')}`:''}</div>
       </div>
-      <button class="btn btn-danger" style="font-size:10px;padding:4px 8px" onclick="delBM(${b.id})">削除</button>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <button class="btn btn-ghost" style="font-size:10px;padding:4px 8px" onclick="editBM(${b.id})">編集</button>
+        <button class="btn btn-danger" style="font-size:10px;padding:4px 8px" onclick="delBM(${b.id})">削除</button>
+      </div>
     </div>`;
   }).join('');
 }
@@ -2352,8 +2366,169 @@ function renderACList(){
       <button class="btn btn-ghost" style="font-size:10px;padding:4px 7px" onclick="toggleAC(${a.id})">${a.active?'無効化':'有効化'}</button>
       <a href="${a.url}" target="_blank" class="btn btn-teal" style="font-size:10px;padding:4px 7px;text-decoration:none;text-align:center">𝕏</a>
       <button class="btn btn-danger" style="font-size:10px;padding:4px 7px" onclick="delAC(${a.id})">削除</button>
+      <button class="btn btn-ghost" style="font-size:10px;padding:4px 7px" onclick="editAC(${a.id})">編集</button>
     </div>
   </div>`).join('');
+}
+
+
+// ════════════════════════════════════════
+// 編集機能
+// ════════════════════════════════════════
+
+function closeEditModal(e){
+  if(e && e.target.id !== 'edit-modal-overlay') return;
+  document.getElementById('edit-modal-overlay').style.display='none';
+}
+function openEditModal(html){
+  document.getElementById('edit-modal-content').innerHTML=html;
+  document.getElementById('edit-modal-overlay').style.display='flex';
+}
+
+// ── BOX編集 ──
+function editBM(id){
+  const b=bms.find(x=>x.id===id);
+  if(!b)return;
+  openEditModal(`
+    <h3>📦 BOX編集</h3>
+    <div class="form-group"><label>BOX名</label>
+      <input id="ebm-name" value="${b.name}"></div>
+    <div class="form-group"><label>発売日</label>
+      <input id="ebm-date" type="date" value="${b.releaseDate||''}"></div>
+    <div class="form-group"><label>定価（円）</label>
+      <input id="ebm-msrp" type="number" value="${b.msrp||5500}"></div>
+    <div class="form-group"><label>画像URL</label>
+      <input id="ebm-img" value="${b.imgUrl||''}" placeholder="https://..."></div>
+    <div class="form-group"><label>別名・検索ワード（カンマ区切り）</label>
+      <input id="ebm-aliases" value="${(b.aliases||[]).join(', ')}"></div>
+    <div class="form-group"><label>メモ</label>
+      <input id="ebm-note" value="${b.note||''}"></div>
+    <div class="edit-modal-btns">
+      <button class="btn btn-primary" onclick="saveBM(${id})">保存</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('edit-modal-overlay').style.display='none'">キャンセル</button>
+    </div>
+  `);
+}
+
+async function saveBM(id){
+  const b=bms.find(x=>x.id===id);
+  if(!b)return;
+  b.name=document.getElementById('ebm-name').value.trim();
+  b.releaseDate=document.getElementById('ebm-date').value;
+  b.msrp=parseInt(document.getElementById('ebm-msrp').value)||5500;
+  b.imgUrl=document.getElementById('ebm-img').value.trim();
+  b.aliases=document.getElementById('ebm-aliases').value.split(',').map(s=>s.trim()).filter(Boolean);
+  b.note=document.getElementById('ebm-note').value.trim();
+  document.getElementById('edit-modal-overlay').style.display='none';
+  renderBMList();updateSels();renderMarket();
+  // サーバーに同期
+  try{
+    await fetch(`${SERVER_URL}/api/bms/${id}`,{
+      method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)
+    });
+    toast('BOXを更新しました','ok');
+  }catch(e){toast('BOXを更新しました（サーバー未接続）','ok');}
+}
+
+// ── アカウント編集 ──
+function editAC(id){
+  const a=accounts.find(x=>x.id===id);
+  if(!a)return;
+  const prefOpts=ALL_PREFS.map(p=>`<option value="${p}" ${a.pref===p?'selected':''}>${p}</option>`).join('');
+  openEditModal(`
+    <h3>🏪 アカウント編集</h3>
+    <div class="form-group"><label>店舗名</label>
+      <input id="eac-name" value="${a.name}"></div>
+    <div class="form-group"><label>XのURL</label>
+      <input id="eac-url" value="${a.url||''}"></div>
+    <div class="form-group"><label>都道府県</label>
+      <select id="eac-pref"><option value="">未設定</option>${prefOpts}</select></div>
+    <div class="form-group"><label>営業時間</label>
+      <input id="eac-hours" value="${a.hours||''}"></div>
+    <div class="form-group"><label>定休日</label>
+      <input id="eac-holiday" value="${a.holiday||''}"></div>
+    <div class="form-group"><label>メモ</label>
+      <input id="eac-note" value="${a.note||''}"></div>
+    <div class="form-group" style="display:flex;gap:12px;">
+      <label><input type="checkbox" id="eac-ship" ${a.ship?'checked':''}> 発送対応</label>
+      <label><input type="checkbox" id="eac-walk" ${a.walk?'checked':''}> 持込対応</label>
+    </div>
+    <div class="edit-modal-btns">
+      <button class="btn btn-primary" onclick="saveAC(${id})">保存</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('edit-modal-overlay').style.display='none'">キャンセル</button>
+    </div>
+  `);
+}
+
+async function saveAC(id){
+  const a=accounts.find(x=>x.id===id);
+  if(!a)return;
+  a.name=document.getElementById('eac-name').value.trim();
+  a.url=document.getElementById('eac-url').value.trim();
+  a.handle='@'+a.url.replace(/.*x\.com\//,'').replace(/\/.*/,'').replace('@','');
+  a.pref=document.getElementById('eac-pref').value;
+  a.hours=document.getElementById('eac-hours').value.trim();
+  a.holiday=document.getElementById('eac-holiday').value.trim();
+  a.note=document.getElementById('eac-note').value.trim();
+  a.ship=document.getElementById('eac-ship').checked;
+  a.walk=document.getElementById('eac-walk').checked;
+  document.getElementById('edit-modal-overlay').style.display='none';
+  renderACList();updateSels();
+  // サーバーに同期
+  try{
+    await fetch(`${SERVER_URL}/api/accounts/${encodeURIComponent(a.handle)}`,{
+      method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(a)
+    });
+    toast('アカウントを更新しました','ok');
+  }catch(e){toast('アカウントを更新しました（サーバー未接続）','ok');}
+}
+
+// ── カード編集 ──
+function editCard(id){
+  const cm=cardMasters.find(x=>x.id===id);
+  if(!cm)return;
+  openEditModal(`
+    <h3>✨ カード編集</h3>
+    <div class="form-group"><label>カード名</label>
+      <input id="ecm-name" value="${cm.name}"></div>
+    <div class="form-group"><label>収録パック</label>
+      <input id="ecm-set" value="${cm.set||''}"></div>
+    <div class="form-group"><label>レアリティ</label>
+      <input id="ecm-rarity" value="${cm.rarity||''}" placeholder="SAR / SR / UR など"></div>
+    <div class="form-group"><label>発売日</label>
+      <input id="ecm-date" type="date" value="${cm.releaseDate||''}"></div>
+    <div class="form-group"><label>入手方法</label>
+      <input id="ecm-how" value="${cm.howToGet||''}"></div>
+    <div class="form-group"><label>画像URL</label>
+      <input id="ecm-img" value="${cm.imgUrl||''}" placeholder="https://..."></div>
+    <div class="form-group"><label>別名・検索ワード（カンマ区切り）</label>
+      <input id="ecm-aliases" value="${(cm.aliases||[]).join(', ')}"></div>
+    <div class="edit-modal-btns">
+      <button class="btn btn-primary" onclick="saveCard(${id})">保存</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('edit-modal-overlay').style.display='none'">キャンセル</button>
+    </div>
+  `);
+}
+
+async function saveCard(id){
+  const cm=cardMasters.find(x=>x.id===id);
+  if(!cm)return;
+  cm.name=document.getElementById('ecm-name').value.trim();
+  cm.set=document.getElementById('ecm-set').value.trim();
+  cm.rarity=document.getElementById('ecm-rarity').value.trim();
+  cm.releaseDate=document.getElementById('ecm-date').value;
+  cm.howToGet=document.getElementById('ecm-how').value.trim();
+  cm.imgUrl=document.getElementById('ecm-img').value.trim();
+  cm.aliases=document.getElementById('ecm-aliases').value.split(',').map(s=>s.trim()).filter(Boolean);
+  document.getElementById('edit-modal-overlay').style.display='none';
+  renderCardMarket && renderCardMarket();
+  // サーバーに同期
+  try{
+    await fetch(`${SERVER_URL}/api/cards/${id}`,{
+      method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(cm)
+    });
+    toast('カードを更新しました','ok');
+  }catch(e){toast('カードを更新しました（サーバー未接続）','ok');}
 }
 
 // ── 買取情報 ──
@@ -2441,35 +2616,9 @@ let cardChartPeriod='all';
 let cardRTab='nm';
 let detailCard=null;
 
-// ── ポケモンTCG API 画像自動取得 ──
-async function fetchCardImage(cardName){
-  try{
-    // カード名を英語に変換するシンプルなマッピング
-    const nameMap={
-      'ピカチュウex':'pikachu ex','リザードンex':'charizard ex',
-      'カビゴンex':'snorlax ex','ミュウツーex':'mewtwo ex',
-      'イーブイex':'eevee ex','フシギバナex':'bulbasaur ex',
-      'ゲンガーex':'gengar ex','ルチャブルex':'hawlucha ex',
-    };
-    const en=nameMap[cardName]||cardName;
-    const res=await fetch(`https://api.pokemontcg.io/v2/cards?q=name:"${encodeURIComponent(en)}"&pageSize=1`);
-    const data=await res.json();
-    if(data.data&&data.data.length>0){
-      return data.data[0].images.small;
-    }
-  }catch(e){}
-  return null;
-}
-
-// カード画像を非同期で取得してマスターに設定
-async function loadCardImages(){
-  for(const cm of cardMasters){
-    if(!cm.imgUrl){
-      const url=await fetchCardImage(cm.name);
-      if(url)cm.imgUrl=url;
-    }
-  }
-}
+// 画像取得はサーバー経由（英語APIは使用しない）
+async function fetchCardImage(name){ return null; }
+async function loadCardImages(){ }
 
 
 // ── カードランキング フィルター変数 ──
@@ -3002,7 +3151,7 @@ function renderCardRecentRows(){
 // BOX（セット）・カード画像を起動時に自動取得
 // ════════════════════════════════════════
 
-// 日本のセットIDマッピング（pokemontcg.io の id）
+// 日本のセットIDマッピング
 // SV = スカーレット・バイオレット, S = ソード・シールド
 const JP_SET_IDS = [
   // スカーレット・バイオレット シリーズ
@@ -3058,155 +3207,59 @@ const SET_MSRP = {
   's1a':5500,'s1':5500,
 };
 
+// ── BOX・カードは管理者ページから手動登録 ──
+// ポケモンTCG APIは英語版データのみのため使用しない
+// 管理者ページの「BOX管理」「カード管理」から日本語で正確に登録してください
+
 let apiSetsLoaded = false;
 let apiCardsLoaded = false;
 
-// セット（BOX）をAPIから取得してbmsに追加
-async function loadSetsFromAPI() {
-  if(apiSetsLoaded) return;
-  const statusEl = document.getElementById('api-load-status');
-  if(statusEl) statusEl.style.display = 'flex';
-  
+// 起動時にサーバーからBOX・カードマスターを取得
+async function loadMastersFromServer() {
   try {
-    addLog('🌐 ポケモンTCG APIからセット情報を取得中...', 'ai');
-    
-    // 全セットを取得（1ページ最大250件）
-    const res = await fetch('https://api.pokemontcg.io/v2/sets?pageSize=250&orderBy=-releaseDate');
-    const data = await res.json();
-    const sets = data.data || [];
-    
-    addLog(`  取得成功: ${sets.length}セット`, 'ok');
-    
-    let addedCount = 0;
-    let nextId = Math.max(...bms.map(b => b.id), 0) + 1;
-    
-    for(const set of sets) {
-      // すでに登録済みのセットはスキップ
-      const alreadyExists = bms.some(b => 
-        b.name === set.name || 
-        (b.aliases||[]).includes(set.id) ||
-        b.name.includes(set.name.substring(0,4))
-      );
-      if(alreadyExists) continue;
-      
-      // セットのロゴ画像URL
-      const imgUrl = set.images?.logo || set.images?.symbol || '';
-      const jpName = SET_JP_NAMES[set.id] || set.name;
-      const msrp = SET_MSRP[set.id] || 5500;
-      
-      bms.push({
-        id: nextId++,
-        name: set.name,
-        aliases: [set.id, jpName !== set.name ? jpName : ''].filter(Boolean),
-        releaseDate: set.releaseDate || '',
-        imgUrl,
-        note: `${set.series || ''} / ${set.printedTotal || 0}枚`,
-        msrp,
-      });
-      addedCount++;
+    // BOXマスター取得
+    const bmsRes = await fetch(`${SERVER_URL}/api/bms`);
+    if(bmsRes.ok) {
+      const bmsData = await bmsRes.json();
+      if(bmsData.length > 0) {
+        bms = bmsData;
+        updateSels();
+        renderMarket && renderMarket();
+        addLog(`✅ BOX ${bmsData.length}件をサーバーから取得`, 'ok');
+      }
     }
-    
-    addLog(`  ✅ ${addedCount}セットを追加登録`, 'ok');
-    apiSetsLoaded = true;
-    
-    // UI更新
-    updateSels();
-    renderBMList && renderBMList();
-    if(typeof renderDropdown === 'function' && currentDropdownList.length > 0) {
-      renderDropdown(currentDropdownList);
-    }
-    renderMarket();
-    
   } catch(e) {
-    addLog(`  ⚠ API取得失敗: ${e.message}`, 'warn');
+    addLog(`⚠ BOXマスター取得失敗（管理ページから登録してください）`, 'warn');
   }
-  
-  if(statusEl) statusEl.style.display = 'none';
+  try {
+    // カードマスター取得
+    const cmRes = await fetch(`${SERVER_URL}/api/cards`);
+    if(cmRes.ok) {
+      const cmData = await cmRes.json();
+      if(cmData.length > 0) {
+        cardMasters = cmData;
+        renderCardMarket && renderCardMarket();
+        addLog(`✅ カード ${cmData.length}件をサーバーから取得`, 'ok');
+      }
+    }
+  } catch(e) {
+    addLog(`⚠ カードマスター取得失敗（管理ページから登録してください）`, 'warn');
+  }
 }
 
-// カード名の日本語→英語マッピング
+async function loadSetsFromAPI() {
+  // 英語APIは使用しない
+  addLog('ℹ BOX・カードは管理者ページから登録してください', 'warn');
+}
+
+async function loadCardsFromAPI() {
+  // 英語APIは使用しない
+}
+
 const CARD_NAME_EN = {};
 
-// 起動時に各カードの正確な画像URLをAPIから取得
-async function fetchCardImageByName(jpName){
-  const enName = CARD_NAME_EN[jpName] || jpName;
-  try{
-    const res = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:"${encodeURIComponent(enName)}"&pageSize=5&orderBy=-set.releaseDate`);
-    const data = await res.json();
-    if(data.data && data.data.length > 0){
-      // 最新セットのカードを優先
-      const card = data.data[0];
-      return card.images?.large || card.images?.small || '';
-    }
-  }catch(e){}
-  return '';
-}
-
-async function loadCardImagesFromAPI(){
-  for(const cm of cardMasters){
-    const url = await fetchCardImageByName(cm.name);
-    if(url) cm.imgUrl = url;
-    await new Promise(r=>setTimeout(r,80)); // レート制限対策
-  }
-  // UI更新
-  renderCardMarket && renderCardMarket();
-  if(selCard) renderCardRank && renderCardRank();
-}
-
-// カードをAPIから取得してcardMastersに追加
-async function loadCardsFromAPI() {
-  if(apiCardsLoaded) return;
-  const statusEl = document.getElementById('api-load-status');
-  if(statusEl) { statusEl.style.display = 'flex'; statusEl.querySelector('span').textContent = 'カード情報を取得中...'; }
-  
-  try {
-    addLog('🌐 ポケモンTCG APIから人気カード情報を取得中...', 'ai');
-    
-    // 高レアリティカードを取得（SAR, UR, HR, SR）
-    const rarities = ['Special Illustration Rare','Ultra Rare','Hyper Rare','Secret Rare'];
-    let allCards = [];
-    
-    for(const rarity of rarities) {
-      const res = await fetch(`https://api.pokemontcg.io/v2/cards?q=rarity:"${encodeURIComponent(rarity)}"&pageSize=250&orderBy=-set.releaseDate`);
-      const data = await res.json();
-      if(data.data) allCards = allCards.concat(data.data);
-      await new Promise(r => setTimeout(r, 100));
-    }
-    
-    addLog(`  取得成功: ${allCards.length}枚`, 'ok');
-    
-    let addedCount = 0;
-    let nextCardId = Math.max(...cardMasters.map(c => c.id), 0) + 1;
-    const seen = new Set(cardMasters.map(c => c.name.toLowerCase()));
-    
-    for(const card of allCards) {
-      const name = card.name;
-      if(seen.has(name.toLowerCase())) continue;
-      seen.add(name.toLowerCase());
-      
-      cardMasters.push({
-        id: nextCardId++,
-        name,
-        aliases: [card.id, `${name} ${card.number || ''}`].filter(Boolean),
-        set: card.set?.name || '',
-        rarity: card.rarity || '',
-        imgUrl: card.images?.large || card.images?.small || '',
-      });
-      addedCount++;
-    }
-    
-    addLog(`  ✅ ${addedCount}枚のカードを追加登録`, 'ok');
-    apiCardsLoaded = true;
-    
-    // UI更新
-    renderCardMarket && renderCardMarket();
-    
-  } catch(e) {
-    addLog(`  ⚠ カードAPI取得失敗: ${e.message}`, 'warn');
-  }
-  
-  if(statusEl) statusEl.style.display = 'none';
-}
+async function fetchCardImageByName(name){ return ''; }
+async function loadCardImagesFromAPI(){ }
 
 
 // ── サーバー設定 ──
@@ -3249,14 +3302,19 @@ updateSels();
 renderMarket();
 renderRisingRanking();
 startTimer();
-// APIからセット（BOX）とカードを動的ロード
-loadSetsFromAPI();
-loadCardsFromAPI();
-// サーバーからデータ取得（接続できれば）
+// サーバーからデータ取得
 loadFromServer();
 syncAccountsFromServer();
+loadMastersFromServer();
 // 30秒ごとにサーバーと同期
 setInterval(loadFromServer, 30000);
 </script>
+
+<!-- ══ 編集モーダル ══ -->
+<div id="edit-modal-overlay" class="edit-modal-overlay" style="display:none;" onclick="closeEditModal(event)">
+  <div class="edit-modal" id="edit-modal-content">
+    <!-- JSで動的に生成 -->
+  </div>
+</div>
 </body>
 </html>
