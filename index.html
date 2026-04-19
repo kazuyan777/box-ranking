@@ -2171,14 +2171,12 @@ function updateCostEstimate(){
   const limit=parseInt(limitEl.value)||0;
   const targetVal=targetEl?.value||'all';
   const acCount=targetVal==='all'
-    ?accounts.filter(a=>a.active&&a.historicalTw?.length).length
+    ?accounts.filter(a=>a.active).length
     :1;
 
-  const tweetsPerAc=limit===0?200:limit; // 無制限は最大200と仮定
+  const tweetsPerAc=limit===0?200:limit;
   const totalTweets=tweetsPerAc*acCount;
-  // X API Basic: 月$100で月500,000ツイート取得可 → 1ツイート約$0.0002
   const xCost=(totalTweets*0.0002).toFixed(2);
-  // Claude API: 入力1Mトークン$3、1ツイート約200トークン → 1ツイート$0.0006
   const claudeCost=(totalTweets*0.0006).toFixed(2);
   const totalCost=(parseFloat(xCost)+parseFloat(claudeCost)).toFixed(2);
   const totalJpy=Math.round(parseFloat(totalCost)*150);
@@ -2188,6 +2186,94 @@ function updateCostEstimate(){
     <div>X APIツイート取得: 約 <strong style="color:var(--accent)">$${xCost}</strong>（月$100プランの消費分）</div>
     <div>Claude AI解析: 約 <strong style="color:var(--accent)">$${claudeCost}</strong>（従量課金）</div>
     <div style="margin-top:3px;border-top:1px solid rgba(255,203,5,0.15);padding-top:4px;">合計目安: <strong style="color:var(--accent);font-size:13px;">$${totalCost}（約${totalJpy.toLocaleString()}円）</strong></div>`;
+}
+
+function initCrawlTarget(){
+  const targetEl=document.getElementById('crawl-target');
+  if(!targetEl)return;
+  const acts=accounts.filter(a=>a.active);
+  targetEl.innerHTML='<option value="all">全アカウント</option>'+
+    acts.map(a=>`<option value="${a.id}">${a.name}（${a.handle}）</option>`).join('');
+  const cc=document.getElementById('crawl-ac-count');
+  if(cc)cc.textContent=acts.length;
+}
+
+async function crawlHistoricalTweets(){
+  if(crawlRunning)return;
+
+  // アカウント一覧を最新化
+  initCrawlTarget();
+
+  const limitEl=document.getElementById('crawl-limit');
+  const targetEl=document.getElementById('crawl-target');
+  const limit=parseInt(limitEl?.value)||25;
+  const targetVal=targetEl?.value||'all';
+
+  let acts=accounts.filter(a=>a.active);
+  if(targetVal!=='all'){
+    const tid=parseInt(targetVal);
+    acts=acts.filter(a=>a.id===tid);
+  }
+  if(!acts.length){toast('有効なアカウントがありません','err');return;}
+
+  crawlRunning=true;crawlShouldStop=false;
+  const btn=document.getElementById('crawl-btn');
+  const stopBtn=document.getElementById('crawl-stop-btn');
+  const status=document.getElementById('crawl-status');
+  const progress=document.getElementById('crawl-progress');
+  const progressBar=document.getElementById('crawl-progress-bar');
+  const progressLabel=document.getElementById('crawl-progress-label');
+  const progressNum=document.getElementById('crawl-progress-num');
+
+  if(btn){btn.textContent='取得中...';btn.disabled=true;}
+  if(stopBtn)stopBtn.style.display='';
+  if(status){status.style.display='block';status.style.background='rgba(61,217,196,0.07)';status.style.borderColor='rgba(61,217,196,0.2)';status.style.color='var(--teal)';}
+  if(progress)progress.style.display='block';
+
+  const sl=ms=>new Promise(r=>setTimeout(r,ms));
+  let addedCount=0;
+
+  for(const ac of acts){
+    if(crawlShouldStop)break;
+    if(status)status.textContent=`📡 ${ac.name} のツイートを取得中...`;
+    addLog(`📡 過去遡り: ${ac.name} (${ac.handle})`,'ai');
+
+    try{
+      // サーバー経由でツイート取得・解析を依頼
+      const res=await fetch(`${SERVER_URL}/api/crawl`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({handle:ac.handle,limit})
+      });
+      if(!res.ok)throw new Error('サーバーエラー');
+      const data=await res.json();
+
+      if(progressBar)progressBar.style.width='50%';
+      if(progressLabel)progressLabel.textContent=`${ac.name} 解析完了`;
+      if(progressNum)progressNum.textContent=`${data.added||0}件追加`;
+
+      addedCount+=data.added||0;
+      addLog(`  ✅ ${ac.name}: ${data.added||0}件の買取情報を取得`,'ok');
+
+    }catch(e){
+      addLog(`  ⚠ ${ac.handle} エラー: ${e.message}`,'warn');
+    }
+    await sl(500);
+  }
+
+  // サーバーからデータを再取得して画面を更新
+  await loadFromServer();
+  renderPHTable();
+
+  if(progressBar)progressBar.style.width='100%';
+  const msg=crawlShouldStop
+    ?`⏹ 中止しました（${addedCount}件追加済み）`
+    :`✅ 完了！ ${addedCount}件の買取情報を取得しました`;
+  if(status){status.textContent=msg;status.style.background='rgba(61,220,132,0.07)';status.style.borderColor='rgba(61,220,132,0.25)';status.style.color='var(--green)';}
+  if(btn){btn.textContent='📡 過去ツイートを遡り取得・解析';btn.disabled=false;}
+  if(stopBtn)stopBtn.style.display='none';
+  crawlRunning=false;crawlShouldStop=false;
+  toast(`${addedCount}件の過去データを取得しました`,'ok');
 }
 
 async function crawlHistoricalTweets(){
